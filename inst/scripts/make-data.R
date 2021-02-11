@@ -1,3 +1,4 @@
+#rm(list=ls())
 library(EBImage)
 
 ## Image processing
@@ -106,7 +107,7 @@ Img <- list(Train=a, Test=b)
 #str(Img$Train)
 #str(Img$Test)
 
-return (Img)
+saveRDS(Img, paste0(path01, ".Rda"), compress = T)
 
 }
 
