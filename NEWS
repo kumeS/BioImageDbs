@@ -1,0 +1,26 @@
+CHANGES IN VERSION 0.99.3
+------------------------------
+
+MODIFICATIONS
+
+    o Added NEWS
+
+    o Added "confirm-metadata" chunk to vignette
+
+
+CHANGES IN VERSION 0.99.2
+------------------------------
+
+MODIFICATIONS
+
+    o License replaced from Open Database License to Artistic-2.0
+
+
+CHANGES IN VERSION 0.99.1
+------------------------------
+
+NEW FEATURES
+ 
+    o Added new functions:
+      createPathbankMetabolitesDb()  
+      createPathbankProteinsDb()  

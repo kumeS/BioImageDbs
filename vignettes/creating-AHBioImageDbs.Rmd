@@ -1,0 +1,31 @@
+---
+title: "Provide BioImage database for AnnotationHub"
+author: "Satoshi Kume, Kozo Nishida"
+graphics: no
+package: AHBioImageDbs
+output:
+    BiocStyle::html_document:
+        toc_float: true
+vignette: >
+    %\VignetteIndexEntry{Provide BioImage database for AnnotationHub}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+    %\VignetteDepends{AnnotationHub}
+---
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+# Fetch XXXX databases from `AnnotationHub`
+
+The `AHBioImageDbs` package provides the metadata for all PathBank tibble
+databases in `r Biocpkg("AnnotationHub")`. First we load/update the
+`AnnotationHub` resource.
+
+```{r load-lib, message = FALSE}
+library(AnnotationHub)
+ah <- AnnotationHub()
+```
+
+
