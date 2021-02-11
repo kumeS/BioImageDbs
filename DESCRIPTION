@@ -1,0 +1,31 @@
+Package: AHBioImageDbs
+Title:A package for ...
+Version: 0.1.0
+Authors@R: c(
+    person ("Satoshi", "Kume", email = "rsc.bio.osa@gmail.com",
+        role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7481-2843"))
+    )
+Maintainer: Satoshi Kume <rsc.bio.osa@gmail.com>
+Description: 
+
+License: MIT
+Imports: 
+Suggests: 
+Encoding: UTF-8
+LazyData: true
+biocViews: BiomedicalInformatics, ImageData
+VignetteBuilder: knitr
+RoxygenNote: 
+git_url: https://git.bioconductor.org/packages/...
+git_branch: 
+git_last_commit: 
+git_last_commit_date: 
+Date/Publication: 
+NeedsCompilation: no
+Packaged: 
+Author: Satoshi Kume [aut, cre] (<https://orcid.org/0000-0001-7481-2843>)
+Maintainer: Satoshi Kume <rsc.bio.osa@gmail.com>
+
+
+
+
