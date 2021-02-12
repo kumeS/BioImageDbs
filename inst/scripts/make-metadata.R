@@ -7,13 +7,15 @@ voxel <- c("approximately 5x5x5nm resolution")
 descriptions <- paste0(Imaging, ", ", samples, " (", volume, ", ", voxel, ")")
 
 SourceType <- c("PNG")
-SourceUrl <- c("https://www.kaggle.com/kmader/electron-microscopy-3d-segmentation")
+SourceUrl <- c("https://www.epfl.ch/labs/cvlab/data/data-em/")
 SourceVersion <- c("Mar 30 2017")
 
 species <- c("Mus musculus")
 taxonomy_ids <- c("10090")
 
-DataProvider <- c("kaggle")
+DataProvider <- c("https://www.epfl.ch/labs/cvlab/data/data-em/")
+
+Tags <- c("Bioimage:3Dimage:microscope:microscopy:EM:SEM")
 
 meta <- data.frame(
     Title = titles,
@@ -31,7 +33,7 @@ meta <- data.frame(
     RDataClass = "list",
     DispatchClass = "Rda",
     RDataPath = paste0('AHBioImageDbs/', titles),
-    Tags = "Bioimage:3Dimage:microscope:microscopy:EM:SEM"
+    Tags = Tags
 )
 
 write.csv(meta, file="metadata.csv", row.names=FALSE)
