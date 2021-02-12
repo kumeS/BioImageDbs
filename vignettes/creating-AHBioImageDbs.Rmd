@@ -1,5 +1,5 @@
 ---
-title: "Provide BioImage database for AnnotationHub"
+title: "Provide Bio- and Biomedical Image Data-set for AnnotationHub"
 author: "Satoshi Kume, Kozo Nishida"
 graphics: no
 package: AHBioImageDbs

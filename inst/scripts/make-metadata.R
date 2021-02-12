@@ -27,7 +27,7 @@ meta <- data.frame(
     TaxonomyId = taxonomy_ids,
     Coordinate_1_based = NA,
     DataProvider = DataProvider,
-    Maintainer = "Satoshi Kume <satoshi.kume.sk@gmail.com>",
+    Maintainer = "Satoshi Kume <satoshi.kume.1984@gmail.com>",
     RDataClass = "list",
     DispatchClass = "Rda",
     RDataPath = paste0('AHBioImageDbs/', titles),

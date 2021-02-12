@@ -20,20 +20,29 @@ processing_2d_image_GT <- function(file, type="png", shape){
 
 ##Download image data
 #ちょっと怪しい
-library(googledrive)
-library(fs)
 
-DownloadImageData <- function(FileName = "id0001_Brain_CA1_hippocampus_region.zip"){
-    googledrive::drive_download(file=FileName)
-    unzip(FileName)
-    if(!dir.exists("Dat")){dir.create("Dat")}
-    fs::file_move(sub(".zip", "", FileName), "./Dat")
-    file.remove(FileName)
-}
+options(timeout=60^8)
+url1 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/training.tif")
+download.file(url=url, destfile=basename(url1))
+url2 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/training_groundtruth.tif")
+download.file(url=url, destfile=basename(url2))
+url3 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/testing.tif")
+download.file(url=url, destfile=basename(url3))
+url4 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/testing_groundtruth.tif")
+download.file(url=url, destfile=basename(url4))
+
+#library(googledrive)
+#library(fs)
+#DownloadImageData <- function(FileName = "id0001_Brain_CA1_hippocampus_region.zip"){
+#    googledrive::drive_download(file=FileName)
+#    unzip(FileName)
+#    if(!dir.exists("Dat")){dir.create("Dat")}
+#    fs::file_move(sub(".zip", "", FileName), "./Dat")
+#    file.remove(FileName)
+#}
 
 #WIDTH=256; HEIGHT=256; Z=165; CHANNELS = 1; data="./Dat/"; path01="Brain_CA1_hippocampus_region"
 #path02="01_Training";OriginalData="OriginalData"; TeacherData="mitochondria_GT"
-
 
 library(purrr)
 #library(magrittr)

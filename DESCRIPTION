@@ -1,31 +1,36 @@
 Package: AHBioImageDbs
-Title:A package for ...
+Type: Package
+Title: Bio- and biomedical imaging data-set for machine learning and deep learning  (for AnnotationHub)
 Version: 0.1.0
-Authors@R: c(
-    person ("Satoshi", "Kume", email = "rsc.bio.osa@gmail.com",
-        role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7481-2843"))
-    )
-Maintainer: Satoshi Kume <rsc.bio.osa@gmail.com>
-Description: 
-
-License: MIT
-Imports: 
-Suggests: 
 Encoding: UTF-8
-LazyData: true
-biocViews: BiomedicalInformatics, ImageData
-VignetteBuilder: knitr
-RoxygenNote: 
-git_url: https://git.bioconductor.org/packages/...
-git_branch: 
-git_last_commit: 
-git_last_commit_date: 
-Date/Publication: 
-NeedsCompilation: no
-Packaged: 
-Author: Satoshi Kume [aut, cre] (<https://orcid.org/0000-0001-7481-2843>)
-Maintainer: Satoshi Kume <rsc.bio.osa@gmail.com>
+Authors@R: c(
+    person (given = "Satoshi", 
+    			 family = "Kume",
+    			 role = c("aut", "cre"), 
+    			 email = "satoshi.kume.1984@gmail.com",
+        comment = c(ORCID = "0000-0001-7481-2843")),
+    person(given = "Kozo",
+           family = "Nishida",
+           role = c("aut", "cre"),
+           email = "kozo.nishida@gmail.com",
+           comment = c(ORCID = "0000-0001-8501-7319"))
+    )
+Maintainer: Satoshi Kume <satoshi.kume.1984@gmail.com>
+Depends: R (>= 4.1.0)
+Imports: AnnotationHub (>= 2.23.0)
+Suggests: EBImage, purrr
 
+Description: The package provides a bioimage dataset for 
+	the image analysis using machine learning and deep learning.
+	The dataset includes microscopy imaging data with supervised labels.
+	The data is provided as list data that can be loaded to Keras/tensorflow in R.
+
+VignetteBuilder: knitr
+License: Artistic-2.0
+URL: https://github.com/kumeS/AHBioImageDbs
+LazyData: true
+RoxygenNote: 7.0.2
+biocViews: AnnotationHub, FunctionalAnnotation
 
 
 
