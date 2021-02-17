@@ -21,15 +21,15 @@ processing_2d_image_GT <- function(file, type="png", shape){
 ##Download image data
 #ちょっと怪しい
 
-options(timeout=60^8)
-url1 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/training.tif")
-download.file(url=url, destfile=basename(url1))
-url2 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/training_groundtruth.tif")
-download.file(url=url, destfile=basename(url2))
-url3 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/testing.tif")
-download.file(url=url, destfile=basename(url3))
-url4 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/testing_groundtruth.tif")
-download.file(url=url, destfile=basename(url4))
+#options(timeout=60^8)
+#url1 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/training.tif")
+#download.file(url=url, destfile=basename(url1))
+#url2 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/training_groundtruth.tif")
+#download.file(url=url, destfile=basename(url2))
+#url3 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/testing.tif")
+#download.file(url=url, destfile=basename(url3))
+#url4 <- c("https://documents.epfl.ch/groups/c/cv/cvlab-unit/www/data/%20ElectronMicroscopy_Hippocampus/testing_groundtruth.tif")
+#download.file(url=url, destfile=basename(url4))
 
 #library(googledrive)
 #library(fs)
