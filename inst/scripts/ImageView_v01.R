@@ -5,7 +5,8 @@ library(animation)
 ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised",
                         Name=paste0(DataFolder, "_train_dataset"),
-                        Interval = 0.1){
+                        Interval = 0.1, Dpi=72,
+                        Width = 500, Height=250){
     options(EBImage.display = "raster")
     XYsize = 256
     names(ImgArray) <- c("Original", "GroundTruth")
@@ -30,13 +31,14 @@ ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
       text(x = XYsize*0.5+XYsize, y = XYsize + XYsize*0.05,
              label = paste("Image section: ", n),
              adj = c(0,1), col = "black", cex = 1.2, pos=1, srt=0)
-    }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=100,
-    nmax = dim(ImgArray$Original)[4], ani.width = 600, ani.height=300, ani.type="png")
+    }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=Dpi,
+    nmax = dim(ImgArray$Original)[4], ani.width = Width, ani.height=Height, ani.type="png")
 }
 
 ImageView2D <- function(ImgArray=Dat$Train,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised", Name=DataFolder,
-                        Interval = 0.25, Opac=c(0.2, 0.2)){
+                        Interval = 0.25, Opac=c(0.2, 0.2), Dpi=72,
+                        Width = 500, Height=250){
     options(EBImage.display = "raster")
     XYsize = 256
     names(ImgArray) <- c("Original", "GroundTruth")
@@ -61,8 +63,8 @@ ImageView2D <- function(ImgArray=Dat$Train,
       text(x = XYsize*0.5+XYsize, y = XYsize + XYsize*0.05,
              label = paste("Image section: ", n),
              adj = c(0,1), col = "black", cex = 1.2, pos=1, srt=0)
-    }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=100,
-    nmax = dim(ImgArray$Original)[1], ani.width = 600, ani.height=300, ani.type="png")
+    }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=Dpi,
+    nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
 }
 
 ImageViewGif <- function(FileName){

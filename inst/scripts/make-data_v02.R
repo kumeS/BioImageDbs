@@ -4,6 +4,8 @@
 library(purrr)
 library(magrittr)
 library(EBImage)
+library(filesstrings)
+
 ################################################################
 ## Image processing
 ################################################################
@@ -221,23 +223,38 @@ saveRDS(Img, paste0(FileName, "_Binary.Rda"), compress = T)
 ################################################################
 #Convert the images to the array data in R
 ################################################################
+if(!dir.exists("AHBioImageDbs_Output")){ dir.create("AHBioImageDbs_Output") }
+
+################################################################
 #EM_id0001_Brain_CA1_hippocampus_region
+################################################################
 DataFolder <- "EM_id0001_Brain_CA1_hippocampus_region"
-DataImport_3d_seg(WIDTH = 1024, HEIGHT = 768, Z=-1, CHANNELS = 1,
+WIDTH00 <- 1024; HEIGHT00 <- 768; CHANNELS00 <- 1
+DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
            data="./AHBioImageDbs_Data",
            path01=DataFolder,
            Original_path="OriginalData",
            GroundTruth_path="mitochondria_GT",
            FileName=paste0(DataFolder, "_5dTensor"))
 
-Dat <- readRDS( paste0(DataFolder, "_5dTensor.Rda") )
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
 str(Dat); str(Dat$Train)
 ImageView3D(Dat$Train, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
 #rm(list="Dat")
 
+################################################################
 #EM_id0002_Drosophila_brain_region
+################################################################
 DataFolder <- "EM_id0002_Drosophila_brain_region"
-DataImport_3d_seg(WIDTH = 512, HEIGHT = 512, Z=-1, CHANNELS = 1,
+WIDTH00 <- 512; HEIGHT00 <- 512; CHANNELS00 <- 1
+DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
            data="./AHBioImageDbs_Data",
            path01=DataFolder,
            Original_path="OriginalData",
@@ -245,36 +262,61 @@ DataImport_3d_seg(WIDTH = 512, HEIGHT = 512, Z=-1, CHANNELS = 1,
            OriginalDataOnlyinTest=T,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-Dat <- readRDS( paste0(DataFolder, "_5dTensor.Rda") )
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
 str(Dat); str(Dat$Train)
-ImageView3D(Dat$Train, interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
+ImageView3D(Dat$Train, Interval=0.4, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
 #rm(list="Dat")
 
+################################################################
 #LM_id0001_DIC_C2DH_HeLa
+################################################################
 DataFolder <- "LM_id0001_DIC_C2DH_HeLa"
-DataImport_2d_seg(WIDTH = 512, HEIGHT = 512, CHANNELS = 1,
+WIDTH00 <- 512; HEIGHT00 <- 512; CHANNELS00 <- 1
+#Multi-label / 4d-tensor
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   data="./AHBioImageDbs_Data",
                   path01=DataFolder,
                   Original_path="OriginalData",
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"))
-Dat <- readRDS( paste0(DataFolder, "_4dTensor.Rda") )
+
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
 str(Dat); str(Dat$Train)
-ImageView2D(Dat$Train, interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
 #ImageViewGif("LM_id0001_DIC_C2DH_HeLa.gif")
 
-DataImport_2d_seg(WIDTH = 512, HEIGHT = 512, CHANNELS = 1,
+#Binary label / 4d-tensor
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   data="./AHBioImageDbs_Data",
                   path01=DataFolder,
                   Original_path="OriginalData",
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"),
                   Binary=T)
-Dat <- readRDS( paste0(DataFolder, "_4dTensor_Binary.Rda") )
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor_Binary.Rda") )
 str(Dat); str(Dat$Train)
-ImageView2D(Dat$Train, interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
+ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
 
-DataImport_3d_seg(WIDTH = 512, HEIGHT = 512, Z=-1, CHANNELS = 1,
+#Multi-label / 5d-tensor
+DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
            data="./AHBioImageDbs_Data",
            path01=DataFolder,
            Original_path="OriginalData_3D",
@@ -282,16 +324,137 @@ DataImport_3d_seg(WIDTH = 512, HEIGHT = 512, Z=-1, CHANNELS = 1,
            OriginalDataOnlyinTest=F,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-Dat <- readRDS( paste0(DataFolder, "_5dTensor.Rda") )
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
 str(Dat); str(Dat$Train)
-ImageView3D(Dat$Train, interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
-#rm(list="Dat")
+ImageView3D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
 
+################################################################
 #LM_id0002_PhC_C2DH_U373
+################################################################
+DataFolder <- "LM_id0002_PhC_C2DH_U373"
+WIDTH00 <- 696; HEIGHT00 <- 520; CHANNELS00 <- 1
+#Multi-label / 4d-tensor
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+                  data="./AHBioImageDbs_Data",
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="Cell_GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"))
 
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
+str(Dat); str(Dat$Train)
+ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+#ImageViewGif("LM_id0001_DIC_C2DH_HeLa.gif")
 
+#Binary label / 4d-tensor
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+                  data="./AHBioImageDbs_Data",
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="Cell_GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"),
+                  Binary=T)
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor_Binary.Rda") )
+str(Dat); str(Dat$Train)
+ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
 
+#Multi-label / 5d-tensor
+DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
+           data="./AHBioImageDbs_Data",
+           path01=DataFolder,
+           Original_path="OriginalData_3D",
+           GroundTruth_path="Cell_GroundTruth_8b_3D",
+           OriginalDataOnlyinTest=F,
+           FileName=paste0(DataFolder, "_5dTensor"))
+
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
+str(Dat); str(Dat$Train)
+#ImageView3D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
+#filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
+#                        destinations="./AHBioImageDbs_Output",
+#                        overwrite = T)
+
+################################################################
 #LM_id0003_Fluo_N2DH_GOWT1
+################################################################
+DataFolder <- "LM_id0003_Fluo_N2DH_GOWT1"
+WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS00 <- 1
+#Multi-label / 4d-tensor
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+                  data="./AHBioImageDbs_Data",
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="Cell_GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"))
+
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
+str(Dat); str(Dat$Train)
+ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+#ImageViewGif("LM_id0001_DIC_C2DH_HeLa.gif")
+
+#Binary label / 4d-tensor
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+                  data="./AHBioImageDbs_Data",
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="Cell_GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"),
+                  Binary=T)
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor_Binary.Rda") )
+str(Dat); str(Dat$Train)
+ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+
+#Multi-label / 5d-tensor
+DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
+           data="./AHBioImageDbs_Data",
+           path01=DataFolder,
+           Original_path="OriginalData_3D",
+           GroundTruth_path="Cell_GroundTruth_8b_3D",
+           OriginalDataOnlyinTest=F,
+           FileName=paste0(DataFolder, "_5dTensor"))
+
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
+str(Dat); str(Dat$Train)
+#ImageView3D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
+#filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
+#                        destinations="./AHBioImageDbs_Output",
+#                        overwrite = T)
 
 
 
