@@ -1,7 +1,4 @@
 #ImageView
-library(EBImage)
-library(animation)
-
 ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised",
                         Name=paste0(DataFolder, "_train_dataset"),
@@ -67,11 +64,17 @@ ImageView2D <- function(ImgArray=Dat$Train,
     nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
 }
 
-ImageViewGif <- function(FileName){
-browseURL(FileName, browser = getOption("browser"))
+
+# Read adn display GIF animations
+Display.GIF <- function(GifFileName, View=T){
+a <- magick::image_read(GifFileName)
+if(View){print(a); return(a)}else{return(a)}
 }
 
-
-
+#Convert GIF animations
+#ConvertGIF2Rda <- function(GifFileName){
+#a <- magick::image_read(GifFileName)
+#saveRDS(a, paste0(GifFileName, "_gif.Rda"), compress = T)
+#}
 
 

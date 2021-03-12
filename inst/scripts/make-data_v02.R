@@ -5,6 +5,8 @@ library(purrr)
 library(magrittr)
 library(EBImage)
 library(filesstrings)
+library(magick)
+library(animation)
 
 ################################################################
 ## Image processing
@@ -247,7 +249,6 @@ ImageView3D(Dat$Train, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
                         destinations="./AHBioImageDbs_Output",
                         overwrite = T)
-#rm(list="Dat")
 
 ################################################################
 #EM_id0002_Drosophila_brain_region
@@ -271,7 +272,6 @@ ImageView3D(Dat$Train, Interval=0.4, Name=paste0(DataFolder, "_5dTensor_train_da
 filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
                         destinations="./AHBioImageDbs_Output",
                         overwrite = T)
-#rm(list="Dat")
 
 ################################################################
 #LM_id0001_DIC_C2DH_HeLa
@@ -417,7 +417,6 @@ ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_d
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
                         destinations="./AHBioImageDbs_Output",
                         overwrite = T)
-#ImageViewGif("LM_id0001_DIC_C2DH_HeLa.gif")
 
 #Binary label / 4d-tensor
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
@@ -456,7 +455,12 @@ str(Dat); str(Dat$Train)
 #                        destinations="./AHBioImageDbs_Output",
 #                        overwrite = T)
 
-
-
+################################################################
+#Display the GIF animations
+################################################################
+DataFolder <- "EM_id0001_Brain_CA1_hippocampus_region"
+id0001 <- Display.GIF(GifFileName=paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor_train_dataset.gif"), View=T)
+id0001
+class(id0001)
 
 
