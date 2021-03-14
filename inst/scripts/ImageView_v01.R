@@ -73,8 +73,23 @@ if(View){print(a); return(a)}else{return(a)}
 
 #Convert GIF animations
 #ConvertGIF2Rda <- function(GifFileName){
+#GifFileName = "./AHBioImageDbs_Output/EM_id0002_Drosophila_brain_region_5dTensor_train_dataset.gif"
 #a <- magick::image_read(GifFileName)
-#saveRDS(a, paste0(GifFileName, "_gif.Rda"), compress = T)
+#b <- image_convert(a, 'rgba')
+#print(a)
+#image_info(a)
+#b <- a[[1]]
+#image_info(b)
+#c <- array(b, dim=c(3, 500, 250))
+#image_data(img, 'rgba')
+#image_info(b)
+#image_browse(a)
+#image_browse(b)
+#saveRDS(b, "gif.Rda", compress = F)
+#c <- readRDS("gif.Rda")
+#plot(c)
+#image_display(c, animate = TRUE)
+#d <- magick::as.magick(c)
 #}
 
 

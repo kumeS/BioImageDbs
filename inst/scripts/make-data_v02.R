@@ -1,20 +1,15 @@
 ################################################################
-## Library
+## Load the package
 ################################################################
-library(purrr)
-library(magrittr)
-library(EBImage)
-library(filesstrings)
-library(magick)
-library(animation)
-
+#library(EBImage); library(magick); library(purrr); library(magrittr); library(filesstrings); library(animation)
+#rm(list=ls())
 ################################################################
 ## Image processing
 ################################################################
 processing_2d_image_train_test <- function(file, type="png", shape, filter="bilinear",
                                            normalize=F, clahe=F, GammaVal=1.0){
-  image <- readImage(file, type=type)
-  image <- resize(image, w = shape[1], h = shape[2], filter = filter)
+  image <- EBImage::readImage(file, type=type)
+  image <- resize(image, w = shape[1], h = shape[2], filt5er = filter)
   if(normalize){image <- normalize(image)}
   if(clahe){image <- clahe(image)}
   if(is.numeric(GammaVal)){image <- image^GammaVal}
@@ -22,7 +17,7 @@ processing_2d_image_train_test <- function(file, type="png", shape, filter="bili
 }
 
 processing_2d_image_GT <- function(file, type="png", shape){
-  image <- readImage(file, type=type)
+  image <- EBImage::readImage(file, type=type)
   image <- resize(image, w = shape[1], h = shape[2], filter = "none")
   array(image, dim=c(shape[1], shape[2], shape[3]))
 }
@@ -33,10 +28,15 @@ processing_2d_image_GT <- function(file, type="png", shape){
 #if(!dir.exists("AHBioImageDbs_Data")){ dir.create("AHBioImageDbs_Data") }
 #download.file("https://gist.githubusercontent.com/kumeS/6f67b4b9085b3d2580c51b8ae4953beb/raw/8a00395c533bd8bb16a284568d82b3318b84d3a2/gdrive_download.sh", destfile="gdrive_download.sh")
 
-#EM_id0001_Brain_CA1_hippocampus_region
-#id <- "1kxT5ebWKLJs2Z2uNuiT4mvjuSpC2RF3_"
-#system(paste0("source gdrive_download.sh; gdrive_download ", id, " ./output.zip; unzip output.zip"))
-#system("mv EM_id0001_Brain_CA1_hippocampus_region ./AHBioImageDbs_Data")
+#id <- c("1kxT5ebWKLJs2Z2uNuiT4mvjuSpC2RF3_",
+#        "1MRdPXshHQshYszUpcLvNf-FjCkPCGdLo",
+#        "1585YNfUxZ-u8MqddEZx8cD1uihGhmdmr",
+#        "1JGPe_P4hV4lCTKC9lOErE6nvsZ6AqIFt",
+#        "1zu_WaPHTJr04snkWNY7fM22eZHcFHjzE")
+#for(n in 1:length(id00)){
+#system(paste0("source gdrive_download.sh; gdrive_download ", id[n], " ./output.zip"))
+#system("mv *.zip ./AHBioImageDbs_Data; unzip ./AHBioImageDbs_Data/output.zip")
+#}
 
 ################################################################
 ##R Functions to read image files and convert them to the Rdata files
@@ -461,6 +461,7 @@ str(Dat); str(Dat$Train)
 DataFolder <- "EM_id0001_Brain_CA1_hippocampus_region"
 id0001 <- Display.GIF(GifFileName=paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor_train_dataset.gif"), View=T)
 id0001
+str(id0001)
 class(id0001)
 
 
