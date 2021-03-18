@@ -1,15 +1,15 @@
 ################################################################
 ## Load the package
 ################################################################
-#library(EBImage); library(magick); library(purrr); library(magrittr); library(filesstrings); library(animation)
 #rm(list=ls())
+#library(EBImage); library(magick); library(purrr); library(magrittr); library(filesstrings); library(animation)
 ################################################################
 ## Image processing
 ################################################################
 processing_2d_image_train_test <- function(file, type="png", shape, filter="bilinear",
                                            normalize=F, clahe=F, GammaVal=1.0){
   image <- EBImage::readImage(file, type=type)
-  image <- resize(image, w = shape[1], h = shape[2], filt5er = filter)
+  image <- resize(image, w = shape[1], h = shape[2], filter = filter)
   if(normalize){image <- normalize(image)}
   if(clahe){image <- clahe(image)}
   if(is.numeric(GammaVal)){image <- image^GammaVal}
@@ -58,7 +58,7 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
     m0 <- paste0(Original_PATH, "/", dir(Original_PATH))
     m1 <- length(paste0(Original_PATH, "/", dir(Original_PATH)))
     DatX <- c()
-    if(Z== -1){Z <- length(dir(m0))}
+    if(Z== -1){Z <- length(dir(m0[1]))}
     for(n in seq_len(m1)){
     ImageFileTrain = paste0(m0[n], "/", dir(m0[n]))[1:Z]
     X = map(ImageFileTrain, processing_2d_image_train_test, shape = SHAPE)
@@ -196,7 +196,7 @@ a <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT, CHANNELS = CHANNELS,
                        path01=path01,
                        path02="01_Training",
                        Original_path=Original_path,
-                       GroundTruth_path="Cell_GroundTruth_8b")
+                       GroundTruth_path=GroundTruth_path)
 names(a) <- c("Train_Original", "Train_GroundTruth")
 
 b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT, CHANNELS = CHANNELS,
@@ -270,6 +270,54 @@ Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
 str(Dat); str(Dat$Train)
 ImageView3D(Dat$Train, Interval=0.4, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+
+################################################################
+#EM_id0003_Drosophila_brain_region
+################################################################
+DataFolder <- "EM_id0003_J558L"
+WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS00 <- 1
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+                  data="./AHBioImageDbs_Data",
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"))
+
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
+str(Dat); str(Dat$Train)
+#table(Dat$Train$Train_GroundTruth)
+Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+
+################################################################
+#EM_id0004_PrHudata
+################################################################
+DataFolder <- "EM_id0004_PrHudata"
+WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS00 <- 1
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+                  data="./AHBioImageDbs_Data",
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"))
+
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
+                        destinations="./AHBioImageDbs_Output",
+                        overwrite = T)
+Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
+str(Dat); str(Dat$Train)
+#table(Dat$Train$Train_GroundTruth)
+Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
                         destinations="./AHBioImageDbs_Output",
                         overwrite = T)
 
