@@ -1,10 +1,9 @@
 ################################################################
 ## Load the package
 ################################################################
-#rm(list=ls())
 #library(EBImage); library(magick); library(purrr); library(magrittr); library(filesstrings); library(animation)
 ################################################################
-## Image processing
+## Image pre-processing
 ################################################################
 processing_2d_image_train_test <- function(file, type="png", shape, filter="bilinear",
                                            normalize=F, clahe=F, GammaVal=1.0){
@@ -27,7 +26,6 @@ processing_2d_image_GT <- function(file, type="png", shape){
 ################################################################
 #if(!dir.exists("AHBioImageDbs_Data")){ dir.create("AHBioImageDbs_Data") }
 #download.file("https://gist.githubusercontent.com/kumeS/6f67b4b9085b3d2580c51b8ae4953beb/raw/8a00395c533bd8bb16a284568d82b3318b84d3a2/gdrive_download.sh", destfile="gdrive_download.sh")
-
 #id <- c("1kxT5ebWKLJs2Z2uNuiT4mvjuSpC2RF3_",
 #        "1MRdPXshHQshYszUpcLvNf-FjCkPCGdLo",
 #        "1585YNfUxZ-u8MqddEZx8cD1uihGhmdmr",
@@ -91,6 +89,9 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
     }
 }
 
+####################################################################################
+#
+####################################################################################
 DataImport_3d_seg <- function(WIDTH = 1024, HEIGHT = 769, Z=-1, CHANNELS = 1,
                        data="./AHBioImageDbs_Data",
                        path01="id0001_Brain_CA1_hippocampus_region",

@@ -1,8 +1,9 @@
 ---
 title: "Provide Bio- and Biomedical Image Dataset for AnnotationHub"
 author: "Satoshi Kume, Kozo Nishida"
+date: "`r Sys.Date()`"
 graphics: no
-package: AHBioImageDbs
+package: 
 output:
     BiocStyle::html_document:
         toc_float: true

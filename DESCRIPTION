@@ -1,7 +1,7 @@
 Package: AHBioImageDbs
 Type: Package
-Title: Bio- and biomedical imaging data-set for machine learning and deep learning  (for AnnotationHub)
-Version: 0.99.0
+Title: Bio- and biomedical imaging dataset for machine learning and deep learning (for AnnotationHub)
+Version: 0.99.1
 Encoding: UTF-8
 Authors@R: c(
     person (given = "Satoshi", 
@@ -28,9 +28,6 @@ Description: The package provides a bioimage dataset for
 VignetteBuilder: knitr
 License: Artistic-2.0
 URL: https://github.com/kumeS/AHBioImageDbs
-LazyData: true
-RoxygenNote: 7.0.2
+LazyLoad: yes
 biocViews: AnnotationHub, FunctionalAnnotation
-
-
 
