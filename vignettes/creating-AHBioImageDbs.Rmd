@@ -25,8 +25,8 @@ databases in `r Biocpkg("AnnotationHub")`.
 
 First we load/update the `AnnotationHub` resource.
 
-#画像解析の標準化は進んでいない
-#
+# 画像解析の標準化は進んでいない
+# a
 
 
 ```{r load-lib, message = FALSE}

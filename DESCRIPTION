@@ -18,7 +18,7 @@ Authors@R: c(
 
 Depends: R (>= 4.1.0)
 Imports: AnnotationHub (>= 2.23.0)
-Suggests: EBImage, magick, purrr, magrittr, filesstrings, animation
+Suggests: EBImage, magick, purrr, magrittr, filesstrings, animation, BiocStyle
 
 Description: The package provides a bioimage dataset for 
 	the image analysis using machine learning and deep learning.
