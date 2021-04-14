@@ -1,4 +1,6 @@
+####################################################################################
 #An image visualization function to create an animation for the 5D array.
+####################################################################################
 ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised",
                         Name=paste0(DataFolder, "_train_dataset"),
@@ -32,6 +34,9 @@ ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
     nmax = dim(ImgArray$Original)[4], ani.width = Width, ani.height=Height, ani.type="png")
 }
 
+####################################################################################
+#An image visualization function to create an animation for the 4D array.
+####################################################################################
 ImageView2D <- function(ImgArray=Dat$Train,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised", Name=DataFolder,
                         Interval = 0.25, Opac=c(0.2, 0.2), Dpi=72,
@@ -64,32 +69,10 @@ ImageView2D <- function(ImgArray=Dat$Train,
     nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
 }
 
-
+####################################################################################
 # Read and display GIF animations
+####################################################################################
 Display.GIF <- function(GifFileName, View=T){
 a <- magick::image_read(GifFileName)
 if(View){print(a); return(a)}else{return(a)}
 }
-
-#Convert GIF animations
-#ConvertGIF2Rda <- function(GifFileName){
-#GifFileName = "./AHBioImageDbs_Output/EM_id0002_Drosophila_brain_region_5dTensor_train_dataset.gif"
-#a <- magick::image_read(GifFileName)
-#b <- image_convert(a, 'rgba')
-#print(a)
-#image_info(a)
-#b <- a[[1]]
-#image_info(b)
-#c <- array(b, dim=c(3, 500, 250))
-#image_data(img, 'rgba')
-#image_info(b)
-#image_browse(a)
-#image_browse(b)
-#saveRDS(b, "gif.Rda", compress = F)
-#c <- readRDS("gif.Rda")
-#plot(c)
-#image_display(c, animate = TRUE)
-#d <- magick::as.magick(c)
-#}
-
-
