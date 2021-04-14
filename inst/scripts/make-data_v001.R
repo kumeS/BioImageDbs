@@ -37,7 +37,8 @@ processing_2d_image_GT <- function(file, type="png", shape){
 #}
 
 ################################################################
-##R Functions to read image files and convert them to the Rdata files
+## R Functions to read image files and convert them to the Rdata files
+## Convert images to the 5D array
 ################################################################
 ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
                        data="./AHBioImageDbs_Data",
@@ -90,7 +91,7 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
 }
 
 ####################################################################################
-#
+# Convert the 5D array to the .Rda file
 ####################################################################################
 DataImport_3d_seg <- function(WIDTH = 1024, HEIGHT = 769, Z=-1, CHANNELS = 1,
                        data="./AHBioImageDbs_Data",
@@ -144,6 +145,9 @@ saveRDS(Img, paste0(FileName, ".Rda"), compress = T)
 }
 }
 
+################################################################
+## Convert images to the 4D array
+################################################################
 ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256, CHANNELS = 1,
                        data="./AHBioImageDbs_Data",
                        path01="LM_id0001_DIC_C2DH_HeLa",
@@ -185,6 +189,9 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256, CHANNELS = 1,
 
 }
 
+####################################################################################
+# Convert the 4D array to the .Rda file
+####################################################################################
 DataImport_2d_seg <- function(WIDTH = 512, HEIGHT = 512, CHANNELS = 1,
                        data="./AHBioImageDbs_Data",
                        path01="LM_id0001_DIC_C2DH_HeLa",
@@ -224,17 +231,23 @@ saveRDS(Img, paste0(FileName, "_Binary.Rda"), compress = T)
 }
 
 ################################################################
+#Create the temporary save folder
+################################################################
+#if(!dir.exists("AHBioImageDbs_Output")){ dir.create("AHBioImageDbs_Output") }
+
+################################################################
 #Convert the images to the array data in R
 ################################################################
-if(!dir.exists("AHBioImageDbs_Output")){ dir.create("AHBioImageDbs_Output") }
-
 ################################################################
 #EM_id0001_Brain_CA1_hippocampus_region
 ################################################################
+#Set parameters
 DataFolder <- "EM_id0001_Brain_CA1_hippocampus_region"
 Ori <- "OriginalData"
 GT <- "mitochondria_GT"
 WIDTH00 <- 1024; HEIGHT00 <- 768; CHANNELS00 <- 1
+
+#Run the conversion
 DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
            data="./AHBioImageDbs_Data",
            path01=DataFolder,
@@ -247,7 +260,7 @@ filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rda"),
                         overwrite = T)
 
 Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor.Rda") )
-str(Dat); str(Dat$Train)
+#str(Dat); str(Dat$Train)
 for(n in 1:dim(Dat$Train$Train_Original)[1]){
 Sample <- paste0(DataFolder, "_5dTensor_train_dataset_",  n)
 ImageView3D(Dat$Train, Name=, Sample=n, Interval = 0.5)
@@ -255,13 +268,14 @@ filesstrings::file.move(files=paste0(Sample, ".gif"), destinations="./DL_analysi
                         overwrite = T)
 }
 
-
-
 ################################################################
 #EM_id0002_Drosophila_brain_region
 ################################################################
+#Set parameters
 DataFolder <- "EM_id0002_Drosophila_brain_region"
 WIDTH00 <- 512; HEIGHT00 <- 512; CHANNELS00 <- 1
+
+#Run the conversion
 DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS00,
            data="./AHBioImageDbs_Data",
            path01=DataFolder,
@@ -283,8 +297,11 @@ filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
 ################################################################
 #EM_id0003_Drosophila_brain_region
 ################################################################
+#Set parameters
 DataFolder <- "EM_id0003_J558L"
 WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS00 <- 1
+
+#Run the conversion
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   data="./AHBioImageDbs_Data",
                   path01=DataFolder,
@@ -296,7 +313,7 @@ filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
                         destinations="./AHBioImageDbs_Output",
                         overwrite = T)
 Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
-str(Dat); str(Dat$Train)
+#str(Dat); str(Dat$Train)
 #table(Dat$Train$Train_GroundTruth)
 Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
 ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
@@ -307,8 +324,10 @@ filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
 ################################################################
 #EM_id0004_PrHudata
 ################################################################
+#Set parameters
 DataFolder <- "EM_id0004_PrHudata"
 WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS00 <- 1
+#Run the conversion
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   data="./AHBioImageDbs_Data",
                   path01=DataFolder,
@@ -320,7 +339,7 @@ filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rda"),
                         destinations="./AHBioImageDbs_Output",
                         overwrite = T)
 Dat <- readRDS( paste0("./AHBioImageDbs_Output/", DataFolder, "_4dTensor.Rda") )
-str(Dat); str(Dat$Train)
+#str(Dat); str(Dat$Train)
 #table(Dat$Train$Train_GroundTruth)
 Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
 ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
@@ -331,8 +350,10 @@ filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
 ################################################################
 #LM_id0001_DIC_C2DH_HeLa
 ################################################################
+#Set parameters
 DataFolder <- "LM_id0001_DIC_C2DH_HeLa"
 WIDTH00 <- 512; HEIGHT00 <- 512; CHANNELS00 <- 1
+#Run the conversion
 #Multi-label / 4d-tensor
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   data="./AHBioImageDbs_Data",
@@ -392,6 +413,7 @@ filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
 ################################################################
 #LM_id0002_PhC_C2DH_U373
 ################################################################
+#Set parameters
 DataFolder <- "LM_id0002_PhC_C2DH_U373"
 WIDTH00 <- 696; HEIGHT00 <- 520; CHANNELS00 <- 1
 #Multi-label / 4d-tensor
@@ -453,6 +475,7 @@ str(Dat); str(Dat$Train)
 ################################################################
 #LM_id0003_Fluo_N2DH_GOWT1
 ################################################################
+#Set parameters
 DataFolder <- "LM_id0003_Fluo_N2DH_GOWT1"
 WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS00 <- 1
 #Multi-label / 4d-tensor
@@ -513,10 +536,12 @@ str(Dat); str(Dat$Train)
 ################################################################
 #Display the GIF animations
 ################################################################
-DataFolder <- "EM_id0001_Brain_CA1_hippocampus_region"
-id0001 <- Display.GIF(GifFileName=paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor_train_dataset.gif"), View=T)
-id0001
-str(id0001)
-class(id0001)
+#Set parameters
+#DataFolder <- "EM_id0001_Brain_CA1_hippocampus_region"
+#Display the GIF image
+#id0001 <- Display.GIF(GifFileName=paste0("./AHBioImageDbs_Output/", DataFolder, "_5dTensor_train_dataset.gif"), View=T)
+#id0001
+#str(id0001)
+#class(id0001)
 
 
