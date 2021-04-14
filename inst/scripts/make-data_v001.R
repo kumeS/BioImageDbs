@@ -1,7 +1,13 @@
 ################################################################
 ## Load the package
 ################################################################
-#library(EBImage); library(magick); library(purrr); library(magrittr); library(filesstrings); library(animation)
+library(EBImage)
+library(magick)
+library(purrr)
+library(magrittr)
+library(filesstrings)
+library(animation)
+
 ################################################################
 ## Image pre-processing
 ################################################################
