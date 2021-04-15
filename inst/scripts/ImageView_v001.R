@@ -16,7 +16,7 @@ ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
       par(bg = 'grey')
       Image_color01 <- paintObjects(resize(ImgArray$GroundTruth[Sample,,,n,], XYsize, XYsize, filter="none")/2,
                                       toRGB(resize(ImgArray$Original[Sample,,,n,], XYsize, XYsize, filter="none")), opac=c(0.25, 0.25),
-                                      col=c("red","red"), thick=T, closed=F)
+                                      col=c("red","red"), thick=TRUE, closed=FALSE)
       EBImage::display(EBImage::combine(resize(toRGB(ImgArray$Original[Sample,,,n,]), XYsize, XYsize, filter="none"),
                                           resize(Image_color01, XYsize, XYsize, filter="none"),
                                           resize(toRGB(ImgArray$GroundTruth[Sample,,,n,]), XYsize, XYsize, filter="none")),
@@ -51,7 +51,7 @@ ImageView2D <- function(ImgArray=Dat$Train,
       par(bg = 'grey')
       Image_color01 <- paintObjects(resize(ImgArray$GroundTruth[n,,,], XYsize, XYsize, filter="none")/2,
                                       toRGB(resize(ImgArray$Original[n,,,], XYsize, XYsize, filter="none")), opac=Opac,
-                                      col=c("red","red"), thick=T, closed=F)
+                                      col=c("red","red"), thick=TRUE, closed=FALSE)
       EBImage::display(EBImage::combine(resize(toRGB(ImgArray$Original[n,,,]), XYsize, XYsize, filter="none"),
                                           resize(Image_color01, XYsize, XYsize, filter="none"),
                                           resize(toRGB(ImgArray$GroundTruth[n,,,]), XYsize, XYsize, filter="none")),
@@ -72,7 +72,7 @@ ImageView2D <- function(ImgArray=Dat$Train,
 ####################################################################################
 # Read and display GIF animations
 ####################################################################################
-Display.GIF <- function(GifFileName, View=T){
+Display.GIF <- function(GifFileName, View=TRUE){
 a <- magick::image_read(GifFileName)
 if(View){print(a); return(a)}else{return(a)}
 }

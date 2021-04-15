@@ -15,16 +15,13 @@ Authors@R: c(
            email = "kozo.nishida@gmail.com",
            comment = c(ORCID = "0000-0001-8501-7319"))
     )
-
-Depends: R (>= 4.1.0)
-Imports: AnnotationHub (>= 2.23.0)
+Depends: R (>= 4.0.0)
+Imports: AnnotationHub (>= 2.22.0)
 Suggests: EBImage, magick, purrr, magrittr, filesstrings, animation, BiocStyle
-
 Description: The package provides a bioimage dataset for 
 	the image analysis using machine learning and deep learning.
 	The dataset includes microscopy imaging data with supervised labels.
 	The data is provided as list data that can be loaded to Keras/tensorflow in R.
-
 VignetteBuilder: knitr
 License: Artistic-2.0
 URL: https://github.com/kumeS/AHBioImageDbs
