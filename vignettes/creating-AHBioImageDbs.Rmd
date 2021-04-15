@@ -3,7 +3,7 @@ title: "Provide Bio- and Biomedical Image Dataset for AnnotationHub"
 author: "Satoshi Kume, Kozo Nishida"
 date: "`r Sys.Date()`"
 graphics: no
-package: 
+package: AHBioImageDbs
 output:
     BiocStyle::html_document:
         toc_float: true
@@ -23,16 +23,28 @@ BiocStyle::markdown()
 The `AHBioImageDbs` package provides the metadata for all PathBank tibble
 databases in `r Biocpkg("AnnotationHub")`. 
 
+
+
+
+画像解析の標準化は進んでいない
+
+
+# Fetch Bioimage Datasets from `AnnotationHub`
+
+The `AHBioImageDbs` package provides the metadata for bioimage datasets,
+which is preprocessed as array format and saved in
+`r Biocpkg("AnnotationHub")`.
+
 First we load/update the `AnnotationHub` resource.
-
-# 画像解析の標準化は進んでいない
-# a
-
 
 ```{r load-lib, message = FALSE}
 library(AnnotationHub)
 ah <- AnnotationHub()
 ```
+
+Next we list all AHBioImageDbs entries from `AnnotationHub`.
+
+
 
 
 
