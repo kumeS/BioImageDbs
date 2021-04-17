@@ -3,12 +3,13 @@ title: "Provide Bio- and Biomedical Image Dataset for AnnotationHub"
 author: "Satoshi Kume, Kozo Nishida"
 date: "`r Sys.Date()`"
 graphics: no
-package: AHBioImageDbs
+package: AHBioImageDbs, knitr
 output:
     BiocStyle::html_document:
         toc_float: true
 vignette: >
-    %\VignetteIndexEntry{Provide Bio- and Biomedical Image Dataset for AnnotationHub}
+    %\VignetteIndexEntry{Provide Bio- and Biomedical Image Dataset for 
+    AnnotationHub}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
     %\VignetteDepends{AnnotationHub}
