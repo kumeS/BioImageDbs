@@ -18,8 +18,8 @@ vignette: >
 BiocStyle::markdown()
 ```
 
-**Authors**: `r packageDescription("AHPubMedDbs")[["Author"]] `<br />
-**Last modified:** `r file.info("pubmed.Rmd")$mtime`<br />
+**Authors**: `r packageDescription("AHBioImageDbs")[["Author"]] `<br />
+**Last modified:** `r file.info("AHBioImageDbs.Rmd")$mtime`<br />
 **Compiled**: `r date()`
 
 # Utilization and Prospects for Bioimage Datasets
@@ -65,7 +65,7 @@ and fine-tuning based on these arrays.
 As a test, we also provided gif files of some arrays for visualizations.
 
 
-# Fetch Bioimage Datasets from `AnnotationHub`
+# Fetch Bioimage Datasets from AnnotationHub
 
 The `AHBioImageDbs` package provides the metadata for all BioImage 
 databases in `r Biocpkg("AnnotationHub")`. 
@@ -101,7 +101,21 @@ qr <- query(ah, c("BioImageDbs"))
 # pubmed_tibble <- qr[[1]]
 ```
 
-# Load arrays from the AnnotationHub
+# 5D Arrays from the AnnotationHub
+
+The ordering of the array dimensions is corresponded to the channels_last 
+(default) in Keras. The input shape of 5D array is to be batch, spatial_dim1, 
+spatial_dim2, spatial_dim3, and channels.
+
+```{r}
+
+```
+
+# 4D Arrays from the AnnotationHub
+
+The ordering of the array dimensions is corresponded to the channels_last 
+(default) in Keras. The input shape of 4D array is to be batch, height, width, 
+channels.
 
 ```{r}
 
@@ -123,6 +137,7 @@ sessionInfo()
 
 For this dataset in AHBioImageDbs , the published open data on each web-sites 
 was used as following; 
+
 1) For the cellular microstructures, the cell tracking, electron microscopy-
 based imaging data of mouse brain 
 (EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [5-6], Drosophila brain 
@@ -130,6 +145,7 @@ based imaging data of mouse brain
 line J558L (EM_id0003_J558L_4dTensor.Rda) [9], and The primary human T cell 
 isolated from peripheral blood mononuclear cells 
 (EM_id0004_PrHudata_4dTensor.Rda) [9].
+
 2) For the cell tracking, light microscopy-based imaging data of human HeLa 
 cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10], human 
 glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex. 
