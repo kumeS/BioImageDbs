@@ -8,8 +8,7 @@ output:
     BiocStyle::html_document:
         toc_float: true
 vignette: >
-    %\VignetteIndexEntry{Provide Bio- and Biomedical Image Dataset for 
-    AnnotationHub}
+    %\VignetteIndexEntry{Provide Bio-image Dataset for AnnotationHub}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
     %\VignetteDepends{AnnotationHub}
@@ -23,7 +22,6 @@ BiocStyle::markdown()
 
 The `AHBioImageDbs` package provides the metadata for all PathBank tibble
 databases in `r Biocpkg("AnnotationHub")`. 
-
 
 
 
@@ -43,11 +41,37 @@ library(AnnotationHub)
 ah <- AnnotationHub()
 ```
 
+
+
 Next we list all AHBioImageDbs entries from `AnnotationHub`.
 
 
 
+# About imaging dataset and metadata
 
+For this dataset in AHBioImageDbs , the published open data on each web-sites 
+was used as following; 
+1) For the cellular microstructures, the cell tracking, electron microscopy-based imaging data of mouse brain (EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [1-2], Drosophila brain (EM_id0002_Drosophila_brain_region_5dTensor.Rda) [3-4], mouse B myeloma cell line J558L (EM_id0003_J558L_4dTensor.Rda) [5], and The primary human T cell isolated from peripheral blood mononuclear cells(EM_id0004_PrHudata_4dTensor.Rda) [5]. 
+2) For the cell tracking, light microscopy-based imaging data of human HeLa cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [6], human glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [6], 
+and GFP-GOWT1 mouse stem cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [7]
 
+The detailed information was described in the metadata file of AHBioImageDbs.
 
+# References
+
+1. A. Lucchi Y. Li and P. Fua, Learning for Structured Prediction Using Approximate Subgradient Descent with Working Sets, Conference on Computer Vision and Pattern Recognition, 2013.
+
+2. A. Lucchi, K.Smith, R. Achanta, G. Knott, P. Fua, Supervoxel-Based Segmentation of Mitochondria in EM Image Stacks with Learned Shape Features, IEEE Transactions on Medical Imaging, Vol. 30, Nr. 11, October 2011."
+
+3. Cardona A, Saalfeld S, Preibisch S, Schmid B, Cheng A, Pulokas J, Tomancak P, Hartenstein V. 2010. An Integrated Micro- and Macroarchitectural Analysis of the Drosophila Brain by Computer-Assisted Serial Section Electron Microscopy. PLoS Biol 8(10): e1000502. doi:10.1371/journal.pbio.1000502.
+
+4. Ignacio Arganda-Carreras, Srinivas C. Turaga, Daniel R. Berger, Dan Ciresan, Alessandro Giusti, Luca M. Gambardella, Jürgen Schmidhuber, Dmtry Laptev, Sarversh Dwivedi, Joachim M. Buhmann, Ting Liu, Mojtaba Seyedhosseini, Tolga Tasdizen, Lee Kamentsky, Radim Burget, Vaclav Uher, Xiao Tan, Chanming Sun, Tuan D. Pham, Eran Bas, Mustafa G. Uzunbas, Albert Cardona, Johannes Schindelin, and H. Sebastian Seung. Crowdsourcing the creation of image segmentation algorithms for connectomics. Frontiers in Neuroanatomy, vol. 9, no. 142, 2015.
+
+5. Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, Stephan Ehl, Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic determination of cell surface areas used in systems biology, Frontiers in Bioscience, Elite, 5, 533-545, January 1, 2013.
+
+6. http://celltrackingchallenge.net/2d-datasets/
+
+7. Bártová E, Šustáčková G, Stixová L, Kozubek S, Legartová S, et al. (2011) 
+Recruitment of Oct4 Protein to UV-Damaged Chromatin in Embryonic Stem Cells. 
+PLOS ONE 6(12): e27281. https://doi.org/10.1371/journal.pone.0027281
 
