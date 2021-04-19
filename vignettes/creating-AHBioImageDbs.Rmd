@@ -1,5 +1,5 @@
 ---
-title: "Provide Bio- and Biomedical Image Dataset for AnnotationHub"
+title: "Provide Bio-image Dataset for AnnotationHub"
 author: "Satoshi Kume, Kozo Nishida"
 date: "`r Sys.Date()`"
 graphics: no
@@ -18,17 +18,44 @@ vignette: >
 BiocStyle::markdown()
 ```
 
-# Introduction
+**Authors**: `r packageDescription("AHPubMedDbs")[["Author"]] `<br />
+**Last modified:** `r file.info("pubmed.Rmd")$mtime`<br />
+**Compiled**: `r date()`
 
-The `AHBioImageDbs` package provides the metadata for all PathBank tibble
-databases in `r Biocpkg("AnnotationHub")`. 
+# Utilization and Prospects for Bioimage Datasets
+
+In recent years, there has been a growing need for data analysis using machine 
+learning in the field of biological imaging. 
+Machine learning is an inductive approach using data, and the construction of 
+models involves the use of image data itself.
+Thus, the publication and sharing of bioimage datasets [1], as well as 
+knowledge creation by adding metadata to bioimages [2, 3], are important 
+issues to be discussed.
+Currently, there is still no commonly-used format for publishing bioimage 
+datasets. Therefore, different image repositories manage the data in different 
+formats (image data itself, and metadata including image format, 
+instruments/microscopes, etc.).
+
+In data analysis using those images, it is assumed that several steps of 
+image pre-processing will be performed depending on the analysis environment 
+used. In fact, the implementation of supervised learning starts with finding 
+a repository of bioimage dataset that contains the original images and the 
+corresponding supervised labels. Once the repository is found, the image data 
+is downloaded from the repository, the data is loaded, and it is prepared in 
+a format suitable for the analysis environment. These processes are 
+time-consuming before analysis.
+Also, in most cases of image repositories, the data is not published in a format 
+suitable for reading and processing data in R (.Rdata, csv, etc.). They are 
+not easy to use for R users.
 
 
 
-画像解析の標準化は進んでいない
 
 
 # Fetch Bioimage Datasets from `AnnotationHub`
+
+The `AHBioImageDbs` package provides the metadata for all BioImage 
+databases in `r Biocpkg("AnnotationHub")`. 
 
 The `AHBioImageDbs` package provides the metadata for bioimage datasets,
 which is preprocessed as array format and saved in
@@ -43,35 +70,49 @@ ah <- AnnotationHub()
 
 
 
+
 Next we list all AHBioImageDbs entries from `AnnotationHub`.
 
 
 
-# About imaging dataset and metadata
+# About the imaging dataset and its metadata
 
 For this dataset in AHBioImageDbs , the published open data on each web-sites 
 was used as following; 
-1) For the cellular microstructures, the cell tracking, electron microscopy-based imaging data of mouse brain (EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [1-2], Drosophila brain (EM_id0002_Drosophila_brain_region_5dTensor.Rda) [3-4], mouse B myeloma cell line J558L (EM_id0003_J558L_4dTensor.Rda) [5], and The primary human T cell isolated from peripheral blood mononuclear cells(EM_id0004_PrHudata_4dTensor.Rda) [5]. 
-2) For the cell tracking, light microscopy-based imaging data of human HeLa cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [6], human glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [6], 
-and GFP-GOWT1 mouse stem cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [7]
+1) For the cellular microstructures, the cell tracking, electron microscopy-
+based imaging data of mouse brain 
+(EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [4-5], Drosophila brain (EM_id0002_Drosophila_brain_region_5dTensor.Rda) [6-7], mouse B myeloma cell 
+line J558L (EM_id0003_J558L_4dTensor.Rda) [8], and The primary human T cell 
+isolated from peripheral blood mononuclear cells 
+(EM_id0004_PrHudata_4dTensor.Rda) [8]. 
+2) For the cell tracking, light microscopy-based imaging data of human HeLa 
+cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [9], human 
+glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [9], and GFP-GOWT1 mouse stem cells 
+(ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [10]
 
 The detailed information was described in the metadata file of AHBioImageDbs.
 
 # References
 
-1. A. Lucchi Y. Li and P. Fua, Learning for Structured Prediction Using Approximate Subgradient Descent with Working Sets, Conference on Computer Vision and Pattern Recognition, 2013.
+1. Williams, E., Moore, J., Li, S.W. et al. Publisher Correction: Image Data Resource: a bioimage data integration and publication platform. Nat Methods 15, 984 (2018). https://doi.org/10.1038/s41592-018-0169-x
 
-2. A. Lucchi, K.Smith, R. Achanta, G. Knott, P. Fua, Supervoxel-Based Segmentation of Mitochondria in EM Image Stacks with Learned Shape Features, IEEE Transactions on Medical Imaging, Vol. 30, Nr. 11, October 2011."
+2. Kobayashi, N., Kume, S., Lenz, K., & Masuya, H. (2018). RIKEN MetaDatabase: A Database Platform for Health Care and Life Sciences as a Microcosm of Linked Open Data Cloud. International Journal on Semantic Web and Information Systems (IJSWIS), 14(1), 140-164. doi:10.4018/IJSWIS.2018010106
 
-3. Cardona A, Saalfeld S, Preibisch S, Schmid B, Cheng A, Pulokas J, Tomancak P, Hartenstein V. 2010. An Integrated Micro- and Macroarchitectural Analysis of the Drosophila Brain by Computer-Assisted Serial Section Electron Microscopy. PLoS Biol 8(10): e1000502. doi:10.1371/journal.pbio.1000502.
+3. Kume S., Masuya H., Maeda M., Suga M., Kataoka Y., Kobayashi N. (2017) Development of Semantic Web-Based Imaging Database for Biological Morphome. In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 2017. Lecture Notes in Computer Science, vol 10675. Springer, Cham. https://doi.org/10.1007/978-3-319-70682-5_19
 
-4. Ignacio Arganda-Carreras, Srinivas C. Turaga, Daniel R. Berger, Dan Ciresan, Alessandro Giusti, Luca M. Gambardella, Jürgen Schmidhuber, Dmtry Laptev, Sarversh Dwivedi, Joachim M. Buhmann, Ting Liu, Mojtaba Seyedhosseini, Tolga Tasdizen, Lee Kamentsky, Radim Burget, Vaclav Uher, Xiao Tan, Chanming Sun, Tuan D. Pham, Eran Bas, Mustafa G. Uzunbas, Albert Cardona, Johannes Schindelin, and H. Sebastian Seung. Crowdsourcing the creation of image segmentation algorithms for connectomics. Frontiers in Neuroanatomy, vol. 9, no. 142, 2015.
+4. A. Lucchi Y. Li and P. Fua, Learning for Structured Prediction Using Approximate Subgradient Descent with Working Sets, Conference on Computer Vision and Pattern Recognition, 2013.
 
-5. Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, Stephan Ehl, Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic determination of cell surface areas used in systems biology, Frontiers in Bioscience, Elite, 5, 533-545, January 1, 2013.
+5. A. Lucchi, K.Smith, R. Achanta, G. Knott, P. Fua, Supervoxel-Based Segmentation of Mitochondria in EM Image Stacks with Learned Shape Features, IEEE Transactions on Medical Imaging, Vol. 30, Nr. 11, October 2011."
 
-6. http://celltrackingchallenge.net/2d-datasets/
+6. Cardona A, Saalfeld S, Preibisch S, Schmid B, Cheng A, Pulokas J, Tomancak P, Hartenstein V. 2010. An Integrated Micro- and Macroarchitectural Analysis of the Drosophila Brain by Computer-Assisted Serial Section Electron Microscopy. PLoS Biol 8(10): e1000502. doi:10.1371/journal.pbio.1000502.
 
-7. Bártová E, Šustáčková G, Stixová L, Kozubek S, Legartová S, et al. (2011) 
+7. Ignacio Arganda-Carreras, Srinivas C. Turaga, Daniel R. Berger, Dan Ciresan, Alessandro Giusti, Luca M. Gambardella, Jürgen Schmidhuber, Dmtry Laptev, Sarversh Dwivedi, Joachim M. Buhmann, Ting Liu, Mojtaba Seyedhosseini, Tolga Tasdizen, Lee Kamentsky, Radim Burget, Vaclav Uher, Xiao Tan, Chanming Sun, Tuan D. Pham, Eran Bas, Mustafa G. Uzunbas, Albert Cardona, Johannes Schindelin, and H. Sebastian Seung. Crowdsourcing the creation of image segmentation algorithms for connectomics. Frontiers in Neuroanatomy, vol. 9, no. 142, 2015.
+
+8. Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, Stephan Ehl, Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic determination of cell surface areas used in systems biology, Frontiers in Bioscience, Elite, 5, 533-545, January 1, 2013.
+
+9. http://celltrackingchallenge.net/2d-datasets/
+
+10. Bártová E, Šustáčková G, Stixová L, Kozubek S, Legartová S, et al. (2011) 
 Recruitment of Oct4 Protein to UV-Damaged Chromatin in Embryonic Stem Cells. 
 PLOS ONE 6(12): e27281. https://doi.org/10.1371/journal.pone.0027281
 
