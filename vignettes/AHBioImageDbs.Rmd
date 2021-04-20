@@ -1,6 +1,14 @@
 ---
 title: "Provide Bio-image Dataset for AnnotationHub"
-author: "Satoshi Kume, Kozo Nishida"
+author: 
+- name: Satoshi Kume
+  affiliation: 
+    - RIKEN Center for Biosystems Dynamics Research
+    - Osaka City University Center for Health Science Innovation
+    - Osaka Electro-Communication University
+  email: satoshi.kume.1984@gmail.com
+- name: Kozo Nishida
+  affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
 package: AHBioImageDbs, knitr
@@ -18,7 +26,6 @@ vignette: >
 BiocStyle::markdown()
 ```
 
-**Authors**: `r packageDescription("AHBioImageDbs")[["Author"]] `<br />
 **Last modified:** `r file.info("AHBioImageDbs.Rmd")$mtime`<br />
 **Compiled**: `r date()`
 
@@ -62,9 +69,6 @@ is also intended for applications such as (1) comparing models using common data
 among R users, and (2) applying predictions to new datasets by transfer learning
 and fine-tuning based on these arrays.
 
-As a test, we also provided gif files of some arrays for visualizations.
-
-
 # Fetch Bioimage Datasets from AnnotationHub
 
 The `AHBioImageDbs` package provides the metadata for all BioImage 
@@ -98,7 +102,7 @@ We can retrieve only the AHBioImageDbs tibble files as follows.
 
 ```{r query-mouse}
 qr <- query(ah, c("BioImageDbs"))
-# pubmed_tibble <- qr[[1]]
+BioImageDbs_tibble <- qr[[1]]
 ```
 
 # 5D Arrays from the AnnotationHub
@@ -123,15 +127,24 @@ channels.
 
 # Visualization of gif images from the AnnotationHub
 
+As a test, we also provided gif files of some arrays for visualizations.
+
+You can see the files using `magick::image_read` function.
+
 ```{r}
-
+qr <- query(ah, c("BioImageDbs", ".gif"))
+(magick::image_read(qr[1]))
 ```
 
+# Simple Example of execution command in Keras/Tensorflow
 
-# Session information {.unnumbered}
-```{r sessionInfo, echo=FALSE}
-sessionInfo()
-```
+First, you select data arrays and label arrays from the list data and assign 
+them to variables respectively. These variables are then used as the x and y 
+arguments of the Keras fit(<keras.engine.training.Model>) function as a following example.
+
+> data <- 
+> labels <- 
+> model %>% fit( x = data, y = labels )
 
 # About the imaging dataset and its metadata
 
@@ -156,50 +169,45 @@ The detailed information was described in the metadata file of AHBioImageDbs.
 
 # References
 
-1. Williams, E., Moore, J., Li, S.W. et al. Publisher Correction: Image Data 
-Resource: a bioimage data integration and publication platform. 
-Nat Methods 15, 984 (2018). https://doi.org/10.1038/s41592-018-0169-x
+1. Williams, E., Moore, J., Li, S.W. et al. (2018) Publisher Correction: 
+Image Data Resource: a bioimage data integration and publication platform. 
+Nat Methods 15, 984. https://doi.org/10.1038/s41592-018-0169-x
 
 2. Kobayashi, N., Kume, S., Lenz, K., & Masuya, H. (2018). RIKEN MetaDatabase: 
 A Database Platform for Health Care and Life Sciences as a Microcosm of Linked 
 Open Data Cloud. International Journal on Semantic Web and Information Systems 
 (IJSWIS), 14(1), 140-164. doi:10.4018/IJSWIS.2018010106
 
-3. Kume S., Masuya H., Maeda M., Suga M., Kataoka Y., Kobayashi N. (2017) 
+3. Kume, S., Masuya, H., Maeda, M., Suga, M., Kataoka, Y., Kobayashi, N. (2017) 
 Development of Semantic Web-Based Imaging Database for Biological Morphome. 
 In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 2017.
-Lecture Notes in Computer Science, vol 10675. Springer, Cham.
+Lecture Notes in Computer Science, vol 10675. Springer, Cham. 
 https://doi.org/10.1007/978-3-319-70682-5_19
 
-4. Chollet, François and Allaire, JJ and others, (2017) R Interface to Keras, 
+4. Chollet, François and Allaire, J.J. and others. (2017) R Interface to Keras, 
 https://github.com/rstudio/keras
 
-5. A. Lucchi Y. Li and P. Fua, Learning for Structured Prediction Using 
-Approximate Subgradient Descent with Working Sets, Conference on Computer Vision
-and Pattern Recognition, 2013.
+5. Lucchi, A., Li, Y. and Fua, P. (2013.) Learning for Structured Prediction 
+Using Approximate Subgradient Descent with Working Sets, 2013 IEEE Conference 
+on Computer Vision and Pattern Recognition. doi: 10.1109/CVPR.2013.259
 
-6. A. Lucchi, K.Smith, R. Achanta, G. Knott, P. Fua, Supervoxel-Based 
-Segmentation of Mitochondria in EM Image Stacks with Learned Shape Features, 
-IEEE Transactions on Medical Imaging, Vol. 30, Nr. 11, October 2011."
+6. Lucchi, A., Smithm K., Achantam R., Knott, G., Fua, P. (2012) 
+Supervoxel-based segmentation of mitochondria in em image stacks with learned 
+shape features. IEEE Trans Med Imaging. 31(2):474-86. 
+doi: 10.1109/TMI.2011.2171705.
 
-7. Cardona A, Saalfeld S, Preibisch S, Schmid B, Cheng A, Pulokas J, Tomancak P,
-Hartenstein V. 2010. An Integrated Micro- and Macroarchitectural Analysis of the
-Drosophila Brain by Computer-Assisted Serial Section Electron Microscopy. PLoS 
-Biol 8(10): e1000502. doi:10.1371/journal.pbio.1000502.
+7. Cardona, A., Saalfeld, S., Preibisch, S., Schmid, B., Cheng, A., Pulokas, J.,
+Tomancak, P., Hartenstein, V. (2010) An Integrated Micro- and Macroarchitectural
+Analysis of the Drosophila Brain by Computer-Assisted Serial Section Electron 
+Microscopy. PLoS Biol 8(10): e1000502. doi:10.1371/journal.pbio.1000502.
 
-8. Ignacio Arganda-Carreras, Srinivas C. Turaga, Daniel R. Berger, Dan Ciresan, 
-Alessandro Giusti, Luca M. Gambardella, Jürgen Schmidhuber, Dmtry Laptev, 
-Sarversh Dwivedi, Joachim M. Buhmann, Ting Liu, Mojtaba Seyedhosseini, Tolga 
-Tasdizen, Lee Kamentsky, Radim Burget, Vaclav Uher, Xiao Tan, Chanming Sun, 
-Tuan D. Pham, Eran Bas, Mustafa G. Uzunbas, Albert Cardona, Johannes Schindelin,
-and H. Sebastian Seung. Crowdsourcing the creation of image segmentation 
-algorithms for connectomics. Frontiers in Neuroanatomy, vol. 9, no. 142, 2015.
+8. Ignacio, A.C., Srinivas, C., Turaga, D.R. et al. (2015) Crowdsourcing the 
+creation of image segmentation algorithms for connectomics. Frontiers in 
+Neuroanatomy, vol. 9, no. 142.
 
-9. Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina 
-Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, 
-Stephan Ehl, Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic 
-determination of cell surface areas used in systems biology, Frontiers in 
-Bioscience, Elite, 5, 533-545, January 1, 2013.
+9. Morath, V., Keuper, M., Rodriguez-Franco, M., et al. (2013) Semi-automatic 
+determination of cell surface areas used in systems biology. Frontiers in 
+Bioscience, Elite, 5, 533-545. doi:10.2741/e635. 
 
 10. http://celltrackingchallenge.net/2d-datasets/
 
@@ -207,3 +215,7 @@ Bioscience, Elite, 5, 533-545, January 1, 2013.
 Recruitment of Oct4 Protein to UV-Damaged Chromatin in Embryonic Stem Cells. 
 PLOS ONE 6(12): e27281. https://doi.org/10.1371/journal.pone.0027281
 
+# Session information {.unnumbered}
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
