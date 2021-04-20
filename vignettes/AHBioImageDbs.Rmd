@@ -109,9 +109,11 @@ BioImageDbs_tibble <- qr[[1]]
 
 # 5D Arrays from the AnnotationHub
 
-The ordering of the array dimensions is corresponded to the channels_last 
-(default) in Keras. The input shape of 5D array is to be batch, spatial_dim1, 
-spatial_dim2, spatial_dim3, and channels.
+The ordering of the array dimensions is corresponded to the channels_last format
+(default) in R/Keras. The input shape of 5D array is to be batch, spatial_dim1, 
+spatial_dim2, spatial_dim3, and channels. The number of this batch is the same 
+as the number of 3D image sets. The number of channels is 1 for gray images and 
+3 for RGB images.
 
 ```{r}
 
@@ -119,9 +121,9 @@ spatial_dim2, spatial_dim3, and channels.
 
 # 4D Arrays from the AnnotationHub
 
-The ordering of the array dimensions is corresponded to the channels_last 
-(default) in Keras. The input shape of 4D array is to be batch, height, width, 
-channels.
+The ordering of the array dimensions is corresponded to the channels_last format
+(default) in R/Keras. The input shape of 4D array is to be batch, height, width, 
+channels. The number of this batch is the same as the number of 2D images.
 
 ```{r}
 
@@ -131,21 +133,23 @@ channels.
 
 As a test, we also provided gif files of some arrays for visualizations.
 
-You can see the files using `magick::image_read` function.
+You can visualize the files using `magick::image_read` function.
 
 ```{r}
 qr <- query(ah, c("BioImageDbs", ".gif"))
 (magick::image_read(qr[1]))
 ```
 
-# Simple Example of execution command in Keras/Tensorflow
+# Simple example of execution command using Keras/Tensorflow
 
 First, you select data arrays and label arrays from the list data and assign 
 them to variables respectively. These variables are then used as the x and y 
 arguments of the Keras fit(<keras.engine.training.Model>) function as a following example.
 
-> data <- 
-> labels <- 
+> qr <- query(ah, c("BioImageDbs"))
+> BioImageData <- qr[[1]]
+> data <- BioImageData$
+> labels <- BioImageData$
 > model %>% fit( x = data, y = labels )
 
 # About the imaging dataset and its metadata
@@ -166,6 +170,7 @@ cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10], human
 glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex. 
 LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10], and GFP-GOWT1 mouse stem cells 
 (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [11]
+
 
 The detailed information was described in the metadata file of AHBioImageDbs.
 
