@@ -104,7 +104,7 @@ We can retrieve only the AHBioImageDbs tibble files as follows.
 
 ```{r query-mouse}
 qr <- query(ah, c("BioImageDbs"))
-BioImageDbs_tibble <- qr[[1]]
+#BioImageDbs_tibble <- qr[[1]]
 ```
 
 # 5D Arrays from the AnnotationHub
