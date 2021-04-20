@@ -154,18 +154,18 @@ following example. The model in Keras should be prepared before the execution.
 > dim(data); dim(labels)
 > model %>% fit( x = data, y = labels )
 
-# About the imaging dataset and its metadata
+# About the imaging dataset and its metadata in AHBioImageDbs
 
-For this dataset in AHBioImageDbs , the published open data on each web-sites 
-was used as following; 
+For this dataset in AHBioImageDbs, the published open data was used as 
+following; 
 
-1) For the cellular microstructures, the cell tracking, electron microscopy-
+1) For the cellular ultra-microstructures, electron microscopy-
 based imaging data of mouse brain 
-(EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [5-6], Drosophila brain 
-(EM_id0002_Drosophila_brain_region_5dTensor.Rda) [7-8], mouse B myeloma cell 
-line J558L (EM_id0003_J558L_4dTensor.Rda) [9], and The primary human T cell 
+(ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [5-6], Drosophila brain 
+(ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) [7-8], mouse B myeloma cell 
+line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [9], and The primary human T cell 
 isolated from peripheral blood mononuclear cells 
-(EM_id0004_PrHudata_4dTensor.Rda) [9].
+(ex. EM_id0004_PrHudata_4dTensor.Rda) [9].
 
 2) For the cell tracking, light microscopy-based imaging data of human HeLa 
 cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10], human 
@@ -173,8 +173,9 @@ glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex.
 LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10], and GFP-GOWT1 mouse stem cells 
 (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [11]
 
-
-The detailed information was described in the metadata file of AHBioImageDbs.
+The values of the supervised labels were provided as array data with binary or 
+multiple values. The detailed information was described in the metadata file 
+of AHBioImageDbs.
 
 # References
 
