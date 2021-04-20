@@ -133,23 +133,25 @@ channels. The number of this batch is the same as the number of 2D images.
 
 As a test, we also provided gif files of some arrays for visualizations.
 
-You can visualize the files using `magick::image_read` function.
+We visualize the files using `magick::image_read` function.
 
 ```{r}
 qr <- query(ah, c("BioImageDbs", ".gif"))
 (magick::image_read(qr[1]))
 ```
 
-# Simple example of execution command using Keras/Tensorflow
+# A simple execution command using Keras/Tensorflow
 
-First, you select data arrays and label arrays from the list data and assign 
-them to variables respectively. These variables are then used as the x and y 
-arguments of the Keras fit(<keras.engine.training.Model>) function as a following example.
+We select a data array and a label array from the list data and assign 
+them to variables, respectively. These variables are then used as the x and y 
+arguments of the fit(<keras.engine.training.Model>) function of Keras as a 
+following example. The model in Keras should be prepared before the execution.
 
 > qr <- query(ah, c("BioImageDbs"))
 > BioImageData <- qr[[1]]
 > data <- BioImageData$
 > labels <- BioImageData$
+> dim(data); dim(labels)
 > model %>% fit( x = data, y = labels )
 
 # About the imaging dataset and its metadata
