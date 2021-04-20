@@ -2,7 +2,7 @@
 title: "Provide Bio-image Dataset for AnnotationHub"
 author: 
 - name: Satoshi Kume
-  affiliation: 
+  affiliation:
     - RIKEN Center for Biosystems Dynamics Research
     - Osaka City University Center for Health Science Innovation
     - Osaka Electro-Communication University
@@ -32,42 +32,44 @@ BiocStyle::markdown()
 # Utilization and Prospects for Bioimage Datasets
 
 In recent years, there has been a growing need for data analysis using machine 
-learning in the field of biological imaging. 
-Machine learning is an inductive approach using data, and the construction of 
-models involves the use of image data itself.
+learning in the field of bioimaging research. As known generally, machine 
+learning is an inductive approach using data, and the construction of 
+models such as image segmentation and classification involves the use of image 
+data itself.
 Thus, the publication and sharing of bioimage datasets [1], as well as 
 knowledge creation by adding metadata to bioimages [2, 3], are important 
 issues to be discussed.
-Currently, there is still no commonly-used format for publishing bioimage 
-datasets. Therefore, different image repositories manage the data in different 
+Currently, there is still no commonly-used format for sharing bioimage 
+datasets. Also, the data exists scattered in various repositories. Therefore, 
+different image repositories manage the data in different 
 formats (image data itself, and metadata including image format, 
-instruments/microscopes, etc.).
+instruments/microscopes, biosamples etc.).
 
-In data analysis using those images, it is assumed that several steps of 
-image pre-processing will be performed depending on the analysis environment 
-used. In fact, the implementation of supervised learning starts with finding 
-a repository of bioimage dataset that contains the original images and the 
-corresponding supervised labels. Once the repository is found, the image data 
-is downloaded from the repository, the data is loaded, and it is prepared in 
-a format suitable for the analysis environment. These processes are 
-time-consuming before analysis.
+In the data analysis and quantification using those images, it is assumed that 
+several steps of image pre-processing will be performed depending on the 
+analysis environment used. Actually, the implementation of supervised learning 
+starts with finding a repository of bioimage dataset that contains the original 
+images and the corresponding supervised labels. Once the repository is found, 
+the image data is downloaded from the repository, the data is loaded in each 
+environment, and it is prepared in a format suitable for the analytical package. 
+These processes are time-consuming before the main analysis.
 Also, in most cases of image repositories, the data is not published in a format 
-suitable for reading and processing data in R (.Rdata, csv, etc.). They are 
+suitable for reading and processing data in R (.Rdata, etc.). They are 
 not easy to use for R users.
 
 For mainly performing supervised learning of bioimage data, AHBioImageDbs 
-provides list objects of original images and their corresponding supervised 
+provides R list objects of original images and their corresponding supervised 
 labels converted into the 4D or 5D arrays.
-After downloading the data from AnnotationHub, it can be used for deep learning 
+After getting the data from AnnotationHub, it can be used for deep learning 
 using Keras/Tensorflow [4] and other machine learning without pre-processing.
 
 On the other hand, many image analysis packages are also available on R, but 
 there is a lack of standardization in image analysis. The use of common, open 
 datasets is one of the essential steps in standardizing and comparing the 
-analytical methods. The provision of this image array data through AnnotationHub
-is also intended for applications such as (1) comparing models using common data
-among R users, and (2) applying predictions to new datasets by transfer learning
-and fine-tuning based on these arrays.
+analytical methods. The provision of this arrays data of images through 
+AnnotationHub is also intended for applications such as (1) comparing models 
+using common-sharing data among R users, and (2) applying predictions to 
+new datasets by transfer learning and fine-tuning based on these arrays.
 
 # Fetch Bioimage Datasets from AnnotationHub
 
