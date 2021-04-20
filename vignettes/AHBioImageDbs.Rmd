@@ -2,11 +2,11 @@
 title: "Provide Bio-image Dataset for AnnotationHub"
 author: 
 - name: Satoshi Kume
-  affiliation:
+    affiliation:
     - RIKEN Center for Biosystems Dynamics Research
     - Osaka City University Center for Health Science Innovation
     - Osaka Electro-Communication University
-  email: satoshi.kume.1984@gmail.com
+    email: satoshi.kume.1984@gmail.com
 - name: Kozo Nishida
   affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
@@ -148,10 +148,15 @@ arguments of the fit(<keras.engine.training.Model>) function of Keras as a
 following example. The model in Keras should be prepared before the execution.
 
 > qr <- query(ah, c("BioImageDbs"))
+> 
 > BioImageData <- qr[[1]]
+> 
 > data <- BioImageData$
+> 
 > labels <- BioImageData$
+> 
 > dim(data); dim(labels)
+> 
 > model %>% fit( x = data, y = labels )
 
 # About the imaging dataset and its metadata in AHBioImageDbs
