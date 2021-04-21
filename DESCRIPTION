@@ -15,11 +15,9 @@ Authors@R: c(
     comment = c(ORCID = "0000-0001-8501-7319"))
     )
 Depends: R (>= 4.0.0)
-Imports: AnnotationHub (>= 2.22.0)
-Suggests: rmarkdown, 
-    knitr, 
+Imports: AnnotationHub (>= 2.22.0), markdown, rmarkdown
+Suggests: knitr, 
     BiocStyle,
-    EBImage, 
     magick, 
     purrr, 
     magrittr, 
