@@ -4,16 +4,6 @@ VERSION 0.99.1
 NEW FEATURES
 
     o Package released
-    o Released functions:
-      ImageView3D()
-      ImageView2D()
-      Display.GIF()
-      processing_2d_image_train_test()
-      processing_2d_image_GT()
-      ImgDataImport_3d_seg()
-      DataImport_3d_seg()
-      ImgDataImport_2d_seg()
-      DataImport_2d_seg()
 
 
 
