@@ -13,13 +13,13 @@ date: "`r Sys.Date()`"
 graphics: no
 package: AnnotationHub, knitr, magick
 output:
-    BiocStyle::html_document:
-        toc_float: true
+  BiocStyle::html_document:
+  toc_float: true
 vignette: >
-    %\VignetteIndexEntry{Provide Bioimage Dataset for AnnotationHub}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
-    %\VignetteDepends{AnnotationHub}
+  %\VignetteIndexEntry{Provide Bioimage Dataset for AnnotationHub}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{AnnotationHub}
 ---
 
 ```{r style, echo = FALSE, results = 'asis', message=FALSE}
@@ -51,9 +51,11 @@ analysis environment used. Actually, the implementation of supervised learning
 starts with finding a repository of bioimage dataset that contains the original 
 images and the corresponding supervised labels. Once the repository is found, 
 the image data is downloaded from the repository, the data is loaded in each 
-environment, and it is prepared in a format suitable for the analytical package. 
+environment, and it is prepared in a format suitable for the analytical 
+package.
 These processes are time-consuming before the main analysis.
-Also, in most cases of image repositories, the data is not published in a format 
+Also, in most cases of image repositories, the data is not published in 
+a format
 suitable for reading and processing data in R (.Rdata, etc.). They are 
 not easy to use for R users.
 
@@ -109,7 +111,8 @@ qr <- query(ah, c("BioImageDbs"))
 
 # 5D Arrays from the AnnotationHub
 
-The ordering of the array dimensions is corresponded to the channels_last format
+The ordering of the array dimensions is corresponded to the channels_last 
+format
 (default) in R/Keras. The input shape of 5D array is to be batch, spatial_dim1, 
 spatial_dim2, spatial_dim3, and channels. The number of this batch is the same 
 as the number of 3D image sets. The number of channels is 1 for gray images and 
@@ -121,8 +124,10 @@ as the number of 3D image sets. The number of channels is 1 for gray images and
 
 # 4D Arrays from the AnnotationHub
 
-The ordering of the array dimensions is corresponded to the channels_last format
-(default) in R/Keras. The input shape of 4D array is to be batch, height, width, 
+The ordering of the array dimensions is corresponded to the channels_last 
+format
+(default) in R/Keras. The input shape of 4D array is to be batch, height, 
+width,
 channels. The number of this batch is the same as the number of 2D images.
 
 ```{r}
@@ -164,10 +169,10 @@ following;
 
 1) For the cellular ultra-microstructures, electron microscopy-
 based imaging data of mouse brain 
-(ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [5-6], Drosophila brain 
-(ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) [7-8], mouse B myeloma cell 
-line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [9], and The primary human T cell 
-isolated from peripheral blood mononuclear cells 
+(ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [5-6], Drosophila 
+brain (ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) [7-8], mouse B 
+myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [9], and The primary 
+human T cell isolated from peripheral blood mononuclear cells 
 (ex. EM_id0004_PrHudata_4dTensor.Rda) [9].
 
 2) For the cell tracking, light microscopy-based imaging data of human HeLa 
@@ -193,8 +198,8 @@ Open Data Cloud. International Journal on Semantic Web and Information Systems
 
 3. Kume, S., Masuya, H., Maeda, M., Suga, M., Kataoka, Y., Kobayashi, N. (2017) 
 Development of Semantic Web-Based Imaging Database for Biological Morphome. 
-In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 2017.
-Lecture Notes in Computer Science, vol 10675. Springer, Cham. 
+In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 
+2017. Lecture Notes in Computer Science, vol 10675. Springer, Cham. 
 https://doi.org/10.1007/978-3-319-70682-5_19
 
 4. Chollet, François and Allaire, J.J. and others. (2017) R Interface to Keras, 
