@@ -5,28 +5,26 @@ Title: Bio- and biomedical imaging dataset for machine learning and deep
 Version: 0.99.1
 Encoding: UTF-8
 Authors@R: c(
-    person (given = "Satoshi", 
-    			 family = "Kume",
-    			 role = c("aut", "cre"), 
-    			 email = "satoshi.kume.1984@gmail.com",
-        comment = c(ORCID = "0000-0001-7481-2843")),
-    person(given = "Kozo",
-           family = "Nishida",
-           role = c("aut"),
-           email = "kozo.nishida@gmail.com",
-           comment = c(ORCID = "0000-0001-8501-7319"))
+    person (given = "Satoshi", family = "Kume",
+    role = c("aut", "cre"), 
+    email = "satoshi.kume.1984@gmail.com",
+    comment = c(ORCID = "0000-0001-7481-2843")),
+    person(given = "Kozo", family = "Nishida",
+    role = c("aut"),
+    email = "kozo.nishida@gmail.com",
+    comment = c(ORCID = "0000-0001-8501-7319"))
     )
 Depends: R (>= 4.0.0)
 Imports: AnnotationHub (>= 2.22.0)
 Suggests: rmarkdown, 
     knitr, 
+    BiocStyle,
     EBImage, 
     magick, 
     purrr, 
     magrittr, 
     filesstrings, 
-    animation, 
-    BiocStyle
+    animation
 Description: The package provides a bioimage dataset for 
 	the image analysis using machine learning and deep learning.
 	The dataset includes microscopy imaging data with supervised labels.

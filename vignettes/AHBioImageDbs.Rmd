@@ -1,22 +1,22 @@
 ---
-title: "Provide Bio-image Dataset for AnnotationHub"
+title: "Provide Bioimage Dataset for AnnotationHub"
 author: 
 - name: Satoshi Kume
-    affiliation:
-    - RIKEN Center for Biosystems Dynamics Research
-    - Osaka City University Center for Health Science Innovation
-    - Osaka Electro-Communication University
-    email: satoshi.kume.1984@gmail.com
+  affiliation:
+  - RIKEN Center for Biosystems Dynamics Research
+  - Osaka City University Center for Health Science Innovation
+  - Osaka Electro-Communication University
+  email: satoshi.kume.1984@gmail.com
 - name: Kozo Nishida
   affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
-package: AHBioImageDbs, knitr, magick
+package: AnnotationHub, knitr, magick
 output:
     BiocStyle::html_document:
         toc_float: true
 vignette: >
-    %\VignetteIndexEntry{Provide Bio-image Dataset for AnnotationHub}
+    %\VignetteIndexEntry{Provide Bioimage Dataset for AnnotationHub}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
     %\VignetteDepends{AnnotationHub}
@@ -147,17 +147,15 @@ them to variables, respectively. These variables are then used as the x and y
 arguments of the fit(<keras.engine.training.Model>) function of Keras as a 
 following example. The model in Keras should be prepared before the execution.
 
-> qr <- query(ah, c("BioImageDbs"))
-> 
-> BioImageData <- qr[[1]]
-> 
-> data <- BioImageData$
-> 
-> labels <- BioImageData$
-> 
-> dim(data); dim(labels)
-> 
-> model %>% fit( x = data, y = labels )
+```{r}
+## Not Run ##
+# qr <- query(ah, c("BioImageDbs"))
+# BioImageData <- qr[[1]]
+# data <- BioImageData$
+# labels <- BioImageData$
+# dim(data); dim(labels)
+# model %>% fit( x = data, y = labels )
+```
 
 # About the imaging dataset and its metadata in AHBioImageDbs
 
