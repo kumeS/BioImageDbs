@@ -82,26 +82,26 @@ First we load/update the `ExperimentHub` resource.
 
 ```{r load-lib, message = FALSE}
 library(ExperimentHub)
-ah <- ExperimentHub()
+eh <- ExperimentHub()
 ```
 
 Next we list all BioImageDbs entries from `ExperimentHub`.
 
 ```{r list-BioImageDbs}
-query(ah, "BioImage")
+query(eh, "BioImage")
 ```
 
 We can confirm the metadata in ExperimentHub in Bioconductor S3 bucket
 with `mcols()`.
 
 ```{r confirm-metadata}
-mcols(query(ah, "BioImage"))
+mcols(query(eh, "BioImage"))
 ```
 
 We can retrieve only the BioImageDbs tibble files as follows.
 
 ```{r query-mouse}
-qr <- query(ah, c("BioImageDbs"))
+qr <- query(eh, c("BioImageDbs"))
 #BioImageDbs_tibble <- qr[[1]]
 ```
 
@@ -113,10 +113,6 @@ spatial_dim2, spatial_dim3 and channels. The number of this batch is the same
 as the number of the 3D image sets. The number of channels is 1 for grey 
 images and 3 for RGB images.
 
-```{r}
-
-```
-
 # 4D Arrays from the ExperimentHub
 
 The ordering of the array dimensions corresponds to the channels_last format
@@ -124,17 +120,13 @@ The ordering of the array dimensions corresponds to the channels_last format
 width and channels. The number of this batch is the same as the number of 
 the 2D images.
 
-```{r}
-
-```
-
 # Visualization of gif images from the ExperimentHub
 
 As a test, we also provided gif files of some arrays for visualizations.
 We visualize the files using `magick::image_read` function.
 
 ```{r}
-qr <- query(ah, c("BioImageDbs", ".gif"))
+qr <- query(eh, c("BioImageDbs", ".gif"))
 #(magick::image_read(qr[1]))
 ```
 
@@ -147,10 +139,10 @@ The model in Keras should be prepared before the execution.
 
 ```{r}
 ## Not Run ##
-# qr <- query(ah, c("BioImageDbs"))
+# qr <- query(eh, c("BioImageDbs"))
 # BioImageData <- qr[[1]]
-# data <- BioImageData$
-# labels <- BioImageData$
+# data <- BioImageData$Train$Train_Original
+# labels <- BioImageData$Train$Train_GroundTruth
 # dim(data); dim(labels)
 # model %>% fit( x = data, y = labels )
 ```

@@ -15,7 +15,7 @@ Authors@R: c(
     comment = c(ORCID = "0000-0001-8501-7319"))
     )
 Depends: R (>= 4.1.0)
-Imports: ExperimentHub (>= 2.22.0), markdown, rmarkdown
+Imports: ExperimentHub (>= 1.16.1), markdown, rmarkdown
 Suggests: knitr, 
     BiocStyle,
     magick,
@@ -26,7 +26,7 @@ Suggests: knitr,
 Description: The package provides a bioimage dataset for 
     the image analysis using machine learning and deep learning.
     The dataset includes microscopy imaging data with supervised labels.
-    The data is provided as list data that can be loaded to Keras/tensorflow 
+    The data is provided as R list data that can be loaded to Keras/tensorflow 
     in R.
 VignetteBuilder: knitr
 License: Artistic-2.0
