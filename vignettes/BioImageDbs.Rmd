@@ -1,5 +1,5 @@
 ---
-title: "Provide Bioimage Dataset for AnnotationHub"
+title: "Provide Bioimage Dataset for ExperimentalHub"
 author: 
 - name: Satoshi Kume
   affiliation:
@@ -11,15 +11,15 @@ author:
   affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
-package: AnnotationHub, knitr, magick
+package: ExperimentalHub, knitr, magick
 output:
   BiocStyle::html_document:
   toc_float: true
 vignette: >
-  %\VignetteIndexEntry{Provide Bioimage Dataset for AnnotationHub}
+  %\VignetteIndexEntry{Provide Bioimage Dataset for ExperimentalHub}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{AnnotationHub}
+  %\VignetteDepends{ExperimentalHub}
 ---
 
 ```{r style, echo = FALSE, results = 'asis', message=FALSE}
@@ -62,40 +62,40 @@ not easy to use for R users.
 For mainly performing supervised learning of bioimage data, BioImageDbs 
 provides R list objects of original images and their corresponding supervised 
 labels converted into the 4D or 5D arrays.
-After getting the data from AnnotationHub, it can be used for deep learning 
+After getting the data from ExperimentalHub, it can be used for deep learning 
 using Keras/Tensorflow [4] and other machine learning without pre-processing.
 
 On the other hand, many image analysis packages are also available on R, but 
 there is a lack of standardization in image analysis. The use of common, open 
 datasets is one of the essential steps in standardizing and comparing the 
 analytical methods. The provision of this arrays data of images through 
-AnnotationHub is also intended for applications such as (1) comparing models 
+ExperimentalHub is also intended for applications such as (1) comparing models 
 using common-sharing data among R users, and (2) applying predictions to 
 new datasets by transfer learning and fine-tuning based on these arrays.
 
-# Fetch Bioimage Datasets from AnnotationHub
+# Fetch Bioimage Datasets from ExperimentalHub
 
 The `BioImageDbs` package provides the metadata for all BioImage 
-databases in `r Biocpkg("AnnotationHub")`. 
+databases in `r Biocpkg("ExperimentalHub")`. 
 
 The `BioImageDbs` package provides the metadata for bioimage datasets,
 which is preprocessed as array format and saved in
-`r Biocpkg("AnnotationHub")`.
+`r Biocpkg("ExperimentalHub")`.
 
-First we load/update the `AnnotationHub` resource.
+First we load/update the `ExperimentalHub` resource.
 
 ```{r load-lib, message = FALSE}
-library(AnnotationHub)
-ah <- AnnotationHub()
+library(ExperimentalHub)
+ah <- ExperimentalHub()
 ```
 
-Next we list all BioImageDbs entries from `AnnotationHub`.
+Next we list all BioImageDbs entries from `ExperimentalHub`.
 
 ```{r list-BioImageDbs}
 query(ah, "BioImage")
 ```
 
-We can confirm the metadata in AnnotationHub in Bioconductor S3 bucket
+We can confirm the metadata in ExperimentalHub in Bioconductor S3 bucket
 with `mcols()`.
 
 ```{r confirm-metadata}
@@ -109,7 +109,7 @@ qr <- query(ah, c("BioImageDbs"))
 #BioImageDbs_tibble <- qr[[1]]
 ```
 
-# 5D Arrays from the AnnotationHub
+# 5D Arrays from the ExperimentalHub
 
 The ordering of the array dimensions is corresponded to the channels_last 
 format
@@ -122,7 +122,7 @@ as the number of 3D image sets. The number of channels is 1 for gray images and
 
 ```
 
-# 4D Arrays from the AnnotationHub
+# 4D Arrays from the ExperimentalHub
 
 The ordering of the array dimensions is corresponded to the channels_last 
 format
@@ -134,7 +134,7 @@ channels. The number of this batch is the same as the number of 2D images.
 
 ```
 
-# Visualization of gif images from the AnnotationHub
+# Visualization of gif images from the ExperimentalHub
 
 As a test, we also provided gif files of some arrays for visualizations.
 
