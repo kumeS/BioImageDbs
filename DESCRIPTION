@@ -1,4 +1,4 @@
-Package: AHBioImageDbs
+Package: BioImageDbs
 Type: Package
 Title: Bio- and biomedical imaging dataset for machine learning and deep 
     learning (for AnnotationHub)
@@ -30,6 +30,6 @@ Description: The package provides a bioimage dataset for
     in R.
 VignetteBuilder: knitr
 License: Artistic-2.0
-URL: https://github.com/kumeS/AHBioImageDbs
+URL: https://github.com/kumeS/BioImageDbs
 LazyLoad: yes
 biocViews: AnnotationHub, FunctionalAnnotation

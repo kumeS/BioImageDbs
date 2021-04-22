@@ -1,3 +1,3 @@
 # CSV data is manually generated.
 
-# metadata.csv and gif files is finally saved in the AHBioImageDbs/inst/extdata/ directory.
+# metadata.csv and gif files is finally saved in the BioImageDbs/inst/extdata/ directory.

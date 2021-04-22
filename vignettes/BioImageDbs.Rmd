@@ -26,7 +26,7 @@ vignette: >
 BiocStyle::markdown()
 ```
 
-**Last modified:** `r file.info("AHBioImageDbs.Rmd")$mtime`<br />
+**Last modified:** `r file.info("BioImageDbs.Rmd")$mtime`<br />
 **Compiled**: `r date()`
 
 # Utilization and Prospects for Bioimage Datasets
@@ -59,7 +59,7 @@ a format
 suitable for reading and processing data in R (.Rdata, etc.). They are 
 not easy to use for R users.
 
-For mainly performing supervised learning of bioimage data, AHBioImageDbs 
+For mainly performing supervised learning of bioimage data, BioImageDbs 
 provides R list objects of original images and their corresponding supervised 
 labels converted into the 4D or 5D arrays.
 After getting the data from AnnotationHub, it can be used for deep learning 
@@ -75,10 +75,10 @@ new datasets by transfer learning and fine-tuning based on these arrays.
 
 # Fetch Bioimage Datasets from AnnotationHub
 
-The `AHBioImageDbs` package provides the metadata for all BioImage 
+The `BioImageDbs` package provides the metadata for all BioImage 
 databases in `r Biocpkg("AnnotationHub")`. 
 
-The `AHBioImageDbs` package provides the metadata for bioimage datasets,
+The `BioImageDbs` package provides the metadata for bioimage datasets,
 which is preprocessed as array format and saved in
 `r Biocpkg("AnnotationHub")`.
 
@@ -89,7 +89,7 @@ library(AnnotationHub)
 ah <- AnnotationHub()
 ```
 
-Next we list all AHBioImageDbs entries from `AnnotationHub`.
+Next we list all BioImageDbs entries from `AnnotationHub`.
 
 ```{r list-BioImageDbs}
 query(ah, "BioImage")
@@ -102,7 +102,7 @@ with `mcols()`.
 mcols(query(ah, "BioImage"))
 ```
 
-We can retrieve only the AHBioImageDbs tibble files as follows.
+We can retrieve only the BioImageDbs tibble files as follows.
 
 ```{r query-mouse}
 qr <- query(ah, c("BioImageDbs"))
@@ -162,9 +162,9 @@ following example. The model in Keras should be prepared before the execution.
 # model %>% fit( x = data, y = labels )
 ```
 
-# About the imaging dataset and its metadata in AHBioImageDbs
+# About the imaging dataset and its metadata in BioImageDbs
 
-For this dataset in AHBioImageDbs, the published open data was used as 
+For this dataset in BioImageDbs, the published open data was used as 
 following; 
 
 1) For the cellular ultra-microstructures, electron microscopy-
@@ -183,7 +183,7 @@ LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10], and GFP-GOWT1 mouse stem cells
 
 The values of the supervised labels were provided as array data with binary or 
 multiple values. The detailed information was described in the metadata file 
-of AHBioImageDbs.
+of BioImageDbs.
 
 # References
 
