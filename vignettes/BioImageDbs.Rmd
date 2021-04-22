@@ -1,5 +1,5 @@
 ---
-title: "Provide Bioimage Dataset for ExperimentalHub"
+title: "Providing Bioimage Dataset for ExperimentHub"
 author: 
 - name: Satoshi Kume
   affiliation:
@@ -11,15 +11,15 @@ author:
   affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
-package: ExperimentalHub, knitr, magick
+package: ExperimentHub, knitr, magick
 output:
   BiocStyle::html_document:
   toc_float: true
 vignette: >
-  %\VignetteIndexEntry{Provide Bioimage Dataset for ExperimentalHub}
+  %\VignetteIndexEntry{Providing Bioimage Dataset for ExperimentHub}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{ExperimentalHub}
+  %\VignetteDepends{ExperimentHub}
 ---
 
 ```{r style, echo = FALSE, results = 'asis', message=FALSE}
@@ -29,73 +29,69 @@ BiocStyle::markdown()
 **Last modified:** `r file.info("BioImageDbs.Rmd")$mtime`<br />
 **Compiled**: `r date()`
 
-# Utilization and Prospects for Bioimage Datasets
+# Utilisation and prospects of bioimage datasets
 
-In recent years, there has been a growing need for data analysis using machine 
-learning in the field of bioimaging research. As known generally, machine 
-learning is an inductive approach using data, and the construction of 
-models such as image segmentation and classification involves the use of image 
-data itself.
-Thus, the publication and sharing of bioimage datasets [1], as well as 
-knowledge creation by adding metadata to bioimages [2, 3], are important 
-issues to be discussed.
-Currently, there is still no commonly-used format for sharing bioimage 
-datasets. Also, the data exists scattered in various repositories. Therefore, 
-different image repositories manage the data in different 
-formats (image data itself, and metadata including image format, 
-instruments/microscopes, biosamples etc.).
+In recent years, there has been a growing need for data analysis using machine
+learning in the field of bioimaging research. Machine learning is an inductive
+approach using data, and the construction of models, such as image segmentation
+and classification, involves the use of image data itself. Therefore, the
+publication and sharing of bioimage datasets [1] as well as knowledge creation
+through providing metadata to bioimages [2, 3] are important issues to be 
+discussed. At present, there is no commonly used format for sharing bioimage
+datasets. Also, the data is scattered among various repositories. Therefore,
+different image repositories manage the data in different formats (image data 
+itself and metadata, including image format, instruments/microscopes and
+biosamples).
 
-In the data analysis and quantification using those images, it is assumed that 
-several steps of image pre-processing will be performed depending on the 
-analysis environment used. Actually, the implementation of supervised learning 
-starts with finding a repository of bioimage dataset that contains the original 
-images and the corresponding supervised labels. Once the repository is found, 
-the image data is downloaded from the repository, the data is loaded in each 
-environment, and it is prepared in a format suitable for the analytical 
-package.
-These processes are time-consuming before the main analysis.
-Also, in most cases of image repositories, the data is not published in 
-a format
-suitable for reading and processing data in R (.Rdata, etc.). They are 
-not easy to use for R users.
+In the data analysis and quantification using those images, it is assumed that
+several steps of image pre-processing are performed depending on the analysis
+environment used. However, the implementation of supervised learning starts with
+finding a repository of the bioimage dataset that contains original images and 
+their corresponding supervised labels. Once the repository is found, the image 
+data is downloaded from the repository, the data is loaded into each 
+environment and it is prepared in a format suitable for analytical package. 
+These processes are time consuming before the main analysis. Also, in most of 
+the image repositories, the data are not published in a format suitable for 
+reading and processing in R (.Rdata, etc.), and the data are not easy to use 
+for R users.
 
-For mainly performing supervised learning of bioimage data, BioImageDbs 
-provides R list objects of original images and their corresponding supervised 
-labels converted into the 4D or 5D arrays.
-After getting the data from ExperimentalHub, it can be used for deep learning 
-using Keras/Tensorflow [4] and other machine learning without pre-processing.
+For performing supervised learning of bioimage data, BioImageDbs provides R 
+list objects of the original images and their corresponding supervised labels
+converted into a 4D or 5D array. After retrieving the data from ExperimentHub, 
+it can be utilised for deep learning using Keras/Tensorflow [4] and other 
+machine learning methods, without the need for pre-processing.
 
-On the other hand, many image analysis packages are also available on R, but 
-there is a lack of standardization in image analysis. The use of common, open 
-datasets is one of the essential steps in standardizing and comparing the 
-analytical methods. The provision of this arrays data of images through 
-ExperimentalHub is also intended for applications such as (1) comparing models 
-using common-sharing data among R users, and (2) applying predictions to 
-new datasets by transfer learning and fine-tuning based on these arrays.
+On the other hand, many image analysis packages are also available on R; 
+however, there is a lack of standardisation in image analysis. The use of 
+common, open datasets is one of the essential steps in standardising and 
+comparing the analytical methods. The provision of the array data of images 
+through ExperimentHub is also intended for applications such as (1) comparing 
+models using common-sharing data among R users and (2) applying predictions 
+to new datasets through transfer learning and fine-tuning based on these arrays.
 
-# Fetch Bioimage Datasets from ExperimentalHub
+# Fetch Bioimage Datasets from ExperimentHub
 
 The `BioImageDbs` package provides the metadata for all BioImage 
-databases in `r Biocpkg("ExperimentalHub")`. 
+databases in `r Biocpkg("ExperimentHub")`. 
 
 The `BioImageDbs` package provides the metadata for bioimage datasets,
 which is preprocessed as array format and saved in
-`r Biocpkg("ExperimentalHub")`.
+`r Biocpkg("ExperimentHub")`.
 
-First we load/update the `ExperimentalHub` resource.
+First we load/update the `ExperimentHub` resource.
 
 ```{r load-lib, message = FALSE}
-library(ExperimentalHub)
-ah <- ExperimentalHub()
+library(ExperimentHub)
+ah <- ExperimentHub()
 ```
 
-Next we list all BioImageDbs entries from `ExperimentalHub`.
+Next we list all BioImageDbs entries from `ExperimentHub`.
 
 ```{r list-BioImageDbs}
 query(ah, "BioImage")
 ```
 
-We can confirm the metadata in ExperimentalHub in Bioconductor S3 bucket
+We can confirm the metadata in ExperimentHub in Bioconductor S3 bucket
 with `mcols()`.
 
 ```{r confirm-metadata}
@@ -109,35 +105,32 @@ qr <- query(ah, c("BioImageDbs"))
 #BioImageDbs_tibble <- qr[[1]]
 ```
 
-# 5D Arrays from the ExperimentalHub
+# 5D Arrays from the ExperimentHub
 
-The ordering of the array dimensions is corresponded to the channels_last 
-format
-(default) in R/Keras. The input shape of 5D array is to be batch, spatial_dim1, 
-spatial_dim2, spatial_dim3, and channels. The number of this batch is the same 
-as the number of 3D image sets. The number of channels is 1 for gray images and 
-3 for RGB images.
+The ordering of the array dimensions corresponds to the channels_last format
+(default) in R/Keras. The input shape of 5D array is to be batch, spatial_dim1,
+spatial_dim2, spatial_dim3 and channels. The number of this batch is the same 
+as the number of the 3D image sets. The number of channels is 1 for grey 
+images and 3 for RGB images.
 
 ```{r}
 
 ```
 
-# 4D Arrays from the ExperimentalHub
+# 4D Arrays from the ExperimentHub
 
-The ordering of the array dimensions is corresponded to the channels_last 
-format
+The ordering of the array dimensions corresponds to the channels_last format
 (default) in R/Keras. The input shape of 4D array is to be batch, height, 
-width,
-channels. The number of this batch is the same as the number of 2D images.
+width and channels. The number of this batch is the same as the number of 
+the 2D images.
 
 ```{r}
 
 ```
 
-# Visualization of gif images from the ExperimentalHub
+# Visualization of gif images from the ExperimentHub
 
 As a test, we also provided gif files of some arrays for visualizations.
-
 We visualize the files using `magick::image_read` function.
 
 ```{r}
@@ -147,10 +140,10 @@ qr <- query(ah, c("BioImageDbs", ".gif"))
 
 # A simple execution command using Keras/Tensorflow
 
-We select a data array and a label array from the list data and assign 
-them to variables, respectively. These variables are then used as the x and y 
-arguments of the fit(<keras.engine.training.Model>) function of Keras as a 
-following example. The model in Keras should be prepared before the execution.
+We select a data array and a label array from the data list and assign 
+them to variables. These variables are then used as the x and y arguments 
+of the fit (<keras.engine.training.Model>) function of Keras as an example. 
+The model in Keras should be prepared before the execution.
 
 ```{r}
 ## Not Run ##
@@ -164,26 +157,24 @@ following example. The model in Keras should be prepared before the execution.
 
 # About the imaging dataset and its metadata in BioImageDbs
 
-For this dataset in BioImageDbs, the published open data was used as 
-following; 
+For this dataset in BioImageDbs, the published open data was used as follows:
 
-1) For the cellular ultra-microstructures, electron microscopy-
-based imaging data of mouse brain 
-(ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) [5-6], Drosophila 
-brain (ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) [7-8], mouse B 
-myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [9], and The primary 
-human T cell isolated from peripheral blood mononuclear cells 
-(ex. EM_id0004_PrHudata_4dTensor.Rda) [9].
+1.	For cellular ultra-microstructures, electron microscopy-based imaging data 
+of the mouse brain (ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) 
+[5-6], Drosophila brain (ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) 
+[7-8], mouse B myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [9] 
+and primary human T cell isolated from peripheral blood mononuclear cells 
+(ex. EM_id0004_PrHudata_4dTensor.Rda) [9] were used.
 
-2) For the cell tracking, light microscopy-based imaging data of human HeLa 
-cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10], human 
-glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate (ex. 
-LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10], and GFP-GOWT1 mouse stem cells 
-(ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [11]
+2.	For cell tracking, light microscopy-based imaging data of the human HeLa 
+cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10], 
+human glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate 
+(ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10] and GFP-GOWT1 mouse stem 
+cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [11] were used.
 
-The values of the supervised labels were provided as array data with binary or 
-multiple values. The detailed information was described in the metadata file 
-of BioImageDbs.
+The values of the supervised labels were provided as array data with binary 
+or multiple values. The detailed information was described in the metadata 
+file of BioImageDbs.
 
 # References
 
