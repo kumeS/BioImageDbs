@@ -32,4 +32,4 @@ VignetteBuilder: knitr
 License: Artistic-2.0
 URL: https://github.com/kumeS/BioImageDbs
 LazyLoad: yes
-biocViews: ExperimentHub, FunctionalAnnotation
+biocViews: ExperimentHub, ExperimentData, CellCulture, Tissue
