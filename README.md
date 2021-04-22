@@ -1,5 +1,5 @@
 # BioImageDbs
-Supplies AnnotationHub with 4D/5D arrays of microscopy-based imaging dataset 
+Supplies ExperimentHub with 4D/5D arrays of microscopy-based imaging dataset 
 including the original images and their supervised labels. 
 This dataset is used for an evaluation of the bioimage analytical model using 
 machine learning and deep learning. 
