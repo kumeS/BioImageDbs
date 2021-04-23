@@ -101,8 +101,9 @@ mcols(query(eh, "BioImage"))
 We can retrieve only the BioImageDbs tibble files as follows.
 
 ```{r query-mouse}
-qr <- query(eh, c("BioImageDbs"))
-#BioImageDbs_tibble <- qr[[1]]
+qr <- query(eh, c("BioImageDbs", ".Rda"))
+qr
+#BioImageDbs_image_Dat <- qr[[5]]
 ```
 
 # 5D Arrays from the ExperimentHub
@@ -127,7 +128,7 @@ We visualize the files using `magick::image_read` function.
 
 ```{r}
 qr <- query(eh, c("BioImageDbs", ".gif"))
-#(magick::image_read(qr[1]))
+qr
 ```
 
 # A simple execution command using Keras/Tensorflow
