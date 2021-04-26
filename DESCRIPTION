@@ -19,8 +19,8 @@ Imports: ExperimentHub (>= 1.16.1), markdown, rmarkdown
 Suggests: knitr, 
     BiocStyle,
     magick,
-    purrr,
     magrittr,
+    purrr,
     filesstrings,
     animation
 Description: The package provides a bioimage dataset for 
