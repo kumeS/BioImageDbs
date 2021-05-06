@@ -1,3 +1,4 @@
+if(FALSE){
 #Check the package in Docker/Bioconductor
 getwd()
 BiocManager::install("AnnotationHub")
@@ -16,7 +17,7 @@ library(ExperimentHub)
 
 #system("R CMD INSTALL BioImageDbs")
 #system("R CMD build --keep-empty-dirs --no-resave-data BioImageDbs")
-#system("R CMD check --no-vignettes --timings --no-multiarch BioImageDbs_0.99.1.tar.gz")
-BiocCheck::BiocCheck("./BioImageDbs_0.99.1.tar.gz")
-
+#system("R CMD check --no-vignettes --timings --no-multiarch BioImageDbs_0.99.3.tar.gz")
+#BiocCheck::BiocCheck("./BioImageDbs_0.99.3.tar.gz")
+}
 
