@@ -53,7 +53,7 @@ environment and it is prepared in a format suitable for analytical package.
 These processes are time consuming before the main analysis. Also, in most of 
 the image repositories, the data are not published in a format suitable for 
 reading and processing in R (.Rdata, etc.), and the data are not easy to use 
-for R users.
+for R users. 
 
 For performing supervised learning of bioimage data, BioImageDbs provides R 
 list objects of the original images and their corresponding supervised labels
