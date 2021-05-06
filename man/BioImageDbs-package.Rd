@@ -9,7 +9,6 @@
 \packageDescription{BioImageDbs}
 }
 \details{
-
 The DESCRIPTION file:
 \packageDESCRIPTION{BioImageDbs}
 \packageIndices{BioImageDbs}
