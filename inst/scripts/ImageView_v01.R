@@ -1,7 +1,7 @@
 ####################################################################################
 #An image visualization function to create an animation for the 5D array.
 ####################################################################################
-ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
+ImageView3D <- function(ImgArray, Sample=1,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised",
                         Name=paste0(DataFolder, "_train_dataset"),
                         Interval = 0.1, Dpi=72,
@@ -37,9 +37,9 @@ ImageView3D <- function(ImgArray=Dat$Train, Sample=1,
 ####################################################################################
 #An image visualization function to create an animation for the 4D array.
 ####################################################################################
-ImageView2D <- function(ImgArray=Dat$Train,
-                        Lab01="Original", Lab02="Merge", Lab03="Supervised", Name=DataFolder,
-                        Interval = 0.25, Opac=c(0.2, 0.2), Dpi=72,
+ImageView2D <- function(ImgArray,
+                        Lab01="Original", Lab02="Merge", Lab03="Supervised",
+                        Name, Interval = 0.25, Opac=c(0.2, 0.2), Dpi=72,
                         Width = 500, Height=250){
     options(EBImage.display = "raster")
     XYsize = 256
