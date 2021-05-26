@@ -9,9 +9,47 @@ The original dataset is available in [Google Drive](https://drive.google.com/dri
 
 # [Data source (GoogleDrive)](https://drive.google.com/drive/folders/1pVCE1JukoY8U1VN4YZmVPFaGtPg80OY-?usp=sharing)
 
+# Installation
+
+1. Start R.app
+
+2. Run the following commands in the R console.
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE)){ install.packages("BiocManager") }
+BiocManager::install("BioImageDbs")
+
+library(ExperimentHub)
+library(BioImageDbs)
+```
+
+# Usage
+
+1. read the image datasets.
+
+```r
+qr <- query(eh, c("BioImageDbs", "EM_id0001"))
+
+N <- 1
+qr[N]
+ImgData <- qr[[N]]
+```
+
+2. Display the GIF animation.
+
+```r
+library(magick)
+qr <- query(eh, c("BioImageDbs", "EM_id0001"))
+
+N <- 2
+qr[N]
+magick::image_read(qr[[N]])
+```
+
 # License
 Copyright (c) 2021 Satoshi Kume released under the [Artistic License 2.0](http://www.perlfoundation.org/artistic_license_2_0).
 
 # Authors
 - Satoshi Kume
 - Kozo Nishida
+
