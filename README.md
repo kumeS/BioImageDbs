@@ -25,7 +25,7 @@ library(BioImageDbs)
 
 # Usage
 
-1. read the image datasets.
+1. Load the image dataset.
 
 ```r
 qr <- query(eh, c("BioImageDbs", "EM_id0001"))
