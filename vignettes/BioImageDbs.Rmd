@@ -160,10 +160,10 @@ and primary human T cell isolated from peripheral blood mononuclear cells
 (ex. EM_id0004_PrHudata_4dTensor.Rda) [9] were used.
 
 2.	For cell tracking, light microscopy-based imaging data of the human HeLa 
-cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10], 
+cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10-12], 
 human glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate 
-(ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10] and GFP-GOWT1 mouse stem 
-cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [11] were used.
+(ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10-12] and GFP-GOWT1 mouse stem 
+cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [13] were used.
 
 The values of the supervised labels were provided as array data with binary 
 or multiple values. The detailed information was described in the metadata 
@@ -213,7 +213,11 @@ Bioscience, Elite, 5, 533-545. doi:10.2741/e635.
 
 10. http://celltrackingchallenge.net/2d-datasets/
 
-11. Bártová E, Šustáčková G, Stixová L, Kozubek S, Legartová S, et al. (2011) 
+11. Maška, M., Ulman, V., Svoboda, D. et al.  (2014) A benchmark for comparison of cell tracking algorithms. Bioinformatics, 30(11): 1609–1617, doi: https://doi.org/10.1093/bioinformatics/btu080
+
+12. Ulman, V., Maška, M., Magnusson, KEG et al. (2017) An objective comparison of cell-tracking algorithms. Nature Methods, 14: 1141–1152.
+
+13. Bártová E, Šustáčková G, Stixová L, Kozubek S, Legartová S, et al. (2011) 
 Recruitment of Oct4 Protein to UV-Damaged Chromatin in Embryonic Stem Cells. 
 PLOS ONE 6(12): e27281. https://doi.org/10.1371/journal.pone.0027281
 
