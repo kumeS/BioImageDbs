@@ -97,7 +97,7 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
 }
 
 ####################################################################################
-# Convert the 5D array to the .rds file
+# Convert the 5D array to the .Rds file
 ####################################################################################
 DataImport_3d_seg <- function(WIDTH = 1024, HEIGHT = 769, Z=-1, CHANNELS = 1,
                        data="./BioImageDbs_Data",
@@ -130,7 +130,7 @@ names(b) <- c("Test_Original")
 
 if(!Binary){
 Img <- list(Train=a, Test=b)
-saveRDS(Img, paste0(FileName, ".rds"), compress = TRUE)
+saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }else{
 if(!OriginalDataOnlyinTest){
 a$Train_GroundTruth[a$Train_GroundTruth > 0] <- 1
@@ -140,13 +140,13 @@ b$Test_GroundTruth[b$Test_GroundTruth > 0] <- 1
 names(b) <- c("Test_Original", "Test_GroundTruth_Binary")
 
 Img <- list(Train=a, Test=b)
-saveRDS(Img, paste0(FileName, "_Binary.rds"), compress = TRUE)
+saveRDS(Img, paste0(FileName, "_Binary.Rds"), compress = TRUE)
 }else{
 a$Train_GroundTruth[a$Train_GroundTruth > 0] <- 1
 names(a) <- c("Train_Original", "Train_GroundTruth_Binary")
 
 Img <- list(Train=a, Test=b)
-saveRDS(Img, paste0(FileName, ".rds"), compress = TRUE)
+saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }
 }
 }
@@ -196,7 +196,7 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256, CHANNELS = 1,
 }
 
 ####################################################################################
-# Convert the 4D array to the .rds file
+# Convert the 4D array to the .Rds file
 ####################################################################################
 DataImport_2d_seg <- function(WIDTH = 512, HEIGHT = 512, CHANNELS = 1,
                        data="./BioImageDbs_Data",
@@ -223,7 +223,7 @@ names(b) <- c("Test_Original", "Test_GroundTruth")
 
 if(!Binary){
 Img <- list(Train=a, Test=b)
-saveRDS(Img, paste0(FileName, ".rds"), compress = TRUE)
+saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }else{
 a$Train_GroundTruth[a$Train_GroundTruth > 0] <- 1
 names(a) <- c("Train_Original", "Train_GroundTruth_Binary")
@@ -232,7 +232,7 @@ b$Test_GroundTruth[b$Test_GroundTruth > 0] <- 1
 names(b) <- c("Test_Original", "Test_GroundTruth_Binary")
 
 Img <- list(Train=a, Test=b)
-saveRDS(Img, paste0(FileName, "_Binary.rds"), compress = TRUE)
+saveRDS(Img, paste0(FileName, "_Binary.Rds"), compress = TRUE)
 }
 }
 
@@ -261,11 +261,11 @@ DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS0
            GroundTruth_path=GT,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
 
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.Rds") )
 #str(Dat); str(Dat$Train)
 for(n in 1:dim(Dat$Train$Train_Original)[1]){
 Sample <- paste0(DataFolder, "_5dTensor_train_dataset_",  n)
@@ -290,10 +290,10 @@ DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS0
            OriginalDataOnlyinTest=TRUE,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.Rds") )
 str(Dat); str(Dat$Train)
 ImageView3D(Dat$Train, Interval=0.4, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
@@ -315,10 +315,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.Rds") )
 #str(Dat); str(Dat$Train)
 #table(Dat$Train$Train_GroundTruth)
 Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
@@ -341,10 +341,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.Rds") )
 #str(Dat); str(Dat$Train)
 #table(Dat$Train$Train_GroundTruth)
 Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
@@ -368,10 +368,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.Rds") )
 str(Dat); str(Dat$Train)
 ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
@@ -387,10 +387,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"),
                   Binary=TRUE)
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor_Binary.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor_Binary.Rds") )
 str(Dat); str(Dat$Train)
 ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary_train_dataset.gif"),
@@ -406,10 +406,10 @@ DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS0
            OriginalDataOnlyinTest=FALSE,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.Rds") )
 str(Dat); str(Dat$Train)
 ImageView3D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
@@ -430,10 +430,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.Rds") )
 str(Dat); str(Dat$Train)
 ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
@@ -449,10 +449,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"),
                   Binary=TRUE)
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor_Binary.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor_Binary.Rds") )
 str(Dat); str(Dat$Train)
 ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary_train_dataset.gif"),
@@ -468,10 +468,10 @@ DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS0
            OriginalDataOnlyinTest=FALSE,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.Rds") )
 str(Dat); str(Dat$Train)
 #ImageView3D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
 #filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
@@ -492,10 +492,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.Rds") )
 str(Dat); str(Dat$Train)
 ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
@@ -510,10 +510,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   GroundTruth_path="Cell_GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"),
                   Binary=TRUE)
-filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor_Binary.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor_Binary.Rds") )
 str(Dat); str(Dat$Train)
 ImageView2D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_4dTensor_Binary_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_Binary_train_dataset.gif"),
@@ -529,10 +529,10 @@ DataImport_3d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, Z=-1, CHANNELS = CHANNELS0
            OriginalDataOnlyinTest=FALSE,
            FileName=paste0(DataFolder, "_5dTensor"))
 
-filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.rds"),
+filesstrings::file.move(files=paste0(DataFolder, "_5dTensor.Rds"),
                         destinations="./BioImageDbs_Output",
                         overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.rds") )
+Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_5dTensor.Rds") )
 str(Dat); str(Dat$Train)
 #ImageView3D(Dat$Train, Interval=0.25, Name=paste0(DataFolder, "_5dTensor_train_dataset"))
 #filesstrings::file.move(files=paste0(DataFolder, "_5dTensor_train_dataset.gif"),
