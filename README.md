@@ -28,6 +28,7 @@ library(BioImageDbs)
 1. Load the image dataset.
 
 ```r
+eh <- ExperimentHub()
 qr <- query(eh, c("BioImageDbs", "EM_id0001"))
 
 N <- 1
