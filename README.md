@@ -29,10 +29,13 @@ library(BioImageDbs)
 
 ```r
 eh <- ExperimentHub()
+
 qr <- query(eh, c("BioImageDbs", "EM_id0001"))
 
+#EM_id0001
 N <- 1
 qr[N]
+str(qr[N])
 ImgData <- qr[[N]]
 ```
 
