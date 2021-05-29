@@ -11,15 +11,17 @@ author:
   affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
-package: ExperimentHub, knitr, magick
+package: ExperimentHub, knitr, magick, EBImage
 output:
   BiocStyle::html_document:
   toc_float: true
 vignette: >
   %\VignetteIndexEntry{Providing Bioimage Dataset for ExperimentHub}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{ExperimentHub}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r style, echo = FALSE, results = 'asis', message=FALSE}
@@ -101,9 +103,11 @@ mcols(query(eh, "BioImage"))
 We can retrieve only the BioImageDbs tibble files as follows.
 
 ```{r query-mouse}
-qr <- query(eh, c("BioImageDbs", ".Rda"))
+qr <- query(eh, c("BioImageDbs", "LM_id0001"))
 qr
-#BioImageDbs_image_Dat <- qr[[5]]
+
+#Import data
+#BioImageDbs_image_Dat <- qr[[1]]
 ```
 
 # 5D Arrays from the ExperimentHub
@@ -129,6 +133,62 @@ We visualize the files using `magick::image_read` function.
 ```{r}
 qr <- query(eh, c("BioImageDbs", ".gif"))
 qr
+
+#EM_id0001_Brain_CA1_hippocampus_region_5dTensor_train_data
+qr[1]
+
+##Display the gif image
+#magick::image_read(qr[[1]])
+```
+
+```{r Fig001, fig.cap = "EM_id0001_Brain_CA1_hippocampus_region_5dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[1]])
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0001.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig002, fig.cap = "EM_id0002_Drosophila_brain_region_5dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[2]])
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0002.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig003, fig.cap = "EM_id0003_J558L_4dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[9]])
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0003.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig004, fig.cap = "EM_id0004_PrHudata_4dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[10]])
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0004.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+
+```{r Fig005, fig.cap = "LM_id0001_DIC_C2DH_HeLa_4dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[3]])
+options(EBImage.display = "raster")
+img <- system.file("images", "LM_id0001.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig006, fig.cap = "LM_id0002_PhC_C2DH_U373_4dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[5]])
+options(EBImage.display = "raster")
+img <- system.file("images", "LM_id0002.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig007, fig.cap = "LM_id0003_Fluo_N2DH_GOWT1_4dTensor_train_dataset.gif", echo = FALSE}
+#magick::image_read(qr[[7]])
+options(EBImage.display = "raster")
+img <- system.file("images", "LM_id0003.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
 ```
 
 # A simple execution command using Keras/Tensorflow
