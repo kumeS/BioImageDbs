@@ -242,8 +242,8 @@ Open Data Cloud. International Journal on Semantic Web and Information Systems
 
 3. Kume, S., Masuya, H., Maeda, M., Suga, M., Kataoka, Y., Kobayashi, N. (2017) 
 Development of Semantic Web-Based Imaging Database for Biological Morphome. 
-In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 
-2017. Lecture Notes in Computer Science, vol 10675. Springer, Cham. 
+In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 2017. 
+Lecture Notes in Computer Science, vol 10675. Springer, Cham. 
 https://doi.org/10.1007/978-3-319-70682-5_19
 
 4. Chollet, François and Allaire, J.J. and others. (2017) R Interface to Keras, 
