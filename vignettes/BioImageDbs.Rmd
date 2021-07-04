@@ -231,7 +231,7 @@ file of BioImageDbs.
 
 # References
 
-1. Williams, E., Moore, J., Li, S.W. et al. (2018) Publisher Correction: 
+1. Williams, E., Moore, J., Li, S.W. et al. (2018) 
 Image Data Resource: a bioimage data integration and publication platform. 
 Nat Methods 15, 984. https://doi.org/10.1038/s41592-018-0169-x
 
