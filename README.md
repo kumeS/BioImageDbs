@@ -30,14 +30,15 @@ library(BioImageDbs)
 
 ## Usage
 
-1. Load the image dataset.
+1. Search and download the image dataset.
 
 ```r
 eh <- ExperimentHub()
 
+#Data search
 qr <- query(eh, c("BioImageDbs", "EM_id0001"))
 
-#EM_id0001
+#Show the metadata of EM_id0001
 N <- 1
 qr[N]
 str(qr[N])
