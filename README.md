@@ -10,7 +10,7 @@ The dataset is provided as R list data of the multiple 4D/5D arrays that can be
 loaded to Keras/tensorflow in R. 
 
 ## Topics in this project
-- R language usage
+- R language usage / Bioconductor
 - 2D/3D cellular images and their supervised labels for deep learning in R
 - Sharing the bioimage dataset with 4D/5D array (tensor) structures via Bioconductor
 
