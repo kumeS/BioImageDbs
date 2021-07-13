@@ -81,6 +81,18 @@ If any scientific publications derive from this project, you must cite:
 
 Kume S, Nishida K (2021). BioImageDbs: Bio- and biomedical imaging dataset for machine learning and deep learning (for ExperimentHub). R package version 1.0.0, https://github.com/kumeS/BioImageDbs.
 
+```
+#BibTeX
+@misc{Kume2021bioc,
+  title={BioImageDbs: Bio- and biomedical imaging dataset for machine learning and deep learning (for ExperimentHub)},
+  author={Kume, Satoshi and Nishida, Kozo},
+  year={2021},
+  publisher={Bioconductor},
+  note={Experiment Packages - Release 3.13},
+  howpublished={\url{https://bioconductor.org/packages/release/data/experiment/html/BioImageDbs.html}},
+}
+```
+
 ## Authors
 - Satoshi Kume
 - Kozo Nishida
