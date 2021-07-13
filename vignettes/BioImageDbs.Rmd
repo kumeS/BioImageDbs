@@ -15,6 +15,8 @@ package: ExperimentHub, knitr, magick, EBImage
 output:
   BiocStyle::html_document:
   toc_float: true
+bibliography: BioImageDbs.bib
+csl: bj.csl
 vignette: >
   %\VignetteIndexEntry{Providing Bioimage Dataset for ExperimentHub}
   %\VignetteEncoding{UTF-8}
@@ -37,8 +39,8 @@ In recent years, there has been a growing need for data analysis using machine
 learning in the field of bioimaging research. Machine learning is an inductive
 approach using data, and the construction of models, such as image segmentation
 and classification, involves the use of image data itself. Therefore, the
-publication and sharing of bioimage datasets [1] as well as knowledge creation
-through providing metadata to bioimages [2, 3] are important issues to be 
+publication and sharing of bioimage datasets [@Williams2017] as well as knowledge creation
+through providing metadata to bioimages [@Kobayashi2018;@Kume2017] are important issues to be 
 discussed. At present, there is no commonly used format for sharing bioimage
 datasets. Also, the data is scattered among various repositories. Therefore,
 different image repositories manage the data in different formats (image data 
@@ -60,8 +62,8 @@ for R users.
 For performing supervised learning of bioimage data, BioImageDbs provides R 
 list objects of the original images and their corresponding supervised labels
 converted into a 4D or 5D array. After retrieving the data from ExperimentHub, 
-it can be utilised for deep learning using Keras/Tensorflow [4] and other 
-machine learning methods, without the need for pre-processing.
+it can be utilised for deep learning using Keras/Tensorflow [@Chollet2017kerasR] 
+and other machine learning methods, without the need for pre-processing.
 
 On the other hand, many image analysis packages are also available on R; 
 however, there is a lack of standardisation in image analysis. The use of 
@@ -214,74 +216,27 @@ For this dataset in BioImageDbs, the published open data was used as follows:
 
 1.	For cellular ultra-microstructures, electron microscopy-based imaging data 
 of the mouse brain (ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) 
-[5-6], Drosophila brain (ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) 
-[7-8], mouse B myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [9] 
+[@Lucchi2012;@Lucchi2013bib], Drosophila brain (ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) 
+[@Cardona2010;@ArgandaCarreras2015], mouse B myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) @Morath2013 
 and primary human T cell isolated from peripheral blood mononuclear cells 
-(ex. EM_id0004_PrHudata_4dTensor.Rda) [9] were used.
+(ex. EM_id0004_PrHudata_4dTensor.Rda) @Morath2013 were used.
 
 2.	For cell tracking, light microscopy-based imaging data of the human HeLa 
-cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [10-12], 
+cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [@Maska2014;@Ulman2017], 
 human glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate 
-(ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [10-12] and GFP-GOWT1 mouse stem 
-cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [13] were used.
+(ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [@Maska2014;@Ulman2017] and GFP-GOWT1 mouse stem 
+cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) @Bartova2011 were used.
 
 The values of the supervised labels were provided as array data with binary 
 or multiple values. The detailed information was described in the metadata 
-file of BioImageDbs.
-
-# References
-
-1. Williams, E., Moore, J., Li, S.W. et al. (2018) 
-Image Data Resource: a bioimage data integration and publication platform. 
-Nat Methods 15, 984. https://doi.org/10.1038/s41592-018-0169-x
-
-2. Kobayashi, N., Kume, S., Lenz, K., & Masuya, H. (2018). RIKEN MetaDatabase: 
-A Database Platform for Health Care and Life Sciences as a Microcosm of Linked 
-Open Data Cloud. International Journal on Semantic Web and Information Systems 
-(IJSWIS), 14(1), 140-164. doi:10.4018/IJSWIS.2018010106
-
-3. Kume, S., Masuya, H., Maeda, M., Suga, M., Kataoka, Y., Kobayashi, N. (2017) 
-Development of Semantic Web-Based Imaging Database for Biological Morphome. 
-In: Wang Z., Turhan AY., Wang K., Zhang X. (eds) Semantic Technology. JIST 2017. 
-Lecture Notes in Computer Science, vol 10675. Springer, Cham. 
-https://doi.org/10.1007/978-3-319-70682-5_19
-
-4. Chollet, François and Allaire, J.J. and others. (2017) R Interface to Keras, 
-https://github.com/rstudio/keras
-
-5. Lucchi, A., Li, Y. and Fua, P. (2013.) Learning for Structured Prediction 
-Using Approximate Subgradient Descent with Working Sets, 2013 IEEE Conference 
-on Computer Vision and Pattern Recognition. doi: 10.1109/CVPR.2013.259
-
-6. Lucchi, A., Smithm K., Achantam R., Knott, G., Fua, P. (2012) 
-Supervoxel-based segmentation of mitochondria in em image stacks with learned 
-shape features. IEEE Trans Med Imaging. 31(2):474-86. 
-doi: 10.1109/TMI.2011.2171705.
-
-7. Cardona, A., Saalfeld, S., Preibisch, S., Schmid, B., Cheng, A., Pulokas, J.,
-Tomancak, P., Hartenstein, V. (2010) An Integrated Micro- and Macroarchitectural
-Analysis of the Drosophila Brain by Computer-Assisted Serial Section Electron 
-Microscopy. PLoS Biol 8(10): e1000502. doi:10.1371/journal.pbio.1000502.
-
-8. Ignacio, A.C., Srinivas, C., Turaga, D.R. et al. (2015) Crowdsourcing the 
-creation of image segmentation algorithms for connectomics. Frontiers in 
-Neuroanatomy, vol. 9, no. 142.
-
-9. Morath, V., Keuper, M., Rodriguez-Franco, M., et al. (2013) Semi-automatic 
-determination of cell surface areas used in systems biology. Frontiers in 
-Bioscience, Elite, 5, 533-545. doi:10.2741/e635. 
-
-10. http://celltrackingchallenge.net/2d-datasets/
-
-11. Maška, M., Ulman, V., Svoboda, D. et al.  (2014) A benchmark for comparison of cell tracking algorithms. Bioinformatics, 30(11): 1609–1617, doi: https://doi.org/10.1093/bioinformatics/btu080
-
-12. Ulman, V., Maška, M., Magnusson, KEG et al. (2017) An objective comparison of cell-tracking algorithms. Nature Methods, 14: 1141–1152.
-
-13. Bártová E, Šustáčková G, Stixová L, Kozubek S, Legartová S, et al. (2011) 
-Recruitment of Oct4 Protein to UV-Damaged Chromatin in Embryonic Stem Cells. 
-PLOS ONE 6(12): e27281. https://doi.org/10.1371/journal.pone.0027281
+file of BioImageDbs. 
+Some of cell tracking data were obtained from the [cell tracking challenge](http://celltrackingchallenge.net/2d-datasets/).
 
 # Session information {.unnumbered}
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()
 ```
+
+# References
+
+
