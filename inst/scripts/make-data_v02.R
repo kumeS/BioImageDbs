@@ -1,13 +1,6 @@
 ################################################################
 ## Load the package
 ################################################################
-library(EBImage)
-library(magick)
-library(purrr)
-library(magrittr)
-library(filesstrings)
-library(animation)
-
 #Install
 devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
 library(BioImageDbs)
@@ -21,22 +14,16 @@ source(system.file("scripts", "ImgProc_v02.R", package="BioImageDbs"))
 #SampleDataset_cats_segmentation
 ################################################################
 #Set parameters
+#rm(list=ls())
 DataFolder <- "SampleDataset_cats_segmentation"
 DataPath <- "./BioImageDbs_02_Dataset_v02"
 WIDTH00 <- 128; HEIGHT00 <- 128; CHANNELS01 <- 3; CHANNELS02 <- 1
 
 #WIDTH = WIDTH00; HEIGHT = HEIGHT00; CHANNELS = CHANNELS01;data=DataPath;path01=DataFolder;path02="01_Training";Original_path="OriginalData";GroundTruth_path="GroundTruth_8b"
 
-Img <- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
-                       CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
-                       data=DataPath,
-                       path01=DataFolder,
-                       path02="01_Training",
-                       Original_path="OriginalData",
-                       GroundTruth_path="GroundTruth_8b" )
-
 #Run the conversion
-DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
                   data=DataPath,
                   path01=DataFolder,
                   Original_path="OriginalData",
@@ -44,9 +31,8 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   FileName=paste0(DataFolder, "_4dTensor"))
 
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
-                        destinations="./BioImageDbs_Output",
-                        overwrite = TRUE)
-Dat <- readRDS( paste0("./BioImageDbs_Output/", DataFolder, "_4dTensor.Rds") )
+                        destinations=DataPath, overwrite = TRUE)
+Dat <- readRDS( paste0(DataPath, "/", DataFolder, "_4dTensor.Rds") )
 #str(Dat); str(Dat$Train)
 #table(Dat$Train$Train_GroundTruth)
 Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0

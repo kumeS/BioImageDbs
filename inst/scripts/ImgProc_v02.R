@@ -66,12 +66,12 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
     if(Z== -1){Z <- length(dir(m0[1]))}
     for(n in seq_len(m1)){
     ImageFileTrain = paste0(m0[n], "/", dir(m0[n]))[1:Z]
-    X = map(ImageFileTrain, processing_2d_image_train_test, shape = SHAPE)
+    X = purrr::map(ImageFileTrain, processing_2d_image_train_test, shape = SHAPE)
     DatX[[n]] <- simplify2array(X)
     }
 
-    xTensor1 <- simplify2array(DatX)
-    xTensor2 <- aperm(xTensor1, c(5, 1, 2, 4, 3))
+    xTensor1 <- base::simplify2array(DatX)
+    xTensor2 <- base::aperm(xTensor1, c(5, 1, 2, 4, 3))
 
     if(!OriginalDataOnly){
     #Teacher Data
@@ -80,12 +80,12 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
     DatY <- c()
     for(n in seq_len(m3)){
     ImageFileTrain = paste0(m2[n], "/", dir(m2[n]))[1:Z]
-    Y = map(ImageFileTrain, processing_2d_image_GT, shape = SHAPE)
+    Y = purrr::map(ImageFileTrain, processing_2d_image_GT, shape = SHAPE)
     DatY[[n]] <- simplify2array(Y)
     }
 
-    yTensor1 <- simplify2array(DatY)
-    yTensor2 <- aperm(yTensor1, c(5, 1, 2, 4, 3))
+    yTensor1 <- base::simplify2array(DatY)
+    yTensor2 <- base::aperm(yTensor1, c(5, 1, 2, 4, 3))
 
     Img <- list(Original=xTensor2, GroundTruth=yTensor2)
     return (Img)
@@ -170,11 +170,11 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256,
     m0 <- paste0(Original_PATH, "/", dir(Original_PATH))
     DatX <- c()
 
-    try(X <- map(m0, processing_2d_image_train_test, shape = SHAPE), silent = T)
+    try(X <- purrr::map(m0, processing_2d_image_train_test, shape = SHAPE), silent = T)
     #str(X)
-    DatX <- simplify2array(X)
+    DatX <- base::simplify2array(X)
     #str(DatX)
-    xTensor1 <- aperm(DatX, c(4, 1, 2, 3))
+    xTensor1 <- base::aperm(DatX, c(4, 1, 2, 3))
     #str(xTensor1)
 
     #02_Testing
@@ -183,11 +183,11 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256,
     m0 <- paste0(GroundTruth_PATH, "/", dir(GroundTruth_PATH))
     DatY <- c()
 
-    Y = map(m0, processing_2d_image_train_test, shape = SHAPE)
+    try(Y <- map(m0, processing_2d_image_train_test, shape = SHAPE), silent = T)
     #str(Y); table(unlist(Y))
-    DatY <- simplify2array(Y)
+    DatY <- base::simplify2array(Y)
     #str(DatY)
-    yTensor1 <- aperm(DatY, c(4, 1, 2, 3))
+    yTensor1 <- base::aperm(DatY, c(4, 1, 2, 3))
     #str(yTensor1)
 
     Img <- list(OriginalData=xTensor1, GroundTruth=yTensor1)
