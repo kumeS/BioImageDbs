@@ -53,13 +53,13 @@ ImageView2D <- function(ImgArray, Name, Interval = 0.25 ){
       #n <- 1
       par(bg = 'grey')
       X0 <- EBImage::Image(ImgArray$GroundTruth[n,,,], colormode="Grayscale")
-      X <- resize(X0, XYsize, XYsize, filter="none")/2
+      X <- resize(X0, XYsize, XYsize, filter="none")
       Y0 <- EBImage::channel(EBImage::Image(ImgArray$Original[n,,,], colormode="Color"), mode="grey")
       Y <- resize(Y0, XYsize, XYsize, filter="none")
-      Image_color01 <- EBImage::paintObjects(X, Y, opac=Opac, col=c("red","red"), thick=TRUE, closed=FALSE)
-      EBImage::display(EBImage::combine(Y,
+      Image_color01 <- EBImage::paintObjects(X, toRGB(Y), opac=Opac, col=c("red","red"), thick=TRUE, closed=FALSE)
+      EBImage::display(EBImage::combine(toRGB(Y),
                                         resize(Image_color01, XYsize, XYsize, filter="none"),
-                                        X),
+                                        toRGB(X)),
                          nx=3, all=TRUE, spacing = 0.01, margin = 70)
       text(x = XYsize*0.5, y = -XYsize*0.175,
              label = Lab01, adj = c(0,1), col = "black", cex = 1.2, pos=1, srt=0)
@@ -72,7 +72,6 @@ ImageView2D <- function(ImgArray, Name, Interval = 0.25 ){
              adj = c(0,1), col = "black", cex = 1.2, pos=1, srt=0)
     }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=Dpi,
     nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
-    }
     }else{
     animation::saveGIF({
     for(n in seq_len(dim(ImgArray$Original)[1])){
