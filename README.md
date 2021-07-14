@@ -41,6 +41,18 @@ library(ExperimentHub)
 library(BioImageDbs)
 ```
 
+(Optional) install from GitGub.
+
+```r
+#Install
+install.packages( "devtools" , repos="http://cran.r-project.org")
+devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
+
+#Load
+library(BioImageDbs)
+```
+
+
 ## Simple usage
 
 1. Search and download the image dataset.

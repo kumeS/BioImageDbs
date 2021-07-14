@@ -8,6 +8,8 @@ library(magrittr)
 library(filesstrings)
 library(animation)
 
+devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
+library(BioImageDbs)
 
 ################################################################
 #Convert the images to the array data in R
