@@ -14,6 +14,7 @@ The DESCRIPTION file:
 \packageIndices{BioImageDbs}
 }
 \author{
+
 \packageAuthor{BioImageDbs}
 
 Maintainer: \packageMaintainer{BioImageDbs}
