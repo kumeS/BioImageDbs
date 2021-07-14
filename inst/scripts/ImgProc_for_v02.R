@@ -1,6 +1,14 @@
 ################################################################
 ## Load the package
 ################################################################
+if(!require("EBImage")){ install.packages( "EBImage" ) }
+if(!require("magick")){ install.packages( "magick" ) }
+if(!require("purrr")){ install.packages( "purrr" ) }
+if(!require("magrittr")){ install.packages( "magrittr" ) }
+if(!require("filesstrings")){ install.packages( "filesstrings" ) }
+if(!require("animation")){ install.packages( "animation" ) }
+if(!require("einsum")){ install.packages( "einsum" ) }
+
 library(EBImage)
 library(magick)
 library(purrr)

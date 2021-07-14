@@ -7,8 +7,8 @@ devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
 library(BioImageDbs)
 
 #Source
-source(system.file("scripts", "ImgProc_v02.R", package="BioImageDbs"))
-source(system.file("scripts", "ImageView_v02.R", package="BioImageDbs"))
+source(system.file("scripts", "ImgProc_for_v02.R", package="BioImageDbs"))
+source(system.file("scripts", "ImageView_for_v02.R", package="BioImageDbs"))
 ################################################################
 #Convert the images to the array data in R
 ################################################################
