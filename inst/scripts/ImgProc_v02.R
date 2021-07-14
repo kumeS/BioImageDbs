@@ -214,7 +214,7 @@ a <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
                        Original_path=Original_path,
                        GroundTruth_path=GroundTruth_path)
 names(a) <- c("Train_Original", "Train_GroundTruth")
-
+#str(a)
 b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
                        CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
                        data=data,
@@ -223,9 +223,10 @@ b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
                        Original_path=Original_path,
                        GroundTruth_path=GroundTruth_path)
 names(b) <- c("Test_Original", "Test_GroundTruth")
-
+#str(b)
 if(!Binary){
 Img <- list(Train=a, Test=b)
+#str(Img)
 saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }else{
 a$Train_GroundTruth[a$Train_GroundTruth > 0] <- 1

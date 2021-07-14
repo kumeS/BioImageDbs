@@ -19,7 +19,7 @@ DataFolder <- "SampleDataset_cats_segmentation"
 DataPath <- "./BioImageDbs_02_Dataset_v02"
 WIDTH00 <- 128; HEIGHT00 <- 128; CHANNELS01 <- 3; CHANNELS02 <- 1
 
-#WIDTH = WIDTH00; HEIGHT = HEIGHT00; CHANNELS = CHANNELS01;data=DataPath;path01=DataFolder;path02="01_Training";Original_path="OriginalData";GroundTruth_path="GroundTruth_8b"
+#WIDTH = WIDTH00; HEIGHT = HEIGHT00; CHANNELS = CHANNELS01;data=DataPath;path01=DataFolder;path02="01_Training";Original_path="OriginalData";GroundTruth_path="GroundTruth_8b"; FileName=paste0(DataFolder, "_4dTensor")
 
 #Run the conversion
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
@@ -28,7 +28,8 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                   path01=DataFolder,
                   Original_path="OriginalData",
                   GroundTruth_path="GroundTruth_8b",
-                  FileName=paste0(DataFolder, "_4dTensor"))
+                  FileName=paste0(DataFolder, "_4dTensor"),
+                  Binary=FALSE)
 
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations=DataPath, overwrite = TRUE)
