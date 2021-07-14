@@ -41,7 +41,9 @@ library(ExperimentHub)
 library(BioImageDbs)
 ```
 
-(Optional) install from GitGub.
+(Optional) 
+
+Install from the GitGub.
 
 ```r
 #Install
