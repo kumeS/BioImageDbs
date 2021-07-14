@@ -14,16 +14,16 @@ library(animation)
 processing_2d_image_train_test <- function(file, type="png", shape, filter="bilinear",
                                            normalize=FALSE, clahe=FALSE, GammaVal=1.0){
   image <- EBImage::readImage(file, type=type)
-  image <- resize(image, w = shape[1], h = shape[2], filter = filter)
-  if(normalize){image <- normalize(image)}
-  if(clahe){image <- clahe(image)}
+  image <- EBImage::resize(image, w = shape[1], h = shape[2], filter = filter)
+  if(normalize){image <- EBImage::normalize(image)}
+  if(clahe){image <- EBImage::clahe(image)}
   if(is.numeric(GammaVal)){image <- image^GammaVal}
   array(image, dim=c(shape[1], shape[2], shape[3]))
 }
 
 processing_2d_image_GT <- function(file, type="png", shape){
   image <- EBImage::readImage(file, type=type)
-  image <- resize(image, w = shape[1], h = shape[2], filter = "none")
+  image <- EBImage::resize(image, w = shape[1], h = shape[2], filter = "none")
   array(image, dim=c(shape[1], shape[2], shape[3]))
 }
 
@@ -154,7 +154,8 @@ saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 ################################################################
 ## Convert images to the 4D array
 ################################################################
-ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256, CHANNELS = 1,
+ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256,
+                       CHANNELS01 = 1, CHANNELS02 = 1,
                        data="./BioImageDbs_Data",
                        path01="LM_id0001_DIC_C2DH_HeLa",
                        path02="01_Training",
@@ -163,13 +164,13 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256, CHANNELS = 1,
 
     DataDIR <- paste0(data, "/", path01)
     Original_PATH = paste0(DataDIR, "/", path02, "/", Original_path)
-    SHAPE = c(WIDTH, HEIGHT, CHANNELS)
+    SHAPE = c(WIDTH, HEIGHT, CHANNELS01)
 
     #01_Training
     m0 <- paste0(Original_PATH, "/", dir(Original_PATH))
     DatX <- c()
 
-    X = map(m0, processing_2d_image_train_test, shape = SHAPE)
+    try(X <- map(m0, processing_2d_image_train_test, shape = SHAPE), silent = T)
     #str(X)
     DatX <- simplify2array(X)
     #str(DatX)
@@ -178,34 +179,35 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256, CHANNELS = 1,
 
     #02_Testing
     GroundTruth_PATH = paste0(DataDIR, "/", path02, "/", GroundTruth_path)
+    SHAPE = c(WIDTH, HEIGHT, CHANNELS02)
     m0 <- paste0(GroundTruth_PATH, "/", dir(GroundTruth_PATH))
     DatY <- c()
 
     Y = map(m0, processing_2d_image_train_test, shape = SHAPE)
-    #str(Y)
+    #str(Y); table(unlist(Y))
     DatY <- simplify2array(Y)
     #str(DatY)
     yTensor1 <- aperm(DatY, c(4, 1, 2, 3))
     #str(yTensor1)
 
-    Img <- list(Training=xTensor1, Test=yTensor1)
+    Img <- list(OriginalData=xTensor1, GroundTruth=yTensor1)
     #str(Img)
-
     return(Img)
-
 }
 
 ####################################################################################
 # Convert the 4D array to the .Rds file
 ####################################################################################
-DataImport_2d_seg <- function(WIDTH = 512, HEIGHT = 512, CHANNELS = 1,
+DataImport_2d_seg <- function(WIDTH = 512, HEIGHT = 512,
+                       CHANNELS01 = 3, CHANNELS02 = 1,
                        data="./BioImageDbs_Data",
                        path01="LM_id0001_DIC_C2DH_HeLa",
                        Original_path="OriginalData",
                        GroundTruth_path="Cell_GroundTruth_8b",
                        FileName="LM_id0001_DIC_C2DH_HeLa",
                        Binary=FALSE){
-a <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT, CHANNELS = CHANNELS,
+a <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
+                       CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
                        data=data,
                        path01=path01,
                        path02="01_Training",
@@ -213,7 +215,8 @@ a <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT, CHANNELS = CHANNELS,
                        GroundTruth_path=GroundTruth_path)
 names(a) <- c("Train_Original", "Train_GroundTruth")
 
-b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT, CHANNELS = CHANNELS,
+b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
+                       CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
                        data=data,
                        path01=path01,
                        path02="02_Testing",

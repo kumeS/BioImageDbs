@@ -25,6 +25,16 @@ DataFolder <- "SampleDataset_cats_segmentation"
 DataPath <- "./BioImageDbs_02_Dataset_v02"
 WIDTH00 <- 128; HEIGHT00 <- 128; CHANNELS01 <- 3; CHANNELS02 <- 1
 
+#WIDTH = WIDTH00; HEIGHT = HEIGHT00; CHANNELS = CHANNELS01;data=DataPath;path01=DataFolder;path02="01_Training";Original_path="OriginalData";GroundTruth_path="GroundTruth_8b"
+
+Img <- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                       CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                       data=DataPath,
+                       path01=DataFolder,
+                       path02="01_Training",
+                       Original_path="OriginalData",
+                       GroundTruth_path="GroundTruth_8b" )
+
 #Run the conversion
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00, CHANNELS = CHANNELS00,
                   data=DataPath,
