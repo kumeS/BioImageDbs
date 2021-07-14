@@ -1,3 +1,5 @@
+#This script for the v02 dataset
+
 ####################################################################################
 #An image visualization function to create an animation for the 5D array.
 ####################################################################################
