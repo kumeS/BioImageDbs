@@ -241,13 +241,13 @@ Img <- list(Train=a, Test=b)
 saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }else{
 a$Train_GroundTruth[a$Train_GroundTruth > 0] <- 1
-names(a) <- c("Train_Original", "Train_GroundTruth_Binary")
+names(a) <- c("Train_Original", "Train_GroundTruth")
 
 b$Test_GroundTruth[b$Test_GroundTruth > 0] <- 1
-names(b) <- c("Test_Original", "Test_GroundTruth_Binary")
+names(b) <- c("Test_Original", "Test_GroundTruth")
 
 Img <- list(Train=a, Test=b)
-saveRDS(Img, paste0(FileName, "_Binary.Rds"), compress = TRUE)
+saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }
 }
 

@@ -143,3 +143,35 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_datase
                         destinations=DataPath, overwrite = TRUE)
 ```
 
+### Nuc_OriginalData_1024 / Nuc_GroundTruth_1024
+
+```{r echo=TRUE, eval=FALSE}
+#Set parameters
+DataPath <- "./BioImageDbs_02_Dataset_v02"
+DataFolder <- "EM_id0005_Mouse_Kidney_2D"
+DataFolder_Name <- "_Nuc1024_4dTensor"
+Original_path="Nuc_OriginalData_1024"
+GroundTruth_path="Nuc_GroundTruth_1024"
+WIDTH00 <- 1024; HEIGHT00 <- 1024; CHANNELS01 <- 1; CHANNELS02 <- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, ".Rds"),
+                        destinations=DataPath, overwrite = TRUE)
+#Read data
+Dat <- readRDS( paste0(DataPath, "/", DataFolder, DataFolder_Name, ".Rds") )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
+                        destinations=DataPath, overwrite = TRUE)
+```
