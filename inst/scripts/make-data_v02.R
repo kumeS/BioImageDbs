@@ -7,6 +7,7 @@ library(BioImageDbs)
 
 #Source
 source(system.file("scripts", "ImgProc_v02.R", package="BioImageDbs"))
+source(system.file("scripts", "ImageView_v02.R", package="BioImageDbs"))
 ################################################################
 #Convert the images to the array data in R
 ################################################################
@@ -34,9 +35,9 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations=DataPath, overwrite = TRUE)
 Dat <- readRDS( paste0(DataPath, "/", DataFolder, "_4dTensor.Rds") )
-#str(Dat); str(Dat$Train)
+#str(Dat)
+#str(Dat$Train)
 #table(Dat$Train$Train_GroundTruth)
-Dat$Train$Train_GroundTruth[Dat$Train$Train_GroundTruth < 0.4] <- 0
 ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
                         destinations="./BioImageDbs_Output",
