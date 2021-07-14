@@ -37,14 +37,11 @@ ImageView3D <- function(ImgArray, Sample=1,
 ####################################################################################
 #An image visualization function to create an animation for the 4D array.
 ####################################################################################
-#ImgArray=Dat$Train; Interval=0.8; Name=paste0(DataFolder, "_4dTensor_train_dataset")
-str(ImgArray)
-
 ImageView2D <- function(ImgArray, Name, Interval = 0.25 ){
     Lab01="Original"; Lab02="Merge"; Lab03="Supervised"
-    Opac=c(0.2, 0.2); Dpi=72; Width = 500; Height=250
+    Opac=c(0.2, 0.2); Dpi=72
+    Width = 500; Height=250; XYsize = 256
     options(EBImage.display = "raster")
-    XYsize = 256
     names(ImgArray) <- c("Original", "GroundTruth")
 
     if(dim(ImgArray$Original)[4] != dim(ImgArray$GroundTruth)[4]){
