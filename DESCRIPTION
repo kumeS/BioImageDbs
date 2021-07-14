@@ -22,7 +22,8 @@ Imports: ExperimentHub (>= 1.16.1),
     magick,
     magrittr,
     filesstrings,
-    animation
+    animation,
+    einsum
 Suggests: knitr, 
     BiocStyle,
     purrr

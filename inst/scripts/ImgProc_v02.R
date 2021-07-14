@@ -7,6 +7,7 @@ library(purrr)
 library(magrittr)
 library(filesstrings)
 library(animation)
+library(einsum)
 
 ################################################################
 ## Image pre-processing

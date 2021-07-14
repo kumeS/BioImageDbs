@@ -11,10 +11,10 @@ author:
   affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
-package: ExperimentHub, knitr, magick, EBImage
+package: BioImageDbs
 output:
   BiocStyle::html_document:
-  toc_float: true
+      toc_float: true
 bibliography: BioImageDbs.bib
 csl: bj.csl
 vignette: >

@@ -2,6 +2,7 @@
 ## Load the package
 ################################################################
 #Install
+#rm(list=ls())
 devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
 library(BioImageDbs)
 
@@ -15,11 +16,9 @@ source(system.file("scripts", "ImageView_v02.R", package="BioImageDbs"))
 #SampleDataset_cats_segmentation
 ################################################################
 #Set parameters
-#rm(list=ls())
 DataFolder <- "SampleDataset_cats_segmentation"
 DataPath <- "./BioImageDbs_02_Dataset_v02"
 WIDTH00 <- 128; HEIGHT00 <- 128; CHANNELS01 <- 3; CHANNELS02 <- 1
-
 #WIDTH = WIDTH00; HEIGHT = HEIGHT00; CHANNELS = CHANNELS01;data=DataPath;path01=DataFolder;path02="01_Training";Original_path="OriginalData";GroundTruth_path="GroundTruth_8b"; FileName=paste0(DataFolder, "_4dTensor")
 
 #Run the conversion
@@ -31,9 +30,10 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                   GroundTruth_path="GroundTruth_8b",
                   FileName=paste0(DataFolder, "_4dTensor"),
                   Binary=FALSE)
-
+#Move data
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
                         destinations=DataPath, overwrite = TRUE)
+#Read data
 Dat <- readRDS( paste0(DataPath, "/", DataFolder, "_4dTensor.Rds") )
 #str(Dat)
 #str(Dat$Train)
