@@ -75,7 +75,7 @@ ImageView2D <- function(ImgArray, Name, Interval = 0.25, N=100 ){
              label = paste("Image section: ", n),
              adj = c(0,1), col = "black", cex = 1.2, pos=1, srt=0)
     }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=Dpi,
-    nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
+    nmax = max(Seq0), ani.width = Width, ani.height=Height, ani.type="png")
     }else{
     animation::saveGIF({
     for(n in Seq0){
@@ -98,7 +98,7 @@ ImageView2D <- function(ImgArray, Name, Interval = 0.25, N=100 ){
              label = paste("Image section: ", n),
              adj = c(0,1), col = "black", cex = 1.2, pos=1, srt=0)
     }}, movie.name = paste0(Name, ".gif"), interval = Interval, dpi=Dpi,
-    nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
+    nmax = max(Seq0), ani.width = Width, ani.height=Height, ani.type="png")
     }
 }
 
