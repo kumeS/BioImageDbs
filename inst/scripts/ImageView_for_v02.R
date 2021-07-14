@@ -39,16 +39,21 @@ ImageView3D <- function(ImgArray, Sample=1,
 ####################################################################################
 #An image visualization function to create an animation for the 4D array.
 ####################################################################################
-ImageView2D <- function(ImgArray, Name, Interval = 0.25 ){
+ImageView2D <- function(ImgArray, Name, Interval = 0.25, N=100 ){
     Lab01="Original"; Lab02="Merge"; Lab03="Supervised"
     Opac=c(0.2, 0.2); Dpi=72
     Width = 500; Height=250; XYsize = 256
     options(EBImage.display = "raster")
     names(ImgArray) <- c("Original", "GroundTruth")
 
+    if(dim(ImgArray$Original)[1] > N){
+      Seq0 <- 1:N
+    }else{
+      Seq0 <- seq_len(dim(ImgArray$Original)[1])
+    }
     if(dim(ImgArray$Original)[4] != dim(ImgArray$GroundTruth)[4]){
     animation::saveGIF({
-    for(n in seq_len(dim(ImgArray$Original)[1])){
+    for(n in Seq0){
       #n <- 1
       par(bg = 'grey')
       X0 <- EBImage::Image(ImgArray$GroundTruth[n,,,], colormode="Grayscale")
@@ -73,7 +78,7 @@ ImageView2D <- function(ImgArray, Name, Interval = 0.25 ){
     nmax = dim(ImgArray$Original)[1], ani.width = Width, ani.height=Height, ani.type="png")
     }else{
     animation::saveGIF({
-    for(n in seq_len(dim(ImgArray$Original)[1])){
+    for(n in Seq0){
       #n <- 1
       par(bg = 'grey')
       Image_color01 <- EBImage::paintObjects(resize(ImgArray$GroundTruth[n,,,], XYsize, XYsize, filter="none")/2,
