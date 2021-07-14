@@ -8,9 +8,12 @@ library(magrittr)
 library(filesstrings)
 library(animation)
 
+#Install
 devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
 library(BioImageDbs)
 
+#Source
+source(system.file("scripts", "ImgProc_v02.R", package="BioImageDbs"))
 ################################################################
 #Convert the images to the array data in R
 ################################################################
