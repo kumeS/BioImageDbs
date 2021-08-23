@@ -52,3 +52,37 @@ arrE
 einsum::einsum('ijk->ij', arrE)
 
 
+Meta.Rds <- c(
+  Title="",
+  Description="",
+  BiocVersion="",
+  Genome="",
+  SourceType="",
+  SourceUrl="",
+  SourceVersion="",
+  Species="",
+  TaxonomyId="",
+  Coordinate_1_based="",
+  DataProvider="",
+  Maintainer="",
+  RDataClass="",
+  DispatchClass="",
+  RDataPath="",
+  Tags="")
+Meta.gif <- c(
+  Title="",
+  Description="",
+  BiocVersion="",
+  Genome="",
+  SourceType="",
+  SourceUrl="",
+  SourceVersion="",
+  Species="",
+  TaxonomyId="",
+  Coordinate_1_based="",
+  DataProvider="",
+  Maintainer="",
+  RDataClass="",
+  DispatchClass="",
+  RDataPath="",
+  Tags="")

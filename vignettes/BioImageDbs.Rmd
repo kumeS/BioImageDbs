@@ -7,8 +7,6 @@ author:
   - Osaka City University Center for Health Science Innovation
   - Osaka Electro-Communication University
   email: satoshi.kume.1984@gmail.com
-- name: Kozo Nishida
-  affiliation: RIKEN Center for Biosystems Dynamics Research
 date: "`r Sys.Date()`"
 graphics: no
 package: BioImageDbs
