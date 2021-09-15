@@ -33,7 +33,7 @@ BiocStyle::markdown()
 ```{r echo=TRUE, eval=FALSE}
 #Install
 #rm(list=ls())
-devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
+#devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
 library(BioImageDbs)
 
 #Source
@@ -46,6 +46,7 @@ source(system.file("scripts", "ImageView_for_v02.R", package="BioImageDbs"))
 ## SampleDataset_cats_segmentation
 
 ```{r echo=TRUE, eval=FALSE}
+if(F){
 #Set parameters
 DataFolder <- "SampleDataset_cats_segmentation"
 DataPath <- "./BioImageDbs_02_Dataset_v02"
@@ -73,6 +74,7 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_da
 filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
+#Metadata
 Meta.Rds <- data.frame(
   Title="SampleDataset_cats_segmentation.rds",
   Description="4D arrays for cat-segmentation dataset provided by @taashi. Training dataset is 60 image pairs and test dataset is 20 image pairs. Image size is 128x128 px. Original images are RGB color.",	
@@ -110,12 +112,13 @@ Meta.gif <- data.frame(
 
 readr::write_csv(Meta.Rds, file = "Metadata.csv", append = T, col_names = F)
 readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
+}
 
 ```
 
 ## EM_id0005_Mouse_Kidney_2D
 
-### Mito_OriginalData_512 / Mito_GroundTruth_512
+#### Mito_OriginalData_512 / Mito_GroundTruth_512
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -148,35 +151,38 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
+
+#Metadata
 Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="List",
-  DispatchClass="Rds",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
+Title="EM_id0005_Mouse_Kidney_2D_Mito512_4dTensor.Rds",
+Description=paste0("wrote in excel"),	
+BiocVersion="3.13",
+Genome="NA",
+SourceType="PNG",
+SourceUrl="https://github.com/kumeS/BioImageDbs",
+SourceVersion="",
+Species="Mus musculus",
+TaxonomyId="10090",
+Coordinate_1_based="NA",
+DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
+Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
+RDataClass="List",
+DispatchClass="Rds",
+RDataPath="BioImageDbs/v02/",
+Tags="Kideny:segmentation:2D images:SampleImage")
+
 Meta.gif <- data.frame(
-  Title="",
-  Description="",	
+Title="EM_id0005_Mouse_Kidney_2D_Mito512_4dTensor_train_dataset.gif",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
   SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  Species="Mus musculus",
+  TaxonomyId="10090",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="magick-image",
   DispatchClass="FilePath",
@@ -188,7 +194,7 @@ readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ```
 
-### MitoAll_OriginalData_1024 / MitoAll_GroundTruth_1024
+#### MitoAll_OriginalData_1024 / MitoAll_GroundTruth_1024
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -221,35 +227,36 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
+#Metadata
 Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
+  Title="EM_id0005_Mouse_Kidney_2D_Mito1024_4dTensor.Rds",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
   SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  Species="Mus musculus",
+  TaxonomyId="10090",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="List",
   DispatchClass="Rds",
   RDataPath="BioImageDbs/v02/",
   Tags="segmentation:2D images:SampleImage")
 Meta.gif <- data.frame(
-  Title="",
-  Description="",	
+  Title="EM_id0005_Mouse_Kidney_2D_Mito1024_4dTensor_train_dataset.gif",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
   SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  Species="Mus musculus",
+  TaxonomyId="10090",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="magick-image",
   DispatchClass="FilePath",
@@ -261,7 +268,7 @@ readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ```
 
-### Nuc_OriginalData_1024 / Nuc_GroundTruth_1024
+#### Nuc_OriginalData_1024 / Nuc_GroundTruth_1024
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -295,35 +302,36 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
+#Metadata
 Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
+  Title="EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor.Rds",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  SourceVersion="Sep 01 2021",
+  Species="Mus musculus",
+  TaxonomyId="10090",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="List",
   DispatchClass="Rds",
   RDataPath="BioImageDbs/v02/",
   Tags="segmentation:2D images:SampleImage")
 Meta.gif <- data.frame(
-  Title="",
-  Description="",	
+  Title="EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor_train_dataset.gif",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  SourceVersion="Sep 01 2021",
+  Species="Mus musculus",
+  TaxonomyId="10090",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="magick-image",
   DispatchClass="FilePath",
@@ -337,7 +345,7 @@ readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ## EM_id0006_Rat_Liver_2D
 
-### Mito_OriginalData_256 / Mito_GroundTruth_256
+#### Mito_OriginalData_256 / Mito_GroundTruth_256
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -371,35 +379,36 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
+#Metadata
 Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
+  Title="EM_id0006_Rat_Liver_2D_Mito256_4dTensor.Rds",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  SourceVersion="Sep 01 2021",
+  Species="Rattus norvegicus",
+  TaxonomyId="10116",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="List",
   DispatchClass="Rds",
   RDataPath="BioImageDbs/v02/",
   Tags="segmentation:2D images:SampleImage")
 Meta.gif <- data.frame(
-  Title="",
-  Description="",	
+  Title="EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor_train_dataset.gif",
+  Description="wrote in excel",	
   BiocVersion="3.13",
   Genome="NA",
   SourceType="PNG",
   SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
+  SourceVersion="Sep 01 2021",
+  Species="Rattus norvegicus",
+  TaxonomyId="10116",
   Coordinate_1_based="NA",
-  DataProvider="",
+  DataProvider="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
   RDataClass="magick-image",
   DispatchClass="FilePath",
@@ -411,7 +420,7 @@ readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ```
 
-### Mito_OriginalData_512 / Mito_GroundTruth_512
+#### Mito_OriginalData_512 / Mito_GroundTruth_512
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -446,47 +455,15 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
-Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="List",
-  DispatchClass="Rds",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
-Meta.gif <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="magick-image",
-  DispatchClass="FilePath",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
+#Metadata
+XXX
 
 readr::write_csv(Meta.Rds, file = "Metadata.csv", append = T, col_names = F)
 readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ```
 
-### Mito_OriginalData_1024 / Mito_GroundTruth_1024
+#### Mito_OriginalData_1024 / Mito_GroundTruth_1024
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -521,47 +498,15 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
-Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="List",
-  DispatchClass="Rds",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
-Meta.gif <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="magick-image",
-  DispatchClass="FilePath",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
+#Metadata
+###
 
 readr::write_csv(Meta.Rds, file = "Metadata.csv", append = T, col_names = F)
 readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ```
 
-### Mito_OriginalData_1024 / Mito_GroundTruth_1024 (Mito512c_4dTensor)
+#### Mito_OriginalData_1024 / Mito_GroundTruth_1024 (Mito512c_4dTensor)
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -596,47 +541,15 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
-Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="List",
-  DispatchClass="Rds",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
-Meta.gif <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="magick-image",
-  DispatchClass="FilePath",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
+#Metadata
+###
 
 readr::write_csv(Meta.Rds, file = "Metadata.csv", append = T, col_names = F)
 readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
 
 ```
 
-### Nuc_OriginalData_1024 / Nuc_GroundTruth_1024
+#### Nuc_OriginalData_1024 / Nuc_GroundTruth_1024
 
 ```{r echo=TRUE, eval=FALSE}
 #Set parameters
@@ -671,40 +584,8 @@ ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, "_
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, "_train_dataset.gif"),
                         destinations=DataPath, overwrite = TRUE)
 
-Meta.Rds <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="List",
-  DispatchClass="Rds",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
-Meta.gif <- data.frame(
-  Title="",
-  Description="",	
-  BiocVersion="3.13",
-  Genome="NA",
-  SourceType="PNG",
-  SourceUrl="https://github.com/kumeS/BioImageDbs",
-  SourceVersion="",
-  Species="",
-  TaxonomyId="",
-  Coordinate_1_based="NA",
-  DataProvider="",
-  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
-  RDataClass="magick-image",
-  DispatchClass="FilePath",
-  RDataPath="BioImageDbs/v02/",
-  Tags="segmentation:2D images:SampleImage")
+#Metadata
+###
 
 readr::write_csv(Meta.Rds, file = "Metadata.csv", append = T, col_names = F)
 readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
