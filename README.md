@@ -91,7 +91,7 @@ Copyright (c) 2021 Satoshi Kume released under the [Artistic License 2.0](http:/
 
 ## Cite
 
-If any scientific publications derive from this project, you must cite:
+If any scientific publications derive from this project, you should cite:
 
 Kume S, Nishida K (2021). BioImageDbs: Bio- and biomedical imaging dataset for machine learning and deep learning (for ExperimentHub). Bioconductor: ExperimentHub package.
 
