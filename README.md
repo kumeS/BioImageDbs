@@ -31,6 +31,10 @@ The original dataset is available in [Google Drive](https://drive.google.com/dri
 
 - [make-data_for_v02](https://kumes.github.io/BioImageDbs/inst/scripts/v02/make-data_for_v02.html)
 
+## Information
+
+- [Package Downloads Report](http://bioconductor.org/packages/stats/data-experiment/BioImageDbs/)
+
 ## Installation
 
 1. Start R.app
@@ -58,7 +62,6 @@ devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
 library(BioImageDbs)
 ```
 
-
 ## Simple usage
 
 1. Search and download the image dataset.
@@ -76,6 +79,8 @@ str(qr[N])
 
 #Data download
 ImgData <- qr[[N]]
+
+#Show info
 str(ImgData)
 ```
 
@@ -85,8 +90,11 @@ str(ImgData)
 library(magick)
 qr <- query(eh, c("BioImageDbs", "EM_id0001"))
 
+#Show info
 N <- 2
 qr[N]
+
+#View
 magick::image_read(qr[[N]])
 ```
 
