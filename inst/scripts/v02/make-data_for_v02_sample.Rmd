@@ -1,0 +1,116 @@
+---
+title: "make-data_for_v02"
+author: 
+- name: Satoshi Kume
+  email: satoshi.kume.1984@gmail.com
+date: "`r Sys.Date()`"
+graphics: no
+package: BioImageDbs
+output:
+  BiocStyle::html_document:
+      toc_float: false
+vignette: >
+  %\VignetteIndexEntry{make-data_for_v02}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{ExperimentHub}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+**Last modified:** `r file.info("make-data_for_v02.Rmd")$mtime`<br />
+**Compiled**: `r date()`
+
+**This script for the v02 dataset**
+
+# Load the package
+
+```{r echo=TRUE, eval=FALSE}
+#Install
+#rm(list=ls())
+#devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
+library(BioImageDbs)
+
+#Source
+source(system.file("scripts", "./v02/ImgProc_for_v02.R", package="BioImageDbs"))
+source(system.file("scripts", "./v02/ImageView_for_v02.R", package="BioImageDbs"))
+```
+
+# Convert the images to the array data in R
+
+## SampleDataset_cats_segmentation
+
+```{r echo=TRUE, eval=FALSE}
+#Set parameters
+DataFolder <- "SampleDataset_cats_segmentation"
+DataPath <- "./BioImageDbs_02_Dataset_v02"
+WIDTH00 <- 128; HEIGHT00 <- 128; CHANNELS01 <- 3; CHANNELS02 <- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path="OriginalData",
+                  GroundTruth_path="GroundTruth_8b",
+                  FileName=paste0(DataFolder, "_4dTensor"),
+                  Binary=FALSE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor.Rds"),
+                        destinations=DataPath, overwrite = TRUE)
+#Read data
+Dat <- readRDS( paste0(DataPath, "/", DataFolder, "_4dTensor.Rds") )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, "_4dTensor_train_dataset"))
+filesstrings::file.move(files=paste0(DataFolder, "_4dTensor_train_dataset.gif"),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+Meta.Rds <- data.frame(
+  Title="SampleDataset_cats_segmentation.rds",
+  Description="4D arrays for cat-segmentation dataset provided by @taashi. Training dataset is 60 image pairs and test dataset is 20 image pairs. Image size is 128x128 px. Original images are RGB color.",	
+  BiocVersion="3.13",
+  Genome="NA",
+  SourceType="PNG",
+  SourceUrl="https://github.com/kumeS/BioImageDbs",
+  SourceVersion="Apr 9 2018",
+  Species="Felis catus",
+  TaxonomyId="9685",
+  Coordinate_1_based="NA",
+  DataProvider="https://github.com/taashi-s/UNet_Keras",
+  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
+  RDataClass="List",
+  DispatchClass="Rds",
+  RDataPath="BioImageDbs/v02/SampleDataset_cats_segmentation.rds",
+  Tags="segmentation:2D images:SampleImage")
+Meta.gif <- data.frame(
+  Title="SampleDataset_cats_segmentation.gif",
+  Description="A animation file (.gif) of the train dataset of SampleDataset_cats_segmentation.rds",	
+  BiocVersion="3.13",
+  Genome="NA",
+  SourceType="PNG",
+  SourceUrl="https://github.com/kumeS/BioImageDbs",
+  SourceVersion="Apr 9 2018",
+  Species="Felis catus",
+  TaxonomyId="9685",
+  Coordinate_1_based="NA",
+  DataProvider="https://github.com/taashi-s/UNet_Keras",
+  Maintainer="Satoshi Kume <satoshi.kume.1984@gmail.com>",
+  RDataClass="magick-image",
+  DispatchClass="FilePath",
+  RDataPath="BioImageDbs/v02/SampleDataset_cats_segmentation.gif",
+  Tags="segmentation:2D images:SampleImage")
+
+readr::write_csv(Meta.Rds, file = "Metadata.csv", append = T, col_names = F)
+readr::write_csv(Meta.gif, file = "Metadata.csv", append = T, col_names = F)
+
+
+```

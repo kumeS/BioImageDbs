@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-07-15" />
+<meta name="date" content="2021-09-16" />
 
 <title>make-data_for_v02</title>
 
@@ -172,9 +172,9 @@ function toggle_visibility(id1) {
 <h1 class="title toc-ignore">make-data_for_v02</h1>
 <p class="author-name">Satoshi Kume<span class="affil-mark">*</span></p>
 <p class="author-email"><span class="affil-mark">*</span><a href="mailto:satoshi.kume.1984@gmail.com">satoshi.kume.1984@gmail.com</a></p>
-<h4 class="date">2021-07-15</h4>
+<h4 class="date">2021-09-16</h4>
 <h4 class="package">Package</h4>
-<p>BioImageDbs 1.0.4</p>
+<p>BioImageDbs 1.0.5</p>
 
 </div>
 
@@ -184,11 +184,19 @@ function toggle_visibility(id1) {
 <li><a href="#load-the-package"><span class="toc-section-number">1</span> Load the package</a></li>
 <li><a href="#convert-the-images-to-the-array-data-in-r"><span class="toc-section-number">2</span> Convert the images to the array data in R</a>
 <ul>
-<li><a href="#sampledataset_cats_segmentation"><span class="toc-section-number">2.1</span> SampleDataset_cats_segmentation</a></li>
-<li><a href="#em_id0005_mouse_kidney_2d"><span class="toc-section-number">2.2</span> EM_id0005_Mouse_Kidney_2D</a>
+<li><a href="#em_id0005_mouse_kidney_2d"><span class="toc-section-number">2.1</span> EM_id0005_Mouse_Kidney_2D</a>
 <ul>
-<li><a href="#mito_originaldata_512-mito_groundtruth_512"><span class="toc-section-number">2.2.1</span> Mito_OriginalData_512 / Mito_GroundTruth_512</a></li>
+<li><a href="#mito_originaldata_512-mito_groundtruth_512"><span class="toc-section-number">2.1.1</span> Mito_OriginalData_512 / Mito_GroundTruth_512</a></li>
+<li><a href="#mitoall_originaldata_1024-mitoall_groundtruth_1024"><span class="toc-section-number">2.1.2</span> MitoAll_OriginalData_1024 / MitoAll_GroundTruth_1024</a></li>
+<li><a href="#nuc_originaldata_1024-nuc_groundtruth_1024"><span class="toc-section-number">2.1.3</span> Nuc_OriginalData_1024 / Nuc_GroundTruth_1024</a></li>
+</ul></li>
+<li><a href="#em_id0006_rat_liver_2d"><span class="toc-section-number">2.2</span> EM_id0006_Rat_Liver_2D</a>
+<ul>
+<li><a href="#mito_originaldata_256-mito_groundtruth_256"><span class="toc-section-number">2.2.1</span> Mito_OriginalData_256 / Mito_GroundTruth_256</a></li>
 <li><a href="#mito_originaldata_512-mito_groundtruth_512-1"><span class="toc-section-number">2.2.2</span> Mito_OriginalData_512 / Mito_GroundTruth_512</a></li>
+<li><a href="#mito_originaldata_1024-mito_groundtruth_1024"><span class="toc-section-number">2.2.3</span> Mito_OriginalData_1024 / Mito_GroundTruth_1024</a></li>
+<li><a href="#mito_originaldata_1024-mito_groundtruth_1024-mito512c_4dtensor"><span class="toc-section-number">2.2.4</span> Mito_OriginalData_1024 / Mito_GroundTruth_1024 (Mito512c_4dTensor)</a></li>
+<li><a href="#nuc_originaldata_1024-nuc_groundtruth_1024-1"><span class="toc-section-number">2.2.5</span> Nuc_OriginalData_1024 / Nuc_GroundTruth_1024</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -207,57 +215,29 @@ document.addEventListener("DOMContentLoaded", function() {
       links[i].target = '_blank';
 });
 </script>
-<p><strong>Last modified:</strong> 2021-07-15 00:08:55<br />
-<strong>Compiled</strong>: Thu Jul 15 00:08:56 2021</p>
+<p><strong>Last modified:</strong> 2021-09-16 14:45:37<br />
+<strong>Compiled</strong>: Thu Sep 16 14:45:42 2021</p>
 <p><strong>This script for the v02 dataset</strong></p>
 <div id="load-the-package" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Load the package</h1>
 <pre class="r"><code>#Install
 #rm(list=ls())
-devtools::install_github( &quot;kumeS/BioImageDbs&quot;, force = TRUE )
+#devtools::install_github( &quot;kumeS/BioImageDbs&quot;, force = TRUE )
 library(BioImageDbs)
 
 #Source
-source(system.file(&quot;scripts&quot;, &quot;ImgProc_for_v02.R&quot;, package=&quot;BioImageDbs&quot;))
-source(system.file(&quot;scripts&quot;, &quot;ImageView_for_v02.R&quot;, package=&quot;BioImageDbs&quot;))</code></pre>
+source(system.file(&quot;scripts&quot;, &quot;./v02/ImgProc_for_v02.R&quot;, package=&quot;BioImageDbs&quot;))
+source(system.file(&quot;scripts&quot;, &quot;./v02/ImageView_for_v02.R&quot;, package=&quot;BioImageDbs&quot;))</code></pre>
 </div>
 <div id="convert-the-images-to-the-array-data-in-r" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Convert the images to the array data in R</h1>
-<div id="sampledataset_cats_segmentation" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> SampleDataset_cats_segmentation</h2>
+<div id="em_id0005_mouse_kidney_2d" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> EM_id0005_Mouse_Kidney_2D</h2>
+<div id="mito_originaldata_512-mito_groundtruth_512" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Mito_OriginalData_512 / Mito_GroundTruth_512</h3>
 <pre class="r"><code>#Set parameters
-DataFolder &lt;- &quot;SampleDataset_cats_segmentation&quot;
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
-WIDTH00 &lt;- 128; HEIGHT00 &lt;- 128; CHANNELS01 &lt;- 3; CHANNELS02 &lt;- 1
-
-#Run the conversion
-DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
-                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
-                  data=DataPath,
-                  path01=DataFolder,
-                  Original_path=&quot;OriginalData&quot;,
-                  GroundTruth_path=&quot;GroundTruth_8b&quot;,
-                  FileName=paste0(DataFolder, &quot;_4dTensor&quot;),
-                  Binary=FALSE)
-#Move data
-filesstrings::file.move(files=paste0(DataFolder, &quot;_4dTensor.Rds&quot;),
-                        destinations=DataPath, overwrite = TRUE)
-#Read data
-Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, &quot;_4dTensor.Rds&quot;) )
-#str(Dat)
-#str(Dat$Train)
-#table(Dat$Train$Train_GroundTruth)
-ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, &quot;_4dTensor_train_dataset&quot;))
-filesstrings::file.move(files=paste0(DataFolder, &quot;_4dTensor_train_dataset.gif&quot;),
-                        destinations=DataPath, overwrite = TRUE)</code></pre>
-</div>
-<div id="em_id0005_mouse_kidney_2d" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> EM_id0005_Mouse_Kidney_2D</h2>
-<div id="mito_originaldata_512-mito_groundtruth_512" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Mito_OriginalData_512 / Mito_GroundTruth_512</h3>
-<pre class="r"><code>#Set parameters
 DataFolder &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
-DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 DataFolder_Name &lt;- &quot;_Mito512_4dTensor&quot;
 Original_path=&quot;Mito_OriginalData_512&quot;
 GroundTruth_path=&quot;Mito_GroundTruth_512&quot;
@@ -272,27 +252,287 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                   GroundTruth_path=GroundTruth_path,
                   FileName=paste0(DataFolder, DataFolder_Name),
                   Binary=FALSE)
+
 #Move data
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
                         destinations=DataPath, overwrite = TRUE)
 #Read data
 Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
-#str(Dat)
-#str(Dat$Train)
-#table(Dat$Train$Train_GroundTruth)
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+
 ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
-                        destinations=DataPath, overwrite = TRUE)</code></pre>
+                        destinations=DataPath, overwrite = TRUE)
+
+
+#Metadata
+Meta.Rds &lt;- data.frame(
+Title=&quot;EM_id0005_Mouse_Kidney_2D_Mito512_4dTensor.Rds&quot;,
+Description=paste0(&quot;wrote in excel&quot;),   
+BiocVersion=&quot;3.13&quot;,
+Genome=&quot;NA&quot;,
+SourceType=&quot;PNG&quot;,
+SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+SourceVersion=&quot;&quot;,
+Species=&quot;Mus musculus&quot;,
+TaxonomyId=&quot;10090&quot;,
+Coordinate_1_based=&quot;NA&quot;,
+DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+RDataClass=&quot;List&quot;,
+DispatchClass=&quot;Rds&quot;,
+RDataPath=&quot;BioImageDbs/v02/&quot;,
+Tags=&quot;Kideny:segmentation:2D images:SampleImage&quot;)
+
+Meta.gif &lt;- data.frame(
+Title=&quot;EM_id0005_Mouse_Kidney_2D_Mito512_4dTensor_train_dataset.gif&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;&quot;,
+  Species=&quot;Mus musculus&quot;,
+  TaxonomyId=&quot;10090&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;magick-image&quot;,
+  DispatchClass=&quot;FilePath&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
+</div>
+<div id="mitoall_originaldata_1024-mitoall_groundtruth_1024" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> MitoAll_OriginalData_1024 / MitoAll_GroundTruth_1024</h3>
+<pre class="r"><code>#Set parameters
+DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
+DataFolder_Name &lt;- &quot;_Mito1024_4dTensor&quot;
+Original_path=&quot;MitoAll_OriginalData_1024&quot;
+GroundTruth_path=&quot;MitoAll_GroundTruth_1024&quot;
+WIDTH00 &lt;- 1024; HEIGHT00 &lt;- 1024; CHANNELS01 &lt;- 1; CHANNELS02 &lt;- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+#Read data
+Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+Meta.Rds &lt;- data.frame(
+  Title=&quot;EM_id0005_Mouse_Kidney_2D_Mito1024_4dTensor.Rds&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;&quot;,
+  Species=&quot;Mus musculus&quot;,
+  TaxonomyId=&quot;10090&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;List&quot;,
+  DispatchClass=&quot;Rds&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+Meta.gif &lt;- data.frame(
+  Title=&quot;EM_id0005_Mouse_Kidney_2D_Mito1024_4dTensor_train_dataset.gif&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;&quot;,
+  Species=&quot;Mus musculus&quot;,
+  TaxonomyId=&quot;10090&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;magick-image&quot;,
+  DispatchClass=&quot;FilePath&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
+</div>
+<div id="nuc_originaldata_1024-nuc_groundtruth_1024" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Nuc_OriginalData_1024 / Nuc_GroundTruth_1024</h3>
+<pre class="r"><code>#Set parameters
+DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
+DataFolder_Name &lt;- &quot;_Nuc1024_4dTensor&quot;
+Original_path=&quot;Nuc_OriginalData_1024&quot;
+GroundTruth_path=&quot;Nuc_GroundTruth_1024&quot;
+WIDTH00 &lt;- 1024; HEIGHT00 &lt;- 1024; CHANNELS01 &lt;- 1; CHANNELS02 &lt;- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+#Read data
+Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+table(Dat$Test$Test_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+Meta.Rds &lt;- data.frame(
+  Title=&quot;EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor.Rds&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;Sep 01 2021&quot;,
+  Species=&quot;Mus musculus&quot;,
+  TaxonomyId=&quot;10090&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;List&quot;,
+  DispatchClass=&quot;Rds&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+Meta.gif &lt;- data.frame(
+  Title=&quot;EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor_train_dataset.gif&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;Sep 01 2021&quot;,
+  Species=&quot;Mus musculus&quot;,
+  TaxonomyId=&quot;10090&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;magick-image&quot;,
+  DispatchClass=&quot;FilePath&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
+</div>
+</div>
+<div id="em_id0006_rat_liver_2d" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> EM_id0006_Rat_Liver_2D</h2>
+<div id="mito_originaldata_256-mito_groundtruth_256" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Mito_OriginalData_256 / Mito_GroundTruth_256</h3>
+<pre class="r"><code>#Set parameters
+DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
+DataFolder_Name &lt;- &quot;_Mito256_4dTensor&quot;
+Original_path=&quot;Mito_OriginalData_256&quot;
+GroundTruth_path=&quot;Mito_GroundTruth_256&quot;
+WIDTH00 &lt;- 256 ; HEIGHT00 &lt;- 256 ; CHANNELS01 &lt;- 1 ; CHANNELS02 &lt;- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+#Read data
+Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+table(Dat$Test$Test_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+Meta.Rds &lt;- data.frame(
+  Title=&quot;EM_id0006_Rat_Liver_2D_Mito256_4dTensor.Rds&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;Sep 01 2021&quot;,
+  Species=&quot;Rattus norvegicus&quot;,
+  TaxonomyId=&quot;10116&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;List&quot;,
+  DispatchClass=&quot;Rds&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+Meta.gif &lt;- data.frame(
+  Title=&quot;EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor_train_dataset.gif&quot;,
+  Description=&quot;wrote in excel&quot;, 
+  BiocVersion=&quot;3.13&quot;,
+  Genome=&quot;NA&quot;,
+  SourceType=&quot;PNG&quot;,
+  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
+  SourceVersion=&quot;Sep 01 2021&quot;,
+  Species=&quot;Rattus norvegicus&quot;,
+  TaxonomyId=&quot;10116&quot;,
+  Coordinate_1_based=&quot;NA&quot;,
+  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  RDataClass=&quot;magick-image&quot;,
+  DispatchClass=&quot;FilePath&quot;,
+  RDataPath=&quot;BioImageDbs/v02/&quot;,
+  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
 </div>
 <div id="mito_originaldata_512-mito_groundtruth_512-1" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Mito_OriginalData_512 / Mito_GroundTruth_512</h3>
 <pre class="r"><code>#Set parameters
-DataFolder &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
 DataFolder_Name &lt;- &quot;_Mito512_4dTensor&quot;
 Original_path=&quot;Mito_OriginalData_512&quot;
 GroundTruth_path=&quot;Mito_GroundTruth_512&quot;
-WIDTH00 &lt;- 512; HEIGHT00 &lt;- 512; CHANNELS01 &lt;- 1; CHANNELS02 &lt;- 1
+WIDTH00 &lt;- 512 ; HEIGHT00 &lt;- 512 ; CHANNELS01 &lt;- 1 ; CHANNELS02 &lt;- 1
 
 #Run the conversion
 DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
@@ -302,18 +542,147 @@ DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                   Original_path=Original_path,
                   GroundTruth_path=GroundTruth_path,
                   FileName=paste0(DataFolder, DataFolder_Name),
-                  Binary=FALSE)
+                  Binary=TRUE)
+
 #Move data
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
                         destinations=DataPath, overwrite = TRUE)
+
 #Read data
 Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
-#str(Dat)
-#str(Dat$Train)
-#table(Dat$Train$Train_GroundTruth)
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+table(Dat$Test$Test_GroundTruth)
+
 ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
 filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
-                        destinations=DataPath, overwrite = TRUE)</code></pre>
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+XXX
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
+</div>
+<div id="mito_originaldata_1024-mito_groundtruth_1024" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Mito_OriginalData_1024 / Mito_GroundTruth_1024</h3>
+<pre class="r"><code>#Set parameters
+DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
+DataFolder_Name &lt;- &quot;_Mito1024_4dTensor&quot;
+Original_path=&quot;Mito_OriginalData_1024&quot;
+GroundTruth_path=&quot;Mito_GroundTruth_1024&quot;
+WIDTH00 &lt;- 1024 ; HEIGHT00 &lt;- 1024 ; CHANNELS01 &lt;- 1 ; CHANNELS02 &lt;- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Read data
+Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+table(Dat$Test$Test_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+###
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
+</div>
+<div id="mito_originaldata_1024-mito_groundtruth_1024-mito512c_4dtensor" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Mito_OriginalData_1024 / Mito_GroundTruth_1024 (Mito512c_4dTensor)</h3>
+<pre class="r"><code>#Set parameters
+DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
+DataFolder_Name &lt;- &quot;_Mito512c_4dTensor&quot;
+Original_path=&quot;Mito_OriginalData_1024&quot;
+GroundTruth_path=&quot;Mito_GroundTruth_1024&quot;
+WIDTH00 &lt;- 512 ; HEIGHT00 &lt;- 512 ; CHANNELS01 &lt;- 1 ; CHANNELS02 &lt;- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Read data
+Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+table(Dat$Test$Test_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+###
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
+</div>
+<div id="nuc_originaldata_1024-nuc_groundtruth_1024-1" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Nuc_OriginalData_1024 / Nuc_GroundTruth_1024</h3>
+<pre class="r"><code>#Set parameters
+DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
+DataFolder &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
+DataFolder_Name &lt;- &quot;_Nuc1024_4dTensor&quot;
+Original_path=&quot;Nuc_OriginalData_1024&quot;
+GroundTruth_path=&quot;Nuc_GroundTruth_1024&quot;
+WIDTH00 &lt;- 1024 ; HEIGHT00 &lt;- 1024 ; CHANNELS01 &lt;- 1 ; CHANNELS02 &lt;- 1
+
+#Run the conversion
+DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
+                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
+                  data=DataPath,
+                  path01=DataFolder,
+                  Original_path=Original_path,
+                  GroundTruth_path=GroundTruth_path,
+                  FileName=paste0(DataFolder, DataFolder_Name),
+                  Binary=TRUE)
+
+#Move data
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Read data
+Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
+str(Dat)
+table(Dat$Train$Train_GroundTruth)
+table(Dat$Test$Test_GroundTruth)
+
+ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
+filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
+                        destinations=DataPath, overwrite = TRUE)
+
+#Metadata
+###
+
+readr::write_csv(Meta.Rds, file = &quot;Metadata.csv&quot;, append = T, col_names = F)
+readr::write_csv(Meta.gif, file = &quot;Metadata.csv&quot;, append = T, col_names = F)</code></pre>
 </div>
 </div>
 </div>
