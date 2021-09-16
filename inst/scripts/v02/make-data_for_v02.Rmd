@@ -23,7 +23,6 @@ editor_options:
 BiocStyle::markdown()
 ```
 
-**Last modified:** `r file.info("make-data_for_v02.Rmd")$mtime`<br />
 **Compiled**: `r date()`
 
 **This script for the v02 dataset**
