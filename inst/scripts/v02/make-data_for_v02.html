@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-09-18" />
+<meta name="date" content="2021-09-19" />
 
 <title>make-data_for_v02</title>
 
@@ -172,7 +172,7 @@ function toggle_visibility(id1) {
 <h1 class="title toc-ignore">make-data_for_v02</h1>
 <p class="author-name">Satoshi Kume<span class="affil-mark">*</span></p>
 <p class="author-email"><span class="affil-mark">*</span><a href="mailto:satoshi.kume.1984@gmail.com">satoshi.kume.1984@gmail.com</a></p>
-<h4 class="date">2021-09-18</h4>
+<h4 class="date">2021-09-19</h4>
 <h4 class="package">Package</h4>
 <p>BioImageDbs 1.0.5</p>
 
@@ -186,11 +186,10 @@ function toggle_visibility(id1) {
 <ul>
 <li><a href="#em_id0005_mouse_kidney_2d"><span class="toc-section-number">2.1</span> EM_id0005_Mouse_Kidney_2D</a>
 <ul>
-<li><a href="#nuc_originaldata_1024-nuc_groundtruth_1024"><span class="toc-section-number">2.1.1</span> Nuc_OriginalData_1024 / Nuc_GroundTruth_1024</a></li>
-<li><a href="#all_mito_512_originaldata-all_mito_512_groundtruth"><span class="toc-section-number">2.1.2</span> All_Mito_512_OriginalData / All_Mito_512_GroundTruth</a></li>
-<li><a href="#all_mito_1024_originaldata-all_mito_1024_groundtruth"><span class="toc-section-number">2.1.3</span> All_Mito_1024_OriginalData / All_Mito_1024_GroundTruth</a></li>
-<li><a href="#all_nuc_1024_originaldata-all_nuc_1024_groundtruth"><span class="toc-section-number">2.1.4</span> All_Nuc_1024_OriginalData / All_Nuc_1024_GroundTruth</a></li>
-<li><a href="#wide-wideem_mouse_kidney_fused_img_126_190725cut-crop_x1024-crop_x2048"><span class="toc-section-number">2.1.5</span> 03_Wide / WideEM_Mouse_Kidney_Fused_Img_126_190725cut / crop_x1024 / crop_x2048</a></li>
+<li><a href="#all_mito_512_originaldata-all_mito_512_groundtruth"><span class="toc-section-number">2.1.1</span> All_Mito_512_OriginalData / All_Mito_512_GroundTruth</a></li>
+<li><a href="#all_mito_1024_originaldata-all_mito_1024_groundtruth"><span class="toc-section-number">2.1.2</span> All_Mito_1024_OriginalData / All_Mito_1024_GroundTruth</a></li>
+<li><a href="#all_nuc_1024_originaldata-all_nuc_1024_groundtruth"><span class="toc-section-number">2.1.3</span> All_Nuc_1024_OriginalData / All_Nuc_1024_GroundTruth</a></li>
+<li><a href="#wide-wideem_mouse_kidney_fused_img_126_190725cut-crop_x1024-crop_x2048"><span class="toc-section-number">2.1.4</span> 03_Wide / WideEM_Mouse_Kidney_Fused_Img_126_190725cut / crop_x1024 / crop_x2048</a></li>
 </ul></li>
 <li><a href="#em_id0006_rat_liver_2d"><span class="toc-section-number">2.2</span> EM_id0006_Rat_Liver_2D</a>
 <ul>
@@ -251,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
       links[i].target = '_blank';
 });
 </script>
-<p><strong>Compiled</strong>: Sat Sep 18 15:07:05 2021</p>
+<p><strong>Compiled</strong>: Sun Sep 19 02:34:54 2021</p>
 <p><strong>This script for the v02 dataset</strong></p>
 <div id="load-the-package" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Load the package</h1>
@@ -267,80 +266,8 @@ source(system.file(&quot;scripts&quot;, &quot;./v02/ImageView_for_v02.R&quot;, p
 <h1><span class="header-section-number">2</span> Convert the images to the array data in R</h1>
 <div id="em_id0005_mouse_kidney_2d" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> EM_id0005_Mouse_Kidney_2D</h2>
-<div id="nuc_originaldata_1024-nuc_groundtruth_1024" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Nuc_OriginalData_1024 / Nuc_GroundTruth_1024</h3>
-<pre class="r"><code>#Set parameters
-DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
-DataFolder &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
-DataFolder_Name &lt;- &quot;_Nuc1024_4dTensor&quot;
-Original_path=&quot;Nuc_OriginalData_1024&quot;
-GroundTruth_path=&quot;Nuc_GroundTruth_1024&quot;
-WIDTH00 &lt;- 1024; HEIGHT00 &lt;- 1024; CHANNELS01 &lt;- 1; CHANNELS02 &lt;- 1
-
-#Run the conversion
-DataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
-                  CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
-                  data=DataPath,
-                  path01=DataFolder,
-                  Original_path=Original_path,
-                  GroundTruth_path=GroundTruth_path,
-                  FileName=paste0(DataFolder, DataFolder_Name),
-                  Binary=TRUE)
-
-#Move data
-filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
-                        destinations=DataPath, overwrite = TRUE)
-#Read data
-Dat &lt;- readRDS( paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
-str(Dat)
-table(Dat$Train$Train_GroundTruth)
-table(Dat$Test$Test_GroundTruth)
-
-ImageView2D(Dat$Train, Interval=0.8, Name=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset&quot;))
-filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_train_dataset.gif&quot;),
-                        destinations=DataPath, overwrite = TRUE)
-
-#Metadata
-Meta.Rds &lt;- data.frame(
-  Title=&quot;EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor.Rds&quot;,
-  Description=&quot;wrote in excel&quot;, 
-  BiocVersion=&quot;3.14&quot;,
-  Genome=&quot;NA&quot;,
-  SourceType=&quot;PNG&quot;,
-  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
-  SourceVersion=&quot;Sep 01 2021&quot;,
-  Species=&quot;Mus musculus&quot;,
-  TaxonomyId=&quot;10090&quot;,
-  Coordinate_1_based=&quot;NA&quot;,
-  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
-  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
-  RDataClass=&quot;List&quot;,
-  DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
-Meta.gif &lt;- data.frame(
-  Title=&quot;EM_id0005_Mouse_Kidney_2D_Nuc1024_4dTensor_train_dataset.gif&quot;,
-  Description=&quot;wrote in excel&quot;, 
-  BiocVersion=&quot;3.14&quot;,
-  Genome=&quot;NA&quot;,
-  SourceType=&quot;PNG&quot;,
-  SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
-  SourceVersion=&quot;Sep 01 2021&quot;,
-  Species=&quot;Mus musculus&quot;,
-  TaxonomyId=&quot;10090&quot;,
-  Coordinate_1_based=&quot;NA&quot;,
-  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
-  Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
-  RDataClass=&quot;magick-image&quot;,
-  DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
-
-readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
-readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
-</div>
-<div id="all_mito_512_originaldata-all_mito_512_groundtruth" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> All_Mito_512_OriginalData / All_Mito_512_GroundTruth</h3>
+<div id="all_mito_512_originaldata-all_mito_512_groundtruth" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> All_Mito_512_OriginalData / All_Mito_512_GroundTruth</h3>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 DataFolder &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
@@ -360,7 +287,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str(Img)
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -369,8 +296,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitocondoria for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -383,11 +310,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -400,14 +327,14 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
-<div id="all_mito_1024_originaldata-all_mito_1024_groundtruth" class="section level3" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> All_Mito_1024_OriginalData / All_Mito_1024_GroundTruth</h3>
+<div id="all_mito_1024_originaldata-all_mito_1024_groundtruth" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> All_Mito_1024_OriginalData / All_Mito_1024_GroundTruth</h3>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 DataFolder_Name &lt;- &quot;_All_Mito_1024_4dTensor&quot;
@@ -426,7 +353,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str(Img)
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -435,8 +362,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitocondoria for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -449,11 +376,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -466,14 +393,14 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
-<div id="all_nuc_1024_originaldata-all_nuc_1024_groundtruth" class="section level3" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> All_Nuc_1024_OriginalData / All_Nuc_1024_GroundTruth</h3>
+<div id="all_nuc_1024_originaldata-all_nuc_1024_groundtruth" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> All_Nuc_1024_OriginalData / All_Nuc_1024_GroundTruth</h3>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 DataFolder_Name &lt;- &quot;_All_Nuc_1024_4dTensor&quot;
@@ -492,7 +419,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -501,8 +428,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of nucleus for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -515,11 +442,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -532,14 +459,16 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
-<div id="wide-wideem_mouse_kidney_fused_img_126_190725cut-crop_x1024-crop_x2048" class="section level3" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> 03_Wide / WideEM_Mouse_Kidney_Fused_Img_126_190725cut / crop_x1024 / crop_x2048</h3>
+<div id="wide-wideem_mouse_kidney_fused_img_126_190725cut-crop_x1024-crop_x2048" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> 03_Wide / WideEM_Mouse_Kidney_Fused_Img_126_190725cut / crop_x1024 / crop_x2048</h3>
+<p>crop_x1024: 28x23 tiles
+crop_x2048: 14x11 tiles</p>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 Path01 &lt;- &quot;EM_id0005_Mouse_Kidney_2D&quot;
@@ -563,7 +492,7 @@ saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;03
 #Metadata
 Meta.Rds &lt;- data.frame(
   Title=paste0(Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=&quot;4D arrays with non-labels for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing. The dataset of crop_x1024 consisted of 28 x 23 tiles. The dataset of crop_x2048 consisted of 14 x 11 tiles.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -576,8 +505,8 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
@@ -604,7 +533,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -613,8 +542,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitocondoria for the image segmentation. The rat liver section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x7500 (about 12 nm/px). To convert them as the Rds file, the images were resized to be 256x256 pixels during the processing.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -627,11 +556,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -644,8 +573,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -670,7 +599,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -679,8 +608,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitocondoria for the image segmentation. The rat liver section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x7500 (about 12 nm/px). To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -693,11 +622,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -710,8 +639,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -736,7 +665,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -745,8 +674,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitocondoria for the image segmentation. The rat liver section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x7500 (about 12 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -759,11 +688,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -776,8 +705,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -802,7 +731,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -811,8 +740,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, &quot;_&quot;, sub(&quot;_OriginalData&quot;, &quot;_4dtensor&quot;, Original_path), &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of nucleus for the image segmentation. The rat liver section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x7500 (about 12 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -825,11 +754,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -842,14 +771,16 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
 <div id="wide-wideem_rat_liver_ncmir_001_160408_1_1185-crop_x1024-crop_x2048" class="section level3" number="2.2.5">
 <h3><span class="header-section-number">2.2.5</span> 03_Wide / WideEM_Rat_Liver_NCMIR_001_160408_1_1185 / crop_x1024 / crop_x2048</h3>
+<p>crop_x1024: 82x11 tiles
+crop_x2048: 41x5 tiles</p>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 Path01 &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
@@ -873,7 +804,7 @@ saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;03
 #Metadata
 Meta.Rds &lt;- data.frame(
   Title=paste0(Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=&quot;4D arrays with non-labels for the image segmentation. The rat liver section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x7500 (about 12 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing. The dataset of crop_x1024 consisted of 82 x 11 tiles. The dataset of crop_x2048 consisted of 41 x 5 tiles.&quot;,   
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -886,13 +817,15 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
 <div id="wide-wideem_rat_liver_ncmir_001_160408_1186_2370-crop_x1024-crop_x2048" class="section level3" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> 03_Wide / WideEM_Rat_Liver_NCMIR_001_160408_1186_2370 / crop_x1024 / crop_x2048</h3>
+<p>crop_x1024: 82x11 tiles
+crop_x2048: 41x5 tiles</p>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 Path01 &lt;- &quot;EM_id0006_Rat_Liver_2D&quot;
@@ -916,7 +849,7 @@ saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;03
 #Metadata
 Meta.Rds &lt;- data.frame(
   Title=paste0(Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=&quot;4D arrays with non-labels for the image segmentation. The rat liver section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x7500 (about 12 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing. The dataset of crop_x1024 consisted of 82 x 11 tiles. The dataset of crop_x2048 consisted of 41 x 5 tiles.&quot;,   
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -929,8 +862,8 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
@@ -957,7 +890,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -966,8 +899,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of non-cell area for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (1000x1000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -980,11 +913,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -997,8 +930,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1023,7 +956,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8,
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1032,8 +965,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitochondria for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (1000x1000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1046,11 +979,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1063,8 +996,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1089,7 +1022,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1098,8 +1031,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of nucleus for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (1000x1000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1112,11 +1045,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1129,8 +1062,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1155,7 +1088,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1164,8 +1097,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of fibroblast for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (3000x3000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;,   
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1178,11 +1111,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1195,8 +1128,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1221,7 +1154,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1230,8 +1163,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of podocyte for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (3000x3000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1244,11 +1177,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1261,8 +1194,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1287,7 +1220,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1296,8 +1229,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of uriniferous tubule for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (10000x10000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1310,11 +1243,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1327,8 +1260,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1353,7 +1286,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1362,8 +1295,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of glomerulus for the image segmentation. The mouse kidney section was examined in a scanning electron microscope with the detection of backscattered electron. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images (10000x10000 pixels) were resized to be 1024x1024 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1376,11 +1309,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1393,8 +1326,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1422,7 +1355,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1431,8 +1364,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of cell body for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6-7kV and the working distance was 4 mm. The imaging magnification was x4000 (about 5.9-11.8 nm/px). To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1445,11 +1378,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1462,8 +1395,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1488,7 +1421,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1497,8 +1430,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of mitochondria for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6-7kV and the working distance was 4 mm. The imaging magnification was x4000 (about 5.9-11.8 nm/px). To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1511,11 +1444,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1528,8 +1461,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1554,7 +1487,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1563,8 +1496,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of nucleus for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6-7kV and the working distance was 4 mm. The imaging magnification was x4000 (about 5.9-11.8 nm/px). To convert them as the Rds file, the images were resized to be 512x512 (cropped images) pixels during the processing.&quot;, 
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1577,11 +1510,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1594,8 +1527,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1620,7 +1553,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1629,8 +1562,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of nucleus for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6-7kV and the working distance was 4 mm. The imaging magnification was x4000 (about 5.9-11.8 nm/px). To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1643,11 +1576,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1660,8 +1593,8 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -1686,7 +1619,7 @@ Img &lt;- ImgDataImport_2d_seg(WIDTH = WIDTH00, HEIGHT = HEIGHT00,
                             Original_path=Original_path,
                             GroundTruth_path=GroundTruth_path )
 str( Img )
-saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, DataFolder_Name, &quot;.Rds&quot;) )
+saveRDS(Img, paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;) )
 
 ImageView2D(Img, Interval=0.8, 
             Name=paste0(DataFolder, DataFolder_Name, &quot;_dataset&quot;))
@@ -1695,8 +1628,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(Path01, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the single label of nucleus for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6-7kV and the working distance was 4 mm. The imaging magnification was x4000 (about 5.9-11.8 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1709,11 +1642,11 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1726,16 +1659,16 @@ Meta.gif &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
 <div id="wide-wideem_nb4_097_01-crop_x1024-crop_x2048" class="section level3" number="2.4.6">
 <h3><span class="header-section-number">2.4.6</span> 03_Wide / WideEM_NB4_097_01 / crop_x1024 / crop_x2048</h3>
-<p>crop_x1024: 40x16
-crop_x2048: 20x8</p>
+<p>crop_x1024: 40x16 tiles
+crop_x2048: 20x8 tiles</p>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 Path01 &lt;- &quot;EM_id0008_Human_NB4_2D&quot;
@@ -1761,7 +1694,7 @@ saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;03
 #Metadata
 Meta.Rds &lt;- data.frame(
   Title=paste0(Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=&quot;4D arrays with non-labels for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6kV and the working distance was 4 mm. The imaging magnification was x4000 (about 11.8 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing. The dataset of crop_x1024 consisted of 40 x 16 tiles. The dataset of crop_x2048 consisted of 20 x 8 tiles.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1774,15 +1707,15 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
 <div id="wide-wideem_nb4_097_02-crop_x1024-crop_x2048" class="section level3" number="2.4.7">
 <h3><span class="header-section-number">2.4.7</span> 03_Wide / WideEM_NB4_097_02 / crop_x1024 / crop_x2048</h3>
-<p>crop_x1024: 40x15
-crop_x2048: 20x7</p>
+<p>crop_x1024: 40x15 tiles
+crop_x2048: 20x7 tiles</p>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 Path01 &lt;- &quot;EM_id0008_Human_NB4_2D&quot;
@@ -1808,7 +1741,7 @@ saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;03
 #Metadata
 Meta.Rds &lt;- data.frame(
   Title=paste0(Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=&quot;4D arrays with non-labels for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6kV and the working distance was 4 mm. The imaging magnification was x4000 (about 11.8 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing. The dataset of crop_x1024 consisted of 40 x 15 tiles. The dataset of crop_x2048 consisted of 20 x 7 tiles.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1821,8 +1754,8 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
@@ -1830,8 +1763,8 @@ readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), a
 <h3><span class="header-section-number">2.4.8</span> 03_Wide / WideEM_NB4_127 / crop_x1024 / crop_x2048</h3>
 <p>convert FusedImg_127_190725_HumanNB4_forDL_X7Y8_x4000_O15.png -crop 1024x1024 WideEM_x1024-%04d.png</p>
 <p>convert FusedImg_127_190725_HumanNB4_forDL_X7Y8_x4000_O15.png -crop 2048x2048 WideEM_x2048-%04d.png</p>
-<p>crop_x1024: 15x12
-crop_x2048: 7x6</p>
+<p>crop_x1024: 15x12 tiles
+crop_x2048: 7x6 tiles</p>
 <pre class="r"><code>#Set parameters
 DataPath &lt;- &quot;./BioImageDbs_02_Dataset_v02&quot;
 Path01 &lt;- &quot;EM_id0008_Human_NB4_2D&quot;
@@ -1857,7 +1790,7 @@ saveRDS(Img, paste0(DataPath, &quot;/&quot;, Path01, &quot;_&quot;, sub(&quot;03
 #Metadata
 Meta.Rds &lt;- data.frame(
   Title=paste0(Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=&quot;4D arrays with non-labels for the image segmentation. The section of human NB-4 cell (Human Leukemia, pre B-cell, cell line) was examined in a scanning electron microscope with the detection of backscattered electron. The acceleration voltage was 6kV and the working distance was 4 mm. The imaging magnification was x4000 (about 5.9 nm/px). To convert them as the Rds file, the images were resized to be 1024x1024 pixels during the processing. The dataset of crop_x1024 consisted of 15 x 12 tiles. The dataset of crop_x2048 consisted of 7 x 6 tiles.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1870,8 +1803,8 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, Path01, &quot;_&quot;, sub(&quot;03_Wide/&quot;, &quot;&quot;, Path02), &quot;_4dtensor.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
 </div>
@@ -1939,8 +1872,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the multi-labels for the image segmentation. The section of murine bone marrow derived-mast cells was examined in a Philips/FEI CM10 (80 kV) electron microscope equipped with a Bio-scan Camera Model 792. Images were recorded with Digital Micrograph softwwere (Gatan). To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -1953,25 +1886,25 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
   SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
-  SourceVersion=&quot;Sep 01 2021&quot;,
+  SourceVersion=&quot;Mar 10 2011&quot;,
   Species=&quot;Mus musculus&quot;,
   TaxonomyId=&quot;10090&quot;,
   Coordinate_1_based=&quot;NA&quot;,
-  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  DataProvider=&quot;Pattern Recognition and Image Processing, University of Freiburg. (https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html)&quot;,
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -2026,13 +1959,13 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the multi-labels for the image segmentation. The section of primary human T cells from blood of a healthy donor and phytohemagglutinin/IL-2 expanded human T cells (T cell blasts) was examined in a Philips/FEI CM10 (80 kV) electron microscope equipped with a Bio-scan Camera Model 792. Images were recorded with Digital Micrograph softwwere (Gatan). The imaging magnification was x5800. To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,  
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
   SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
-  SourceVersion=&quot;Mar 10 2011&quot;,
+  SourceVersion=&quot;Aug 27 2011&quot;,
   Species=&quot;Homo sapiens&quot;,
   TaxonomyId=&quot;9606&quot;,
   Coordinate_1_based=&quot;NA&quot;,
@@ -2040,25 +1973,25 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
   SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
-  SourceVersion=&quot;Sep 01 2021&quot;,
+  SourceVersion=&quot;Aug 27 2011&quot;,
   Species=&quot;Homo sapiens&quot;,
   TaxonomyId=&quot;9606&quot;,
   Coordinate_1_based=&quot;NA&quot;,
-  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  DataProvider=&quot;Pattern Recognition and Image Processing, University of Freiburg. (https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html)&quot;,
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>
@@ -2113,8 +2046,8 @@ filesstrings::file.move(files=paste0(DataFolder, DataFolder_Name, &quot;_dataset
 
 #Metadata
 Meta.Rds &lt;- data.frame(
-  Title=paste0(DataPath, &quot;/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Title=paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Description=&quot;4D arrays with the multi-labels for the image segmentation. The section of human T-cell line Jurkat was examined in a Philips/FEI CM10 (80 kV) electron microscope equipped with a Bio-scan Camera Model 792. Images were recorded with Digital Micrograph softwwere (Gatan). The imaging magnification was x4600. To convert them as the Rds file, the images were resized to be 512x512 pixels during the processing.&quot;,    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
@@ -2127,25 +2060,25 @@ Meta.Rds &lt;- data.frame(
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;List&quot;,
   DispatchClass=&quot;Rds&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images:SampleImage&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;.Rds&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 Meta.gif &lt;- data.frame(
   Title=paste0(DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
-  Description=&quot;wrote in excel&quot;, 
+  Description=paste0(&quot;A animation file (.gif) of the dataset of &quot;, paste0(DataFolder, DataFolder_Name, &quot;.Rds&quot;)),    
   BiocVersion=&quot;3.14&quot;,
   Genome=&quot;NA&quot;,
   SourceType=&quot;PNG&quot;,
   SourceUrl=&quot;https://github.com/kumeS/BioImageDbs&quot;,
-  SourceVersion=&quot;Sep 01 2021&quot;,
+  SourceVersion=&quot;Mar 10 2011&quot;,
   Species=&quot;Homo sapiens&quot;,
   TaxonomyId=&quot;9606&quot;,
   Coordinate_1_based=&quot;NA&quot;,
-  DataProvider=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
+  DataProvider=&quot;Pattern Recognition and Image Processing, University of Freiburg. (https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html)&quot;,
   Maintainer=&quot;Satoshi Kume &lt;satoshi.kume.1984@gmail.com&gt;&quot;,
   RDataClass=&quot;magick-image&quot;,
   DispatchClass=&quot;FilePath&quot;,
-  RDataPath=&quot;BioImageDbs/v02/&quot;,
-  Tags=&quot;segmentation:2D images&quot;)
+  RDataPath=paste0(&quot;BioImageDbs/v02/&quot;, DataFolder, DataFolder_Name, &quot;_dataset.gif&quot;),
+  Tags=&quot;bioimage:segmentation:2D images:microscope:electron microscopy&quot;)
 
 readr::write_csv(Meta.Rds, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)
 readr::write_csv(Meta.gif, file = paste0(DataPath, &quot;/Metadata.csv&quot;), append = T, col_names = F)</code></pre>

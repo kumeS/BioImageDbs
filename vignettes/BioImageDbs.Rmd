@@ -2,10 +2,6 @@
 title: "Providing Bioimage Dataset for ExperimentHub"
 author: 
 - name: Satoshi Kume
-  affiliation:
-  - RIKEN Center for Biosystems Dynamics Research
-  - Osaka City University Center for Health Science Innovation
-  - Osaka Electro-Communication University
   email: satoshi.kume.1984@gmail.com
 date: "`r Sys.Date()`"
 graphics: no
@@ -169,6 +165,71 @@ img <- system.file("images", "EM_id0004.png", package="BioImageDbs")
 EBImage::display(EBImage::readImage(files = img))
 ```
 
+```{r Fig008, fig.cap = "EM_id0005_Mouse_Kidney_2D_All_Mito_1024_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0005_Mouse_Kidney_2D_Mito.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig009, fig.cap = "EM_id0005_Mouse_Kidney_2D_All_Nuc_1024_4dtensor.Rds", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0005_Mouse_Kidney_2D_Nuc.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig010, fig.cap = "EM_id0006_Rat_Liver_2D_All_Mito_1024_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0006_Rat_Liver_Mito.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig011, fig.cap = "EM_id0006_Rat_Liver_2D_All_Nuc_1024_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0006_Rat_Liver_Nuc.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig012, fig.cap = "EM_id0007_Mouse_Kidney_MultiScale_All_Low_Glomerulus_1024_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0007_Mouse_Kidney_MultiScale_Glomerulus.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig013, fig.cap = "EM_id0007_Mouse_Kidney_MultiScale_All_Middle_Podocyte_1024_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0007_Mouse_Kidney_MultiScale_Podocyte.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig014, fig.cap = "EM_id0008_Human_NB4_2D_All_Cel_512_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0008_Human_NB4_Nuc.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig015, fig.cap = "EM_id0008_Human_NB4_2D_All_Nuc_1024_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0008_Human_NB4_Cell.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig016, fig.cap = "EM_id0009_MurineBMMC_All_512_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0009.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig017, fig.cap = "EM_id0010_HumanBlast_All_512_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0010.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
+
+```{r Fig018, fig.cap = "EM_id0011_HumanJurkat_All_512_4dTensor_dataset.gif", echo = FALSE}
+options(EBImage.display = "raster")
+img <- system.file("images", "EM_id0011.png", package="BioImageDbs")
+EBImage::display(EBImage::readImage(files = img))
+```
 
 ```{r Fig005, fig.cap = "LM_id0001_DIC_C2DH_HeLa_4dTensor_train_dataset.gif", echo = FALSE}
 #magick::image_read(qr[[3]])
@@ -212,18 +273,27 @@ The model in Keras should be prepared before the execution.
 
 For this dataset in BioImageDbs, the published open data was used as follows:
 
-1.	For cellular ultra-microstructures, electron microscopy-based imaging data 
+1.	For cellular ultra-microstructures, electron microscopy-based imaging data of 
+mouse B myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) [@Morath2013] 
+and primary human T cell isolated from peripheral blood mononuclear cells 
+(ex. EM_id0004_PrHudata_4dTensor.Rda) [@Morath2013], Human NB-4 cell
+(ex. EM_id0008_Human_NB4_2D_All_Cel_512_4dTensor.Rds) [@Kume2017], 
+murine bone marrow derived-mast cells (ex. EM_id0009_MurineBMMC_All_512_4dTensor.Rds) [@Morath2013], 
+human blasts (ex. EM_id0010_HumanBlast_All_512_4dTensor.Rds) [@Morath2013], and
+human T-cell line Jurkat (ex. EM_id0011_HumanJurkat_All_512_4dTensor.Rds) [@Morath2013]
+were used.
+
+2. For bio-tissue ultra-microstructures, electron microscopy-based imaging data 
 of the mouse brain (ex. EM_id0001_Brain_CA1_hippocampus_region_5dTensor.Rda) 
 [@Lucchi2012;@Lucchi2013bib], Drosophila brain (ex. EM_id0002_Drosophila_brain_region_5dTensor.Rda) 
-[@Cardona2010;@ArgandaCarreras2015], mouse B myeloma cell line J558L (ex. EM_id0003_J558L_4dTensor.Rda) @Morath2013 
-and primary human T cell isolated from peripheral blood mononuclear cells 
-(ex. EM_id0004_PrHudata_4dTensor.Rda) @Morath2013 were used.
+[@Cardona2010;@ArgandaCarreras2015], mouse kidney (ex. EM_id0005_Mouse_Kidney_2D_All_Nuc_1024_4dtensor.Rds) [@Kume2016]
+and rat liver (ex. EM_id0006_Rat_Liver_2D_All_Mito_1024_4dtensor.Rds) [@Kume2016] were used.
 
-2.	For cell tracking, light microscopy-based imaging data of the human HeLa 
+3.	For cell tracking, light microscopy-based imaging data of the human HeLa 
 cells on a flat glass (ex. LM_id0001_DIC_C2DH_HeLa_4dTensor.Rda) [@Maska2014;@Ulman2017], 
 human glioblastoma-astrocytoma U373 cells on a polyacrylamide substrate 
 (ex. LM_id0002_PhC_C2DH_U373_4dTensor.Rda) [@Maska2014;@Ulman2017] and GFP-GOWT1 mouse stem 
-cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) @Bartova2011 were used.
+cells (ex. LM_id0003_Fluo_N2DH_GOWT1_4dTensor.Rda) [@Bartova2011] were used.
 
 The values of the supervised labels were provided as array data with binary 
 or multiple values. The detailed information was described in the metadata 
@@ -231,6 +301,7 @@ file of BioImageDbs.
 Some of cell tracking data were obtained from the [cell tracking challenge](http://celltrackingchallenge.net/2d-datasets/).
 
 # Session information {.unnumbered}
+
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()
 ```
