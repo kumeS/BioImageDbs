@@ -6,7 +6,7 @@
 ImageView3D <- function(ImgArray, Sample=1,
                         Lab01="Original", Lab02="Merge", Lab03="Supervised",
                         Name=paste0(DataFolder, "_train_dataset"),
-                        Interval = 0.1, Dpi=72,
+                        Interval = 0.1, Dpi=72,Thres=0.4,
                         Width = 500, Height=250){
     options(EBImage.display = "raster")
     XYsize = 256
@@ -42,10 +42,11 @@ ImageView3D <- function(ImgArray, Sample=1,
 ImageView2D <- function(ImgArray, Name, Interval = 0.25, N=100 ){
     Lab01="Original"; Lab02="Merge"; Lab03="Supervised"
     Opac=c(0.2, 0.2); Dpi=72
-    Width = 500; Height=250; XYsize = 256
+    Width = 500; Height=250; XYsize = 256; Thres=0.4
     options(EBImage.display = "raster")
     names(ImgArray) <- c("Original", "GroundTruth")
-
+    ImgArray$GroundTruth[ImgArray$GroundTruth < Thres] <- 0
+    ImgArray$GroundTruth[ImgArray$GroundTruth >= Thres] <- 1
     if(dim(ImgArray$Original)[1] > N){
       Seq0 <- 1:N
     }else{

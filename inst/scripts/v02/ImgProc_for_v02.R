@@ -63,7 +63,7 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
                        path02="01_Training",
                        Original_path="OriginalData",
                        GroundTruth_path="mitochondria_GT",
-                       OriginalDataOnly=FALSE){
+                       OriginalDataOnly=FALSE, Type="png", Max=FALSE){
     DataDIR <- paste0(data, "/", path01, "/", path02)
     Original_PATH = paste0(DataDIR, "/", Original_path)
     GroundTruth_PATH = paste0(DataDIR, "/", GroundTruth_path)
@@ -77,7 +77,7 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
     if(Z== -1){Z <- length(dir(m0[1]))}
     for(n in seq_len(m1)){
     ImageFileTrain = paste0(m0[n], "/", dir(m0[n]))[1:Z]
-    X = purrr::map(ImageFileTrain, processing_2d_image_train_test, shape = SHAPE)
+    X = purrr::map(ImageFileTrain, processing_2d_image_train_test, shape = SHAPE, type=Type)
     DatX[[n]] <- simplify2array(X)
     }
 
@@ -91,7 +91,7 @@ ImgDataImport_3d_seg <- function(WIDTH  = 256, HEIGHT = 256, Z=-1, CHANNELS = 1,
     DatY <- c()
     for(n in seq_len(m3)){
     ImageFileTrain = paste0(m2[n], "/", dir(m2[n]))[1:Z]
-    Y = purrr::map(ImageFileTrain, processing_2d_image_GT, shape = SHAPE)
+    Y = purrr::map(ImageFileTrain, processing_2d_image_GT, shape = SHAPE, Max=Max)
     DatY[[n]] <- simplify2array(Y)
     }
 
@@ -171,7 +171,8 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256,
                        path01="LM_id0001_DIC_C2DH_HeLa",
                        path02="01_Training",
                        Original_path="OriginalData",
-                       GroundTruth_path="Cell_GroundTruth_8b" ){
+                       GroundTruth_path="Cell_GroundTruth_8b",
+                       Type="png", GT=TRUE){
 
     DataDIR <- paste0(data, "/", path01)
     Original_PATH = paste0(DataDIR, "/", path02, "/", Original_path)
@@ -181,7 +182,7 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256,
     m0 <- paste0(Original_PATH, "/", dir(Original_PATH))
     DatX <- c()
 
-    try(X <- purrr::map(m0, processing_2d_image_train_test, shape = SHAPE), silent = T)
+    try(X <- purrr::map(m0, processing_2d_image_train_test, shape = SHAPE, type=Type), silent = T)
     #str(X)
     DatX <- base::simplify2array(X)
     #str(DatX)
@@ -194,7 +195,14 @@ ImgDataImport_2d_seg  <- function(WIDTH = 256, HEIGHT = 256,
     m0 <- paste0(GroundTruth_PATH, "/", dir(GroundTruth_PATH))
     DatY <- c()
 
-    try(Y <- map(m0, processing_2d_image_train_test, shape = SHAPE), silent = T)
+    if(GT){
+    try(Y <- map(m0, processing_2d_image_GT, shape = SHAPE, type=Type), silent = T)
+    #for(n in 1:length(m0)){processing_2d_image_GT(m0[n], shape = SHAPE, type=Type)}
+    }else{
+    try(Y <- map(m0, processing_2d_image_train_test, shape = SHAPE, type=Type), silent = T)
+    #for(n in 1:length(m0)){processing_2d_image_train_test(m0[n], shape = SHAPE, type=Type)}
+    }
+
     #str(Y); table(unlist(Y))
     DatY <- base::simplify2array(Y)
     #str(DatY)
@@ -216,14 +224,15 @@ DataImport_2d_seg <- function(WIDTH = 512, HEIGHT = 512,
                        Original_path="OriginalData",
                        GroundTruth_path="Cell_GroundTruth_8b",
                        FileName="LM_id0001_DIC_C2DH_HeLa",
-                       Binary=FALSE){
+                       Binary=FALSE, Type="png", Thres=0.1){
 a <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
                        CHANNELS01 = CHANNELS01, CHANNELS02 = CHANNELS02,
                        data=data,
                        path01=path01,
                        path02="01_Training",
                        Original_path=Original_path,
-                       GroundTruth_path=GroundTruth_path)
+                       GroundTruth_path=GroundTruth_path,
+                       Type=Type)
 names(a) <- c("Train_Original", "Train_GroundTruth")
 #str(a)
 b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
@@ -232,7 +241,8 @@ b <- ImgDataImport_2d_seg(WIDTH = WIDTH, HEIGHT = HEIGHT,
                        path01=path01,
                        path02="02_Testing",
                        Original_path=Original_path,
-                       GroundTruth_path=GroundTruth_path)
+                       GroundTruth_path=GroundTruth_path,
+                       Type=Type)
 names(b) <- c("Test_Original", "Test_GroundTruth")
 #str(b)
 if(!Binary){
@@ -240,10 +250,10 @@ Img <- list(Train=a, Test=b)
 #str(Img)
 saveRDS(Img, paste0(FileName, ".Rds"), compress = TRUE)
 }else{
-a$Train_GroundTruth[a$Train_GroundTruth > 0] <- 1
+a$Train_GroundTruth[a$Train_GroundTruth > Thres] <- 1
 names(a) <- c("Train_Original", "Train_GroundTruth")
 
-b$Test_GroundTruth[b$Test_GroundTruth > 0] <- 1
+b$Test_GroundTruth[b$Test_GroundTruth > Thres] <- 1
 names(b) <- c("Test_Original", "Test_GroundTruth")
 
 Img <- list(Train=a, Test=b)
