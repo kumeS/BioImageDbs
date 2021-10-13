@@ -183,6 +183,7 @@ img <- system.file("images", "EM_id0006_Rat_Liver_Mito.png", package="BioImageDb
 EBImage::display(EBImage::readImage(files = img))
 ```
 
+
 ```{r Fig011, fig.cap = "EM_id0006_Rat_Liver_2D_All_Nuc_1024_4dTensor_dataset.gif", echo = FALSE}
 options(EBImage.display = "raster")
 img <- system.file("images", "EM_id0006_Rat_Liver_Nuc.png", package="BioImageDbs")
