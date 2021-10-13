@@ -99,6 +99,7 @@ magick::image_read(qr[[N]])
 ```
 
 ## License
+
 Copyright (c) 2021 Satoshi Kume released under the [Artistic License 2.0](http://www.perlfoundation.org/artistic_license_2_0).
 
 ## Cite
@@ -122,4 +123,5 @@ Kume S, Nishida K (2021). BioImageDbs: Bio- and biomedical imaging dataset for m
 ## Authors
 - Satoshi Kume
 - Kozo Nishida
+
 
