@@ -14,7 +14,6 @@ loaded to Keras/tensorflow in R.
 - 2D/3D cellular images and their supervised labels for deep learning in R
 - Sharing the bioimage dataset with 4D/5D array (tensor) structures via Bioconductor
 
-
   - Future plan
     - Sharing the trained deep learning models in R
     - Integrated usage with rMiW 
