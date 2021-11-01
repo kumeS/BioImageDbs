@@ -25,7 +25,7 @@ BiocStyle::markdown()
 ```
 
 **Last modified:** `r file.info("BioImageDbs.Rmd")$mtime`<br />
-**Compiled**: `r date()`
+**Compiled**: `r Sys.time()`
 
 # Utilisation and prospects of bioimage datasets
 

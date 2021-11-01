@@ -2,7 +2,7 @@ Package: BioImageDbs
 Type: Package
 Title: Bio- and biomedical imaging dataset for machine learning and deep 
     learning (for ExperimentHub)
-Version: 1.0.6
+Version: 1.1.1
 Encoding: UTF-8
 Authors@R: c(
     person (given = "Satoshi", family = "Kume",
@@ -16,6 +16,7 @@ Authors@R: c(
     )
 Depends: R (>= 4.1.0)
 Imports: ExperimentHub (>= 1.16.1), 
+    AnnotationHub,
     markdown, 
     rmarkdown, 
     EBImage, 
