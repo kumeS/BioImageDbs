@@ -1,0 +1,81 @@
+---
+title: "Datasets in the BioimageBbs"
+author: 
+- name: Satoshi Kume
+  email: satoshi.kume.1984@gmail.com
+date: "`r Sys.Date()`"
+graphics: no
+package: BioImageDbs, magick
+output:
+  BiocStyle::html_document:
+      toc_float: true
+vignette: >
+  %\VignetteIndexEntry{Datasets in the BioimageBbs}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{ExperimentHub}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+**Last modified:** `r file.info("BioImageDbs_Datasets.Rmd")$mtime`<br />
+**Compiled**: `r Sys.time()`
+
+# Fetch Bioimage Datasets from ExperimentHub
+
+The `BioImageDbs` package provides the metadata for all BioImage 
+databases in `r Biocpkg("ExperimentHub")`. 
+
+The `BioImageDbs` package provides the metadata for bioimage datasets,
+which is preprocessed as array format and saved in
+`r Biocpkg("ExperimentHub")`.
+
+# ExperimentHub package
+
+First we load/update the `ExperimentHub` resource.
+
+```{r load-lib, message = FALSE}
+library(ExperimentHub)
+eh <- ExperimentHub()
+```
+
+# Simaple query
+
+We can retrieve only the BioImageDbs tibble files as follows.
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs"))
+
+#Show metadata (e.g. ah_id and title)
+qr$ah_id
+qr$title
+```
+
+# About datasets
+
+## EM_id0001: Mouse brain neurons
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0001"))
+
+##Show metadata
+qr$title
+
+##Import data
+#Img_Data <- qr[[1]]
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+
+# Session information {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
+
+
