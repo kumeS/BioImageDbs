@@ -44,22 +44,8 @@ The original dataset is available in [Google Drive](https://drive.google.com/dri
 
 ```r
 if (!requireNamespace("BiocManager", quietly = TRUE)){ install.packages("BiocManager") }
-BiocManager::install("BioImageDbs")
-
+BiocManager::install(c("ExperimentHub", "BioImageDbs"))
 library(ExperimentHub)
-library(BioImageDbs)
-```
-
-(Optional) 
-
-Install from the GitGub.
-
-```r
-#Install
-install.packages( "devtools" , repos="http://cran.r-project.org")
-devtools::install_github( "kumeS/BioImageDbs", force = TRUE )
-
-#Load
 library(BioImageDbs)
 ```
 
