@@ -34,6 +34,8 @@ The original dataset is available in [Google Drive](https://drive.google.com/dri
 
 ## Information
 
+- [Bioconductor / BioImageDbs](https://bioconductor.org/packages/release/data/experiment/html/BioImageDbs.html)
+
 - [Package Downloads Report](http://bioconductor.org/packages/stats/data-experiment/BioImageDbs/)
 
 ## Installation
