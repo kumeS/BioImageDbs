@@ -26,6 +26,8 @@ The original dataset is available in [Google Drive](https://drive.google.com/dri
 
 - [Providing Bioimage Dataset for ExperimentHub](https://kumes.github.io/BioImageDbs/vignettes/BioImageDbs.html)
 
+- [The BioImageBbs Datasets](https://kumes.github.io/BioImageDbs/vignettes/BioImageBbs_Datasets.html)
+
 - [make-data_for_v01](https://kumes.github.io/BioImageDbs/inst/scripts/v01/make-data_for_v01.html)
 
 - [make-data_for_v02](https://kumes.github.io/BioImageDbs/inst/scripts/v02/make-data_for_v02.html)
@@ -114,7 +116,7 @@ Kume S, Nishida K (2021). BioImageDbs: Bio- and biomedical imaging dataset for m
   author={Kume, Satoshi and Nishida, Kozo},
   year={2021},
   publisher={Bioconductor},
-  note={Experiment Packages - Release 3.13},
+  note={Experiment Packages},
   howpublished={\url{https://bioconductor.org/packages/release/data/experiment/html/BioImageDbs.html}},
 }
 ```

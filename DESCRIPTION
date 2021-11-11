@@ -2,7 +2,7 @@ Package: BioImageDbs
 Type: Package
 Title: Bio- and biomedical imaging dataset for machine learning and deep 
     learning (for ExperimentHub)
-Version: 1.2.1
+Version: 1.2.2
 Encoding: UTF-8
 Authors@R: c(
     person (given = "Satoshi", family = "Kume",
@@ -35,7 +35,7 @@ Description: The package provides a bioimage dataset for
     in R.
 VignetteBuilder: knitr
 License: Artistic-2.0
-URL: https://github.com/kumeS/BioImageDbs
+URL: https://kumes.github.io/BioImageDbs/
 LazyLoad: yes
 biocViews: ExperimentHub, ExperimentData, CellCulture, Tissue
 RoxygenNote: 7.1.1
