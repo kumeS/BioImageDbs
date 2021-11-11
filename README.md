@@ -47,6 +47,9 @@ if (!requireNamespace("BiocManager", quietly = TRUE)){ install.packages("BiocMan
 BiocManager::install(c("ExperimentHub", "BioImageDbs"))
 library(ExperimentHub)
 library(BioImageDbs)
+
+install.packages("magick")
+library(magick)
 ```
 
 ## Simple usage
@@ -74,7 +77,6 @@ str(ImgData)
 2. Display the GIF animation.
 
 ```r
-library(magick)
 qr <- query(eh, c("BioImageDbs", "EM_id0001"))
 
 #Show info
