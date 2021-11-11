@@ -1,0 +1,296 @@
+---
+title: "The BioImageBbs Datasets"
+author: 
+- name: Satoshi Kume
+  email: satoshi.kume.1984@gmail.com
+date: "`r Sys.Date()`"
+graphics: no
+package: BioImageDbs, magick
+output:
+  BiocStyle::html_document:
+      toc_float: true
+vignette: >
+  %\VignetteIndexEntry{The BioImageBbs Datasets}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{ExperimentHub}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+**Last modified:** `r file.info("BioImageDbs_Datasets.Rmd")$mtime`<br/>
+**Compiled**: `r Sys.time()`
+
+# Fetch Bioimage Datasets from ExperimentHub
+
+The `BioImageDbs` package provides the metadata for bioimage datasets,
+which is preprocessed as array format and saved in 
+`r Biocpkg("ExperimentHub")`.
+
+# ExperimentHub package
+
+First we load/update the `ExperimentHub` resource.
+
+```{r load-lib, message = FALSE}
+library(ExperimentHub)
+eh <- ExperimentHub()
+```
+
+# Simaple query
+
+We can retrieve only the BioImageDbs tibble files as follows.
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs"))
+qr
+```
+
+We can use the `$` symbol to access metadata such as the id and title.
+
+```{r echo=TRUE, eval=TRUE}
+#Show metadata (e.g. ah_id and title)
+qr$ah_id
+qr$title
+```
+
+# About datasets
+
+In this section, the query to retrieve each bioimage dataset will be introduced.
+
+## EM_id0001: Mouse brain neurons (5D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0001"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+gif_Data <- qr[[2]]
+
+#Show animation
+library(magick)
+magick::image_read(gif_Data)
+```
+
+## EM_id0002: Drosophila brain neurons (5D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0002"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+gif_Data <- qr[[2]]
+
+#Show animation
+magick::image_read(gif_Data)
+```
+
+## EM_id0003: J558L cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0003"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0004: primary human T cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0004"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0005: Mouse Kidney 2D imaging (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0005"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0006: Rat Liver 2D imaging (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0006"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0007: Mouse Kidney MultiScale images (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0007"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0008: Human NB4 cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0008"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0009: Murine BMMC cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0009"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0010: Human Blast cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0010"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## EM_id0011: human T-cell line Jurkat cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "EM_id0011"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## LM_id0001: HeLa cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "LM_id0001"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## LM_id0002: Human glioblastoma-astrocytoma U373 cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "LM_id0002"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+## LM_id0003: GFP-GOWT1 mouse stem cells (4D Array / Tensor)
+
+```{r echo=TRUE, eval=TRUE}
+qr <- query(eh, c("BioImageDbs", "LM_id0003"))
+
+##Show metadata
+qr
+
+##Import data
+#Img_Data <- qr[[1]]
+
+#Show animation
+gif_Data <- qr[[2]]
+magick::image_read(gif_Data)
+```
+
+
+# Session information {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
+
+
