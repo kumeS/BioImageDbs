@@ -20,13 +20,13 @@ loaded to Keras/tensorflow in R.
 
 ## Data source (GoogleDrive)
 
-The original dataset is available in [Google Drive](https://drive.google.com/drive/folders/1pVCE1JukoY8U1VN4YZmVPFaGtPg80OY-?usp=sharing). 
+The original dataset is available in [Google Drive](https://drive.google.com/drive/folders/1nzrmbABHWxL4UheLS-eTkH4Y9oJN4ddJ?usp=sharing). 
 
 ## Vignettes
 
 - [Providing Bioimage Dataset for ExperimentHub](https://kumes.github.io/BioImageDbs/vignettes/BioImageDbs.html)
 
-- [The BioImageBbs Datasets](https://kumes.github.io/BioImageDbs/vignettes/BioImageBbs_Datasets.html)
+- [About the BioImageBbs Datasets](https://kumes.github.io/BioImageDbs/vignettes/BioImageBbs_Datasets.html)
 
 - [make-data_for_v01](https://kumes.github.io/BioImageDbs/inst/scripts/v01/make-data_for_v01.html)
 
